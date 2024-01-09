@@ -14,8 +14,8 @@ const PageWrapper = () => {
     {welcome && (
       <div className='welcomeWrapper'>
       <header>
-      <nav>
-        <section className='links'>
+      <nav id="nav">
+        <section className='nav-link'>
           <NavLink to="/touristloginpage">Login</NavLink>
         </section>
       </nav>
