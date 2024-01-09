@@ -1,12 +1,14 @@
 import React from 'react'
 import { TouristLoginForm } from '../../components'
-import { Link } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 
 const TouristLoginPage = () => {
   return (
     <>
         <TouristLoginForm/>
-        <Link to='/signup'><button className='signupBtn'>No account?</button></Link>
+        <Link to='/touristsignuppage'><button className='signupBtn'>No account?</button></Link>
+        <Link to='/guideloginpage'><button className='signupBtn'>Are you a guide?</button></Link>
+        <Outlet/>
     </>
   )
 }
