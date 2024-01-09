@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { screen, render, cleanup, fireEvent } from '@testing-library/react';
+import { screen, render, cleanup, fireEvent, waitFor } from '@testing-library/react';
 
 import * as matchers from '@testing-library/jest-dom/matchers';
 expect.extend(matchers);
@@ -37,6 +37,21 @@ describe('Welcome Page', () => {
         const button = screen.getByRole("button")
         expect(button).toBeInTheDocument();
         expect(button.textContent).toBe("Join now!")
+    })
+
+    it("navigates to the tourist signup page when the button is clicked", async ()=>{
+        const button = screen.getByRole("button")
+
+        button.click()
+
+        waitFor(async ()=>{
+
+
+
+        const registertext = await screen.getByText("REGISTER")
+        expect(registertext).toBeInTheDocument();
+
+        })
     })
 
 });
