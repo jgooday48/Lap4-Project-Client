@@ -1,14 +1,21 @@
 import React from 'react'
 import { TouristLoginForm } from '../../components'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+
 
 const TouristLoginPage = () => {
+
+    const navigate = useNavigate()
+
+    const handleClick = () => {
+        navigate('/touristsignuppage');
+      };
   return (
     <>
+    <div id="register-page">
         <TouristLoginForm/>
-        <Link to='/touristsignuppage'><button className='signupBtn'>No account?</button></Link>
-        <Link to='/guideloginpage'><button className='signupBtn'>Are you a guide?</button></Link>
-        <Outlet/>
+        <button className='btn' onClick={handleClick}>No account?</button>
+        </div>
     </>
   )
 }

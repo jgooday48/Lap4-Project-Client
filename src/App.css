@@ -97,6 +97,31 @@
   padding:10px;
 }
 
+#register-page{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height:100vh;
+}
+
+
+#tourist-register-form{
+  width:40%;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  align-items:center;
+  border-radius:10px;
+  border: 1px solid grey;
+  margin-bottom:70px;
+  padding: 50px;
+  margin-top: 35px;
+  
+}
+
 
  
 

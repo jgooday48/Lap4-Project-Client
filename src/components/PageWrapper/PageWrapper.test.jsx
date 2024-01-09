@@ -1,6 +1,6 @@
 import React from "react";
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import { screen, render, cleanup } from "@testing-library/react";
+import { screen, render, cleanup, waitFor, fireEvent, rerender} from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 // import { AuthProvider } from "../../context/AuthContext";
 import * as matchers from "@testing-library/jest-dom/matchers";
@@ -37,16 +37,21 @@ describe("Page wrapper functionality", () => {
         expect(nav.textContent).toBe('Login')
     })
 
-    // it("navigates to correct endpoint when nav element is clicked", async () => {
-    //     const history = createMemoryHistory()
-    //     const loginNav = screen.getByText('Login')
+    it("navigates to correct endpoint when nav element is clicked", async () => {
+
+       const loginNav = screen.getByText('Login')
         
-    //     loginNav.click()
+       fireEvent.click(loginNav)
         
-    //     // const button = screen.getByText('No account?')
-    //     // expect(button).toBeInTheDocument()
-    //     window.location.reload
-    //     expect(history.location.pathname).toBe('/touristguidepage')
-    // })
+      waitFor( async ()=>{
+
+       
+       const button = await screen.getByText('No account?')
+       expect(button).toBeInTheDocument()
+       expect(window.location.pathname).toBe('/touristloginpage')
+       })
+
+      
+     })
 })
 
