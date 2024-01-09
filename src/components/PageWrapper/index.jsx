@@ -4,8 +4,9 @@ import { NavLink, Outlet } from 'react-router-dom';
 const PageWrapper = () => {
   return (
     <>
-    <header>
-      <nav>
+    <header id="header">
+      <nav id="nav">
+        <NavLink className="nav-link" to="/touristloginpage">Login</NavLink>
 
 
       </nav>
@@ -14,7 +15,10 @@ const PageWrapper = () => {
     <Outlet />
 
     <footer id = "footer">
+      <div>
+      <h3> TRAVEL APP</h3>
       <p> Copyright 2024 </p>
+      </div>
 
       </footer>
 
