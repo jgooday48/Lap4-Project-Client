@@ -28,7 +28,7 @@ const PageWrapper = () => {
       <div className='touristWrapper'>
       <header>
       <nav>
-        <section className='links'>
+        <section className='nav-link'>
           <NavLink to="/touristhomepage">Home</NavLink>
           <NavLink to="/touristguidepage">Your guides</NavLink>
         </section>
@@ -42,7 +42,7 @@ const PageWrapper = () => {
       <div className='touristWrapper'>
       <header>
       <nav>
-        <section className='links'>
+        <section className='nav-link'>
           <NavLink to="/guidehomepage">Home</NavLink>
           <NavLink to="/guideprofilepage">Your profile</NavLink>
         </section>
@@ -53,9 +53,8 @@ const PageWrapper = () => {
     </div>
     )}
 
-    <footer id = "footer">
+    <footer id ="footer">
       <p> Copyright 2024 </p>
-
       </footer>
     </>
   )
