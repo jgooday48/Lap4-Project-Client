@@ -13,7 +13,7 @@ const WelcomePage = () => {
         <div className='description'>
             <h2>Making travelling solo relaxing and enjoyable</h2>
         </div>
-        <button id="login" onClick={navigate("/touristsignuppage")} className="btn">Join now!</button>
+        {/* <button id="login" onClick={navigate("/touristsignuppage")} className="btn">Join now!</button> */}
     </div>
   )
 }
