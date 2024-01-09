@@ -9,17 +9,16 @@ function App() {
   
 
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<PageWrapper/>}>
+  <>
+    <Routes>
+      <Route path="/" element={<PageWrapper/>}>
         <Route index element={<WelcomePage/>} />
         <Route path="/touristhomepage" element={<TouristHomePage />} />
         <Route path="/touristloginpage" element={<TouristLoginPage/>}/>
         <Route path="/touristsignuppage" element={<TouristSignUpPage />}/>
       </Route>
-
-      </Routes>
-    </>
+    </Routes>
+  </>
   )
 }
 
