@@ -37,14 +37,16 @@ describe("Page wrapper functionality", () => {
         expect(nav.textContent).toBe('Login')
     })
 
-    // it("navigates to correct endpoint when nav element is clickede", async () => {
+    // it("navigates to correct endpoint when nav element is clicked", async () => {
+    //     const history = createMemoryHistory()
     //     const loginNav = screen.getByText('Login')
         
     //     loginNav.click()
         
     //     // const button = screen.getByText('No account?')
     //     // expect(button).toBeInTheDocument()
-    //     expect(window.location.pathname).toBe('/touristloginpage')
+    //     window.location.reload
+    //     expect(history.location.pathname).toBe('/touristguidepage')
     // })
 })
 

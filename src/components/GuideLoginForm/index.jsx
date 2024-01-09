@@ -1,17 +1,17 @@
-import { React, useState } from 'react'
+import { React, useState }from 'react'
 
-const TouristLoginForm = () => {
+const GuideLoginForm = () => {
 
     const [email, setEmail ] = useState('')
     const [password, setPassword ] = useState('')
     const [error, setError] = useState(null)
     const [Loading, setLoading] = useState(null)
 
-    // const useTouristLogin = async (email, password) => {
+    // const useGuideLogin = async (email, password) => {
     //   setLoading(true)
     //   setError(null)
   
-    //   const response = await fetch('http://localhost:3000/users/login', {
+    //   const response = await fetch('http://localhost:3000/guide/login', {
     //     method: 'POST',
     //     headers: {'Content-Type': 'application/json'},
     //     body: JSON.stringify({ email, password })
@@ -35,12 +35,12 @@ const TouristLoginForm = () => {
     const handleSubmit = async (e) => {
       e.preventDefault()
   
-      // await useTouristLogin(email, password)
+    //   await useGuideLogin(email, password)
     }
 
   return (
     <form className="login" onSubmit={handleSubmit}>
-        <h1>Tourist Log In</h1>
+        <h1>Guide Log In</h1>
         
         <label>Email:</label>
         <input 
@@ -61,4 +61,4 @@ const TouristLoginForm = () => {
   )
 }
 
-export default TouristLoginForm
+export default GuideLoginForm
