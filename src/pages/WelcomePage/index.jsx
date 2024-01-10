@@ -5,17 +5,21 @@ const WelcomePage = () => {
 
     const navigate = useNavigate()
 
+    const handleClick = () => {
+        navigate('/touristsignuppage');
+      };
+
   return (
     <div className="homepage-container">
         <img className="image-container" src="/src/assets/backpacker.jpeg"></img>
         <div className="overlay">
         <div className='title'>
-            <h1>Find a travel guide</h1>
+            <h1 role="title" aria-level="1">Find a travel guide</h1>
         </div>
         <div className='description'>
-            <h2>Making travelling solo relaxing and enjoyable</h2>
+            <h2 role="description" aria-level="2">Making travelling solo relaxing and enjoyable</h2>
         </div>
-        <button id="login" onClick={navigate("/touristsignuppage")} className="btn">Join now!</button>
+        <button onClick={handleClick} className="btn">Join now!</button>
         </div>
     </div>
   )

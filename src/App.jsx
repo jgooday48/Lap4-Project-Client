@@ -14,6 +14,10 @@ function App() {
           <Route path="/touristhomepage" element={<TouristHomePage />} />
           <Route path="/touristloginpage" element={<TouristLoginPage />} />
           <Route path="/touristsignuppage" element={<TouristSignUpPage />} />
+        <Route path="/touristguidepage" element={<TouristGuidePage/>}/>
+        <Route path="/guidehomepage" element={<GuideHomePage/>}/>
+        <Route path="/guideloginpage" element={<GuideLoginPage/>}/>
+        <Route path="/guideprofilepage" element={<GuideProfilePage/>}/>
         </Route>
       </Routes>
     </>

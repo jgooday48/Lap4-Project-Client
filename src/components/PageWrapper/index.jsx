@@ -23,8 +23,8 @@ const PageWrapper = () => {
       {welcome && (
         <div className='welcomeWrapper'>
           <header>
-            <nav>
-              <section className='links'>
+            <nav id="nav">
+              <section className='nav-link'>
                 <NavLink to="/touristloginpage">Login</NavLink>
               </section>
             </nav>
@@ -83,7 +83,7 @@ const PageWrapper = () => {
         <div className='touristWrapper'>
           <header>
             <nav>
-              <section className='links'>
+              <section className='nav-link'>
                 <NavLink to="/guidehomepage">Home</NavLink>
                 <NavLink to="/guideprofilepage">Your profile</NavLink>
               </section>
