@@ -2,7 +2,7 @@ import React from "react";
 import './App.css';
 import { Routes, Route } from "react-router-dom";
 
-import { WelcomePage, TouristHomePage, TouristLoginPage, TouristSignUpPage } from './pages';
+import { WelcomePage, TouristHomePage, TouristLoginPage, TouristSignUpPage, TouristGuidePage, GuideProfilePage, GuideHomePage, GuideLoginPage } from './pages';
 import { PageWrapper } from './components';
 
 function App() {

@@ -1,0 +1,23 @@
+#topContainer {
+    background-color: #5228f5;
+    height: 100vh;
+  }
+  
+  #headerContainer {
+    background-color: #5228f5;
+    
+  }
+  
+  #centeredContainer {
+    background-color: #5228f5;
+    
+    text-align: center; 
+    padding: 20px; 
+
+  }
+
+  h1{
+    max-width: 800px;
+    font-size: 1.6em; 
+    color: antiquewhite;
+  }
