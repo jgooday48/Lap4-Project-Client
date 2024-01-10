@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import useTourist from "../../contexts/touristContext"
+import { useWelcome } from '../../contexts/welcomeContext'
 
 const TouristSignupForm = () => {
+
+    const { errorMessage, setErrorMessage, setUsername, setPassword, setName, setEmail,setTourist } = useTourist();
+    const { setWelcome } =useWelcome()
 
     const loginFunction = async (e) => {
         try {
@@ -32,11 +37,12 @@ const TouristSignupForm = () => {
 
     const goTo = useNavigate();
 
-    const [errorMessage, setErrorMessage] = useState();
-    const [ username, setUsername ] = useState();
-    const [ password, setPassword ] = useState();
-    const [ name, setName ] = useState();
-    const [ email, setEmail ] = useState(); 
+    // const [errorMessage, setErrorMessage] = useState();
+    // const [ username, setUsername ] = useState();
+    // const [ password, setPassword ] = useState();
+    // const [ name, setName ] = useState();
+    // const [ email, setEmail ] = useState(); 
+    // const [ tourist, setTourist ] = useState(false)
 
 
 
@@ -46,7 +52,10 @@ const TouristSignupForm = () => {
         setErrorMessage('')
         //await registerFunction(e);
         await loginFunction(e);
-        if(localStorage.length){goTo('/touristhomepage')}
+        if(localStorage.length){
+            setTourist(true)
+            setWelcome(false)
+            goTo('/touristhomepage')}
         else { setErrorMessage('User already exists!') }        
     }
 

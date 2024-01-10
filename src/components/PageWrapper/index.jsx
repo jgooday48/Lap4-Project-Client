@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 
+import { useTourist } from '../../contexts/touristContext';
+import { useGuide } from '../../contexts/guideContext';
+import { useWelcome } from '../../contexts/welcomeContext';
+
 const PageWrapper = () => {
-  const [guide, setGuide] = useState(false);
-  const [tourist, setTourist] = useState(true);
-  const [welcome, setWelcome] = useState(false);
+
+  const {tourist, setTourist} = useTourist(); 
+  const { guide, setGuide } = useGuide();
+  const [ welcome, setWelcome ] = useWelcome();
 
   // const handleTouristLogin = () => {
   //   setTourist(true);
