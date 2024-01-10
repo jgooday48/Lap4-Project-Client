@@ -17,7 +17,23 @@
   }
 
   h1{
-    max-width: 800px;
     font-size: 1.6em; 
     color: antiquewhite;
+  }
+
+  #Details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+  }
+  
+  #Details2 {
+    background-color: #5228f5;
+    color: antiquewhite;
+    padding: 20px;
+  }
+  h2 {
+    font-size: 1.6em;
+    margin: 0; 
   }
