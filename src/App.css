@@ -53,9 +53,9 @@
 
 }
 
-.active{
+/* .active{
   background-color: #3d94ff;
-}
+} */
 
 .btn {
   background-color: #3d94ff;
@@ -97,6 +97,38 @@
   padding:10px;
 }
 
+#tourist-navbar {
+  background-color: white;
+}
 
- 
+.touristWrapper {
+  background-color: #5228F5;
+  padding: 50px;
+  /* margin-top: 10px; */
+  height: 60px;
+}
 
+.tourist-header {
+  background-color: white;
+  height: 100%;
+  padding: 20px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+}
+
+.brand {
+  font-size: 1.5em; 
+  margin-right: 20px;
+}
+
+.links {
+  display: flex;
+  gap: 20px;
+}
+
+.links a {
+  text-decoration: none;
+  color: #000; 
+}

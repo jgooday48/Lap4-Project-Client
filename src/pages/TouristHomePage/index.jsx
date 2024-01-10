@@ -1,9 +1,17 @@
-import React from 'react'
+import React from 'react';
+import './index.css';
 
 const TouristHomePage = () => {
   return (
-    <div>TouristHomePage</div>
-  )
-}
+    <div id="topContainer">
+      <div id="headerContainer">
+        
+          <h1 >Discover the World with our Travel Guide App</h1>
+        
+      </div>
+      
+    </div>
+  );
+};
 
-export default TouristHomePage
+export default TouristHomePage;
