@@ -1,11 +1,12 @@
-import React from "react";
+import { React, useState }from "react";
 import './App.css';
 import { Routes, Route } from "react-router-dom";
 
-import { WelcomePage, TouristHomePage, TouristLoginPage, TouristSignUpPage, TouristGuidePage, GuideProfilePage, GuideHomePage, GuideLoginPage } from './pages';
+import { WelcomePage, TouristHomePage, TouristLoginPage, TouristSignUpPage, TouristGuidePage, GuideProfilePage, GuideHomePage, GuideLoginPage, WebSocketPage } from './pages';
 import { PageWrapper } from './components';
 
 function App() {
+
   return (
     <>
       <Routes>
@@ -18,6 +19,7 @@ function App() {
         <Route path="/guidehomepage" element={<GuideHomePage/>}/>
         <Route path="/guideloginpage" element={<GuideLoginPage/>}/>
         <Route path="/guideprofilepage" element={<GuideProfilePage/>}/>
+        <Route path="/livechat" element={<WebSocketPage/>}/>
         </Route>
       </Routes>
     </>
