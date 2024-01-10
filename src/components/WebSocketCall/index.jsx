@@ -30,6 +30,7 @@ const WebSocketCall = ({ socket }) => {
       <button onClick={handleSubmit}>submit</button>
       <ul>
         {messages.map((message, ind) => {
+          console.log(message)
           return <li key={ind}>{message}</li>;
         })}
       </ul>

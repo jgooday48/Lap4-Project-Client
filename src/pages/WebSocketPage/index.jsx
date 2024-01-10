@@ -16,37 +16,76 @@ const WebSocketPage = () => {
     }
   }
 
-
   useEffect(() => {
-
     if (buttonStatus === true) {
-      const socket = io("localhost:5000/", {
+      const socket = io("http://localhost:5000/", {
         transports: ["websocket"],
         cors: {
-          origin: "http://localhost:5173/",
+          origin: "http://localhost:5173",
         },
       });
 
+      console.log(socket)
+  
       setSocketInstance(socket);
-
-      socket.on("connect", (data) => {
-        console.log("connection", data);
+  
+      socket.on("connect", () => {
+        // setLoading(false); // Set loading to false only when connected
+        console.log("connected");
       });
 
-      setLoading(false);
-
+      setLoading(false)
+  
       socket.on("disconnect", (data) => {
-        console.log(JSON.stringify(data));
+        console.log("disconnected", JSON.stringify(data));
       });
-
+  
       return function cleanup() {
-        
-       socket.disconnect();
-        
+        socket.disconnect();
+        setLoading(true);
+        setSocketInstance(null);
       };
-
     }
   }, [buttonStatus]);
+  // useEffect(() => {
+
+  //   if (buttonStatus === true) {
+  //     const socket = io("localhost:5000/", {
+  //       transports: ["websocket"],
+  //       cors: {
+  //         origin: "http://localhost:5173/",
+  //       }
+  //     });
+
+  //     setSocketInstance(socket);
+
+  //     socket.on("connect", (data) => {
+  //       console.log("connected", data);
+  //     });
+
+  //     setLoading(false);
+
+  //     socket.on("disconnect", (data) => {
+  //       console.log("disconnected", JSON.stringify(data));
+  //     });
+
+  //     return function cleanup() {
+        
+  //      socket.disconnect()
+  //      setLoading(true);
+  //      setSocketInstance(null);
+
+  //     };
+  //   }
+  //   // } else {
+  //   //   socketInstance.disconnect();
+  //   //   setSocketInstance(null);
+  //   //   setLoading(true)
+
+  //   // }
+  // }, [buttonStatus]);
+
+  console.log(loading)
 
   return (
 <div>
