@@ -7,7 +7,7 @@ import { useWelcome } from '../../contexts/welcomeContext';
 
 const PageWrapper = () => {
 
-  const {tourist, setTourist} = useTourist(); 
+  const { tourist, setTourist } = useTourist(); 
   const { guide, setGuide } = useGuide();
   const { welcome, setWelcome } = useWelcome();
 
@@ -28,7 +28,7 @@ const PageWrapper = () => {
       {welcome && (
         <div className='welcomeWrapper'>
           <header className= "tourist-header">
-            <nav id="tourist-navbar">
+            <nav role="navbar" id="tourist-navbar">
               <section className='nav-link'>
                 <NavLink to="/touristloginpage">Login</NavLink>
               </section>
