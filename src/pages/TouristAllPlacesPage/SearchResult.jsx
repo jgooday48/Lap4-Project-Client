@@ -6,7 +6,7 @@ const SearchResult = ({ place }) => {
 
 
     const handleNavigate = (id) => {
-        navigate(`/place/${id}`)
+        navigate(`/places/placeId/${id}`)
     }
 
 

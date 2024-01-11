@@ -11,11 +11,11 @@ import FiltersSection from './FiltersSection';
 
 const TouristHomePage = () => {
   const [search, setSearch] = useState('')
-  const [placePicked, setPlacePicked] = useState('')
+  const [placePicked, setPlacePicked] = useState(null)
   const [places, setPlaces] = useState([])
   const navigate = useNavigate()
   const [isSearching, setIsSearching] = useState(false)
-   const [selectedValues, setSelectedValues] = useState([]);
+  const [selectedFilters, setSelectedFilters] = useState([]);
 
 
   const handleSearch = () => {
@@ -26,13 +26,17 @@ const TouristHomePage = () => {
 
   const findMatches = async (e) => {
     if (search.length === 0) {
-      setPlacePicked('')
+      setPlacePicked(null)
     }
     setIsSearching(true)
     setSearch(e.target.value)
     const res = await axios.get(baseApi + "places")
     const foundMatches = res.data?.data?.filter(place => place.name.toLowerCase().includes(e.target.value.toLowerCase())) || [];
     setPlaces(foundMatches)
+  }
+
+  const handleNavigate = () => {
+    navigate(`/places/placeId/${placePicked}`, {state: {selectedFilters}})
   }
 
 
@@ -66,8 +70,14 @@ const TouristHomePage = () => {
 
         </div>
         {
-          placePicked.length > 0 && search.length > 0 && (
-           <FiltersSection selectedValues={selectedValues} setSelectedValues={setSelectedValues}/>
+          placePicked != null && search.length > 0 && (
+          <>
+            <FiltersSection selectedValues={selectedFilters} setSelectedValues={setSelectedFilters} />
+            <div>
+              <button className="btn btn-light" onClick={handleNavigate}>Search</button>  
+            </div>
+          </>
+              
           )
 
         }

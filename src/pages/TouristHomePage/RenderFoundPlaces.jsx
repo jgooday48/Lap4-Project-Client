@@ -10,11 +10,11 @@ const RenderFoundPlaces = ({ search, setSearch, places, setIsSearching, setPlace
   
   if (!search || places.length === 0) return null
 
-  const handleClick = (e, name) => {
+  const handleClick = (e, place) => {
     e.preventDefault()
-    setSearch(name)
+    setSearch(place.name + ", " + place.location)
     setIsSearching(false)
-    setPlacePicked(name)
+    setPlacePicked(place.place_id)
   
   }
 
@@ -27,16 +27,20 @@ const RenderFoundPlaces = ({ search, setSearch, places, setIsSearching, setPlace
             regex,
             '<strong>$1</strong>'
           )
+          const boldPlace = place.location.replace(
+            regex,
+            '<strong>$1</strong>'
+          )
           return (
             <div
               className='search-result'
               key={place.place_id}
-              onClick={(e) => handleClick(e, place.name)}
+              onClick={(e) => handleClick(e, place)}
             >
               <FontAwesomeIcon icon={faLocationDot} style={{ color: '#9ca3af' }} />
               <div
                 className='search-result-text'
-                dangerouslySetInnerHTML={{ __html: titleWithBoldedSearch }}
+                dangerouslySetInnerHTML={{ __html: titleWithBoldedSearch+ ', ' + boldPlace }}
               ></div>
 
             </div>
