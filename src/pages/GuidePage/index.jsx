@@ -22,10 +22,10 @@ const GuidePage = () => {
   }, [id]);
 
   return (
-    <>
+    <div className='guidesPage'>
       <h1>Guide page</h1>
       <GuideCard guide={guide} />
-    </>
+    </div>
   );
 };
 
