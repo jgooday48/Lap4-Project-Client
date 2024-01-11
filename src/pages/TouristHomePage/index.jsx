@@ -6,15 +6,16 @@ import { baseApi } from '../../utils/baseApi';
 import { useNavigate } from 'react-router';
 import RenderFoundPlaces from './renderFoundPlaces';
 import axios from 'axios';
-
+import FiltersSection from './FiltersSection';
 
 
 const TouristHomePage = () => {
   const [search, setSearch] = useState('')
-  const [placePicked, setPlacePicked]= useState('')
+  const [placePicked, setPlacePicked] = useState('')
   const [places, setPlaces] = useState([])
   const navigate = useNavigate()
   const [isSearching, setIsSearching] = useState(false)
+   const [selectedValues, setSelectedValues] = useState([]);
 
 
   const handleSearch = () => {
@@ -24,6 +25,9 @@ const TouristHomePage = () => {
 
 
   const findMatches = async (e) => {
+    if (search.length === 0) {
+      setPlacePicked('')
+    }
     setIsSearching(true)
     setSearch(e.target.value)
     const res = await axios.get(baseApi + "places")
@@ -58,17 +62,15 @@ const TouristHomePage = () => {
                 <RenderFoundPlaces search={search} setSearch={setSearch} places={places} setIsSearching={setIsSearching} setPlacePicked={setPlacePicked} />
               </div>
             }
-            {
-              placePicked.length > 0 && (
-                <div>
-                  <h3>Pick your filters here for your guide: </h3>
-                  </div>
-              )
-              
-            }
           </div>
 
         </div>
+        {
+          placePicked.length > 0 && search.length > 0 && (
+           <FiltersSection selectedValues={selectedValues} setSelectedValues={setSelectedValues}/>
+          )
+
+        }
 
 
       </div>
