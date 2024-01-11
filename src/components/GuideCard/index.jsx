@@ -1,10 +1,11 @@
 import React from 'react'
 
-const GuideCard = ({ guides }) => {
+const GuideCard = ({ guide }) => {
   return (
     <div>
-      <h2>{guides.name}</h2>
-      <h3>{guides.location}</h3>
+      <h2>{guide.name}</h2>
+      <h3>{guide.email}</h3>
+      <h4>{guide.filters}</h4>
     </div>
   )
 }
