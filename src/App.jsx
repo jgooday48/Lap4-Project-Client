@@ -30,7 +30,7 @@ function App() {
 
         <Route path="/guidehomepage" element={<Pages.GuideHomePage/>}/>
         <Route path="/guideloginpage" element={<Pages.GuideLoginPage/>}/>
-        <Route path="/guideprofilepage" element={<Pages.GuideProfilePage/>}/>
+
         </Route>
       </Routes>
       </TouristProvider>
