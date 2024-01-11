@@ -2,7 +2,7 @@ import React from "react";
 import './App.css';
 import { Routes, Route } from "react-router-dom";
 
-import { WelcomePage, TouristHomePage, TouristLoginPage, TouristSignUpPage, TouristGuidePage, GuideProfilePage, GuideHomePage, GuideLoginPage } from './pages';
+import * as Pages from './pages'
 import { PageWrapper } from './components';
 import { TouristProvider } from "./contexts/touristContext";
 import { GuideProvider } from "./contexts/guideContext";
@@ -17,14 +17,20 @@ function App() {
     <TouristProvider>
       <Routes>
         <Route path="/" element={<PageWrapper />}>
-          <Route index element={<WelcomePage />} />
-          <Route path="/touristhomepage" element={<TouristHomePage />} />
-          <Route path="/touristloginpage" element={<TouristLoginPage />} />
-          <Route path="/touristsignuppage" element={<TouristSignUpPage />} />
-        <Route path="/touristguidepage" element={<TouristGuidePage/>}/>
-        <Route path="/guidehomepage" element={<GuideHomePage/>}/>
-        <Route path="/guideloginpage" element={<GuideLoginPage/>}/>
-        <Route path="/guideprofilepage" element={<GuideProfilePage/>}/>
+          <Route index element={<Pages.WelcomePage />} />
+          <Route path="/touristhomepage" element={<Pages.TouristHomePage />} />
+          <Route path="/touristloginpage" element={<Pages.TouristLoginPage />} />
+          <Route path="/touristsignuppage" element={<Pages.TouristSignUpPage />} />
+
+
+        <Route path="/touristguidepage">
+          <Route index element={<Pages.TouristGuidePage/>}/>
+          <Route path=":id" element={<Pages.GuidePage />}/>
+        </Route>
+
+        <Route path="/guidehomepage" element={<Pages.GuideHomePage/>}/>
+        <Route path="/guideloginpage" element={<Pages.GuideLoginPage/>}/>
+        <Route path="/guideprofilepage" element={<Pages.GuideProfilePage/>}/>
         </Route>
       </Routes>
       </TouristProvider>

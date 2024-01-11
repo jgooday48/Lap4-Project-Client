@@ -22,6 +22,7 @@ const TouristGuidePage = () => {
 
   return (
     <div>
+      <h1>List of Guides</h1>
       <GuidesList guides={guides} />
     </div>
   );

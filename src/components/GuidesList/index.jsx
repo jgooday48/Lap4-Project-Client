@@ -1,14 +1,16 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom'
 const GuideList = ({ guides }) => {
   return (
     <div>
-      <h1>List of Guide Names</h1>
-      <ul>
+
+
         {guides.map((guide) => (
-          <li key={guide.guide_id}>{guide.name}</li>
+          <Link to={`${guide.guide_id}`} key={guide.guide_id}>
+            {guide.name}
+          </Link>
         ))}
-      </ul>
+
     </div>
   );
 };
