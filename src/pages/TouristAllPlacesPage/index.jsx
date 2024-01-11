@@ -25,10 +25,13 @@ const TouristAllPlacesPage = () => {
     }, [])
 
     const getSearchedPlaces = (searchTerm) => {
-        const searchedRes = places?.filter(
-            place => place.name && place.name.toLowerCase().includes(searchTerm.toLowerCase())
-        )
-        return searchedRes
+       const searchedRes = places?.filter(
+        place => 
+            (place.name && place.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+            (place.location && place.location.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
+
+    return searchedRes;
     }
 
     const searchedPlaces = getSearchedPlaces(search)

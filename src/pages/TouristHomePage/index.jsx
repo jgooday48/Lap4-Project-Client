@@ -31,7 +31,7 @@ const TouristHomePage = () => {
     setIsSearching(true)
     setSearch(e.target.value)
     const res = await axios.get(baseApi + "places")
-    const foundMatches = res.data?.data?.filter(place => place.name.toLowerCase().includes(e.target.value.toLowerCase())) || [];
+    const foundMatches = res.data?.data?.filter(place => (place.name.toLowerCase().includes(e.target.value.toLowerCase()))|| place.location.toLowerCase().includes(e.target.value.toLowerCase()) )|| [];
     setPlaces(foundMatches)
   }
 
