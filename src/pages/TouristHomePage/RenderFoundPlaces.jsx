@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faLocationDot} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 import { useNavigate } from 'react-router'
 
@@ -10,12 +10,9 @@ const RenderFoundPlaces = ({ search, places }) => {
   
   if (!search || places.length === 0) return null
 
-
-
   const handleClick = (e, id) => {
     e.preventDefault()
     navigate(`/place:${id}`)
-
   }
 
   return (
@@ -33,7 +30,7 @@ const RenderFoundPlaces = ({ search, places }) => {
               key={place.place_id}
               onClick={(e) => handleClick(e, place.place_id)}
             >
-              <FontAwesomeIcon icon={faSearch} style={{ color: '#9ca3af' }} />
+              <FontAwesomeIcon icon={faLocationDot} style={{ color: '#9ca3af' }} />
               <div
                 className='search-result-text'
                 dangerouslySetInnerHTML={{ __html: titleWithBoldedSearch }}

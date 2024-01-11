@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, { useState } from 'react';
 import './index.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
@@ -50,11 +50,11 @@ const TouristHomePage = () => {
               }}
             />
             <FontAwesomeIcon icon={faSearch} className='fa-search' />
-            <div className="searches"><RenderFoundPlaces search={search} places={places}/></div>
+            <div className="searches"><RenderFoundPlaces search={search} places={places} /></div>
           </div>
 
         </div>
-        
+
 
       </div>
     </div>

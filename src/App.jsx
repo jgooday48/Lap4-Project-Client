@@ -2,7 +2,7 @@ import React from "react";
 import './App.css';
 import { Routes, Route } from "react-router-dom";
 
-import { WelcomePage, TouristHomePage, TouristLoginPage, TouristSignUpPage, TouristGuidePage, GuideProfilePage, GuideHomePage, GuideLoginPage } from './pages';
+import { WelcomePage, TouristHomePage, TouristLoginPage, TouristSignUpPage, TouristGuidePage, GuideProfilePage, GuideHomePage, GuideLoginPage, TouristAllPlacesPage } from './pages';
 import { PageWrapper } from './components';
 import { TouristProvider } from "./contexts/touristContext";
 import { GuideProvider } from "./contexts/guideContext";
@@ -24,7 +24,8 @@ function App() {
         <Route path="/touristguidepage" element={<TouristGuidePage/>}/>
         <Route path="/guidehomepage" element={<GuideHomePage/>}/>
         <Route path="/guideloginpage" element={<GuideLoginPage/>}/>
-        <Route path="/guideprofilepage" element={<GuideProfilePage/>}/>
+                <Route path="/guideprofilepage" element={<GuideProfilePage />} />
+        <Route path="/places/:search" element={<TouristAllPlacesPage/>}/>
         </Route>
       </Routes>
       </TouristProvider>
