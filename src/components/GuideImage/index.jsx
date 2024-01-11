@@ -2,7 +2,7 @@ import React from 'react'
 
 const GuideImage = ({ guide }) => {
   return (
-    <div>
+    <div className='guideImage'>
 
         <img src={guide.images} alt={guide.name} />
     </div>

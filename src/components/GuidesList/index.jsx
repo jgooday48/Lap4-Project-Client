@@ -4,7 +4,7 @@ import { GuideImage } from '..'
 
 const GuideList = ({ guides }) => {
   return (
-    <div>
+    <div className='guidesList'>
 
 
         {guides.map((guide) => (

@@ -2,7 +2,7 @@ import React from 'react'
 
 const GuideCard = ({ guide, place }) => {
   return (
-    <div>
+    <div className='Guide'>
       <h2>Name: {guide.name}</h2>
       <h3>Email: {guide.email}</h3>
       <h4>Specialities: {guide.filters}</h4>
