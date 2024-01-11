@@ -11,8 +11,10 @@ import axios from 'axios';
 
 const TouristHomePage = () => {
   const [search, setSearch] = useState('')
+  const [placePicked, setPlacePicked]= useState('')
   const [places, setPlaces] = useState([])
   const navigate = useNavigate()
+  const [isSearching, setIsSearching] = useState(false)
 
 
   const handleSearch = () => {
@@ -22,6 +24,7 @@ const TouristHomePage = () => {
 
 
   const findMatches = async (e) => {
+    setIsSearching(true)
     setSearch(e.target.value)
     const res = await axios.get(baseApi + "places")
     const foundMatches = res.data?.data?.filter(place => place.name.toLowerCase().includes(e.target.value.toLowerCase())) || [];
@@ -50,7 +53,19 @@ const TouristHomePage = () => {
               }}
             />
             <FontAwesomeIcon icon={faSearch} className='fa-search' />
-            <div className="searches"><RenderFoundPlaces search={search} places={places} /></div>
+            {isSearching &&
+              <div className="searches">
+                <RenderFoundPlaces search={search} setSearch={setSearch} places={places} setIsSearching={setIsSearching} setPlacePicked={setPlacePicked} />
+              </div>
+            }
+            {
+              placePicked.length > 0 && (
+                <div>
+                  <h3>Pick your filters here for your guide: </h3>
+                  </div>
+              )
+              
+            }
           </div>
 
         </div>

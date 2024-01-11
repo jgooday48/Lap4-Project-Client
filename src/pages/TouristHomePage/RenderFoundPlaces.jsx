@@ -5,14 +5,17 @@ import { useNavigate } from 'react-router'
 
 
 
-const RenderFoundPlaces = ({ search, places }) => {
+const RenderFoundPlaces = ({ search, setSearch, places, setIsSearching, setPlacePicked}) => {
   const navigate = useNavigate()
   
   if (!search || places.length === 0) return null
 
-  const handleClick = (e, id) => {
+  const handleClick = (e, name) => {
     e.preventDefault()
-    navigate(`/place:${id}`)
+    setSearch(name)
+    setIsSearching(false)
+    setPlacePicked(name)
+  
   }
 
   return (
@@ -28,7 +31,7 @@ const RenderFoundPlaces = ({ search, places }) => {
             <div
               className='search-result'
               key={place.place_id}
-              onClick={(e) => handleClick(e, place.place_id)}
+              onClick={(e) => handleClick(e, place.name)}
             >
               <FontAwesomeIcon icon={faLocationDot} style={{ color: '#9ca3af' }} />
               <div
