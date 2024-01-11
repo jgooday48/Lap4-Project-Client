@@ -9,7 +9,7 @@ const PageWrapper = () => {
 
   const {tourist, setTourist} = useTourist(); 
   const { guide, setGuide } = useGuide();
-  const [ welcome, setWelcome ] = useWelcome();
+  const { welcome, setWelcome } = useWelcome();
 
   // const handleTouristLogin = () => {
   //   setTourist(true);

@@ -21,3 +21,41 @@
     font-size: 1.6em; 
     color: antiquewhite;
   }
+
+
+  
+.form{
+    display: flex;
+    justify-content: center;
+}
+
+.fa-search{
+    position: absolute;
+    top:20px;
+    left: 13px;
+    color: #9ca3af;
+    
+
+}
+
+.input{
+
+    height: 55px;
+    text-indent: 33px;
+    border-radius: 10px;
+    width: 650px; 
+
+
+}
+
+.input:focus{
+    box-shadow: 0 0 20px #1E90FF;
+     outline: none;
+     border: #17a2b8 solid 2px;
+ 
+}
+
+.search-bar{
+  width: 650px;
+  position: relative;
+}

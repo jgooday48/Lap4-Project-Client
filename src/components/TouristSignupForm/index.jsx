@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import useTourist from "../../contexts/touristContext"
+import { useTourist } from '../../contexts/touristContext'
 import { useWelcome } from '../../contexts/welcomeContext'
 
 const TouristSignupForm = () => {
