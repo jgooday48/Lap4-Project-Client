@@ -1,54 +1,57 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 
 import axios from 'axios';
 import { GuidesList } from '../../components';  // Adjust the import path based on your project structure
-import { useLocation } from 'react-router';
+import { useLocation, useParams } from 'react-router';
+import { baseApi } from '../../utils/baseApi';
+import SearchForm from './SearchForm';
+import SearchedGuides from './SearchedGuides';
+import './index.css'
 
 const TouristGuidePage = () => {
   const [guides, setGuides] = useState([]);
   const location = useLocation()
-  const filters = location.state && location.state.filters
+   const searchRes = location.state && location.state.search
+
+  const filters = (location.state && location.state.selectedFilters) || []
+  const { id } = useParams()
 
 
-     const fetchGuides = async () => {
-      // try {
-      //   const { data } = await axios.get('http://localhost:5000/guides');  // Update the API endpoint
-      //   setGuides(data['all guides']);
-      // } catch (error) {
-      //   console.error('Error fetching guides:', error);
-      //   setGuides([]); // Set guides to an empty array in case of an error
-      // }
-    };
+  const fetchGuides = async (id, filters) => {
+    await axios.get(`${baseApi}guides/placeId:${id}`)
+      .then(res => {
+        const filteredData = res.data.filter(place => {
+          if (filters.length > 0) {
+            return filters.some(filter => place.filters.includes(filter));
+          } else {
+            return res.data
+          }
+        });
+        console.log(filteredData);
+        setGuides(filteredData)
+      })
+      .catch(e => console.log(e))
+  };
 
 
   useEffect(() => {
-    console.log(filters)
- 
-    fetchGuides();
+    fetchGuides(id, filters);
   }, []);
 
   return (
-    <div>
-      <h1>List of Guides</h1>
-      <GuidesList guides={guides} />
-      <h2>List of Activities </h2>
+    <div className="your-guides">
+      <div>
+        <h4>See the world like the local</h4>
+      </div>
+      <SearchForm guides={guides} fetchGuides={fetchGuides} />
+      <section className="results">
+        <SearchedGuides searchRes={searchRes} />
+
+
+      </section>
     </div>
   );
 };
 
-
-
-
-// const TouristGuidePage = () => {
-
-  
-//   return (
-//     <div>
-//       <h2>TouristGuidePage</h2>
-//       <GuidePanel />
-
-//       </div>
-//   )
-// }
 
 export default TouristGuidePage
