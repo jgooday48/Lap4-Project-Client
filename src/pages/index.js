@@ -7,6 +7,7 @@ export { default as GuideHomePage } from "./GuideHomePage"
 export { default as GuideLoginPage } from "./GuideLoginPage"
 
 // export { default as GuideProfilePage } from "./GuideProfilePage"
+export { default as WebSocketPage } from "./WebSocketPage"
 export { default as TouristAllPlacesPage} from "./TouristAllPlacesPage"
 
 // export { default as GuidePage } from "./GuidePage"

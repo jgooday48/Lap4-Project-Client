@@ -49,7 +49,7 @@ const PageWrapper = () => {
                   <NavLink to="/touristhomepage">Home</NavLink>
                   <NavLink to="/touristguidepage">Your guides</NavLink>
                   <NavLink to="/activity">Activity</NavLink>
-                  <NavLink to="/chat">Chat</NavLink>
+                  <NavLink to="/livechat">Chat</NavLink>
                   <NavLink to="/guide">Guide</NavLink>
                   <NavLink to="/logout">Logout</NavLink>
                 </section>
