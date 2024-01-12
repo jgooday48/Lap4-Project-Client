@@ -23,7 +23,7 @@ const TouristLoginForm = () => {
                 "password": password
             }
     
-            const response = await axios.post(baseApi + "tourists/login", userData)
+            const response = await axios.post(`${baseApi}tourists/login`, userData)
             // URL needs updating before deployment
             const data = await response.data
             if (data.err)
@@ -77,7 +77,7 @@ const TouristLoginForm = () => {
 
     return (
         <>
-        <form aria-label='form' onSubmit={handleSubmit} id="register-form">
+        <form aria-label='form' onSubmit={handleSubmit} id="tourist-register-form">
             {errorMessage && (
                 <p className="error"> {errorMessage} </p>
             )}

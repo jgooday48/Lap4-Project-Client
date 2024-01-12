@@ -133,6 +133,8 @@
 }
 
 
+
+
 #tourist-register-form{
   width:40%;
   display:flex;
@@ -147,8 +149,17 @@
   
 }
 
+#tourist-register-form > *{
+  margin:20px;
+  padding:10px;
+}
+
 #tourist-navbar {
   background-color: white;
+}
+
+.clickable{
+  margin:15px;
 }
 
 .touristWrapper {

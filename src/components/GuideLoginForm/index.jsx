@@ -2,6 +2,7 @@ import { React, useState } from 'react'
 import { useGuide } from '../../contexts/guideContext'
 import { useWelcome } from '../../contexts/welcomeContext';
 import { useNavigate } from 'react-router-dom';
+import { baseApi } from '../../utils/baseApi';
 
 
 const GuideLoginForm = () => {
@@ -23,7 +24,7 @@ const GuideLoginForm = () => {
                 "password": password
             }
     
-            const response = await axios.post(baseApi + "guides/login", userData)
+            const response = await axios.post(`${baseApi}guides/login`, userData)
             // URL needs updating before deployment
             const data = await response.data
             if (data.err)
@@ -77,7 +78,7 @@ const GuideLoginForm = () => {
 
     return (
         <>
-        <form aria-label='form' onSubmit={handleSubmit} id="register-form">
+        <form aria-label='form' onSubmit={handleSubmit} id="tourist-register-form">
             {errorMessage && (
                 <p className="error"> {errorMessage} </p>
             )}
