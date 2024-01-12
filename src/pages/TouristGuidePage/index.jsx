@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 
 import axios from 'axios';
 import { GuidesList } from '../../components';  // Adjust the import path based on your project structure
@@ -10,29 +10,29 @@ const TouristGuidePage = () => {
   const [guides, setGuides] = useState([]);
   const location = useLocation()
   const filters = location.state && location.state.selectedFilters
-  const {id} = useParams()
+  const { id } = useParams()
 
 
-  const fetchGuides = async () => {
+  const fetchGuides = async (id, filters) => {
 
-    await axios.get(`${baseApi}guides/placeId:${id}` )
+    await axios.get(`${baseApi}guides/placeId:${id}`)
       .then(res => {
         const filteredData = res.data.filter(place => {
           if (filters.length > 0) {
             return filters.some(filter => place.filters.includes(filter));
           } else {
-            return res.data 
+            return res.data
           }
-});
-console.log(filteredData);
+        });
+        console.log(filteredData);
         setGuides(filteredData)
       })
       .catch(e => console.log(e))
-    };
+  };
 
 
   useEffect(() => {
-    fetchGuides();
+    fetchGuides(id, filters);
   }, []);
 
   return (
@@ -40,10 +40,10 @@ console.log(filteredData);
       <div>
         <h4>See the world like the local</h4>
       </div>
-      <SearchForm guides={guides} />
+      <SearchForm guides={guides} fetchGuides={fetchGuides} />
 
 
-    
+
     </div>
   );
 };
@@ -53,7 +53,7 @@ console.log(filteredData);
 
 // const TouristGuidePage = () => {
 
-  
+
 //   return (
 //     <div>
 //       <h2>TouristGuidePage</h2>

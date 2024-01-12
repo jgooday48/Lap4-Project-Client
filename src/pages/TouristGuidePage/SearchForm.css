@@ -13,7 +13,9 @@
 .search-container{
     border: 1px solid blueviolet;
     position: relative;
-    width: 500px;
+    /* width: 500px; */
+    display: flex; 
+    flex-direction: row;
   
 }
 

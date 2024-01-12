@@ -6,8 +6,8 @@ import { useLocation, useParams } from 'react-router'
 import FiltersSection from '../TouristHomePage/FiltersSection'
 import { FindPlacesMatch } from '../../components'
 
-const SearchForm = ({ guides }) => {
-    const { placeId } = useParams()
+const SearchForm = ({ guides, fetchGuides }) => {
+    const { id } = useParams()
     const location = useLocation()
     const searchRes = location.state && location.state.search
     const selectedFiltered = location.state && location.state.selectedFilters
@@ -19,10 +19,18 @@ const SearchForm = ({ guides }) => {
 
     useEffect(() => {
         console.log("Search result: ", searchRes)
+        console.log("place id picked", id)
     })
 
-    const handleSubmit = () => {
-
+    const handleSubmit = (e) => {
+   
+        e.preventDefault()
+         console.log("handleSubmit clicked")
+        if (placePicked == null) {
+            fetchGuides(id, selectedFilters)
+        } else {
+            fetchGuides(placePicked, selectedFilters)
+        }
     }
 
 
@@ -32,7 +40,9 @@ const SearchForm = ({ guides }) => {
                 {/* <FontAwesomeIcon icon={faLocationDot} id="location-dot" />
                 <input type="text" className="search-input" placeholder="Search places..." value={search} onChange={(e) => setSearch(e.target.value)}/>
                 <button className="search-button" type="submit">Search</button> */}
-                <FindPlacesMatch search={search} setSearch={setSearch} setPlacePicked={setPlacePicked} isHome={false}/>
+                <FindPlacesMatch search={search} setSearch={setSearch} setPlacePicked={setPlacePicked} isHome={false} />
+                <button className="search-button" >Search</button>
+                
             </div>
             <section className="search-filters">
                 {/* <h4>Filters</h4> */}
