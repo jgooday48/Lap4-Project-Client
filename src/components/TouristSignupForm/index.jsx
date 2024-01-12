@@ -16,10 +16,11 @@ const TouristSignupForm = () => {
                 "username": username,
                 "password": password,
                 "name": name,
-                "email": email
+                "email": email,
+                "user_type": "TOURIST"
             }
     
-            const response = await axios.post(baseApi + "tourist/register", userData)
+            const response = await axios.post(`${baseApi}tourists/register`, userData)
             const data = await response.data
             if (data.err)
             {throw Error(data.err)}
