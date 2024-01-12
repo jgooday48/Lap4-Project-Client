@@ -2,36 +2,41 @@ import React, { useState, useEffect} from 'react'
 
 import axios from 'axios';
 import { GuidesList } from '../../components';  // Adjust the import path based on your project structure
-import { useLocation } from 'react-router';
+import { useLocation, useParams } from 'react-router';
+import { baseApi } from '../../utils/baseApi';
+import SearchForm from './SearchForm';
 
 const TouristGuidePage = () => {
   const [guides, setGuides] = useState([]);
   const location = useLocation()
-  const filters = location.state && location.state.filters
+  const filters = location.state && location.state.selectedFilters
+  const {placeId} = useParams()
 
 
-     const fetchGuides = async () => {
-      // try {
-      //   const { data } = await axios.get('http://localhost:5000/guides');  // Update the API endpoint
-      //   setGuides(data['all guides']);
-      // } catch (error) {
-      //   console.error('Error fetching guides:', error);
-      //   setGuides([]); // Set guides to an empty array in case of an error
-      // }
+
+  const fetchGuides = async () => {
+    await axios.get("http://127.0.0.1:5000/guides/placeId:2")
+      .then(res => {
+        console.log(res.data)
+        setGuides(res.data)
+      })
+      .catch(e => console.log(e))
     };
 
 
   useEffect(() => {
-    console.log(filters)
- 
     fetchGuides();
   }, []);
 
   return (
-    <div>
-      <h1>List of Guides</h1>
-      <GuidesList guides={guides} />
-      <h2>List of Activities </h2>
+    <div className="your-guides">
+      <div>
+        <h4>See the world like the local</h4>
+      </div>
+      <SearchForm/>
+
+
+    
     </div>
   );
 };

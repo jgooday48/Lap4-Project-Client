@@ -36,7 +36,7 @@ const TouristHomePage = () => {
   }
 
   const handleNavigate = () => {
-    navigate(`/places/placeId/${placePicked}`, {state: {selectedFilters}})
+    navigate(`/places/placeId/${placePicked}`, {state: {selectedFilters, search}})
   }
 
 
@@ -45,7 +45,7 @@ const TouristHomePage = () => {
     <div id="topContainer">
       <div id="headerContainer">
 
-        <h1>Discover the World with our Travel Guide App</h1>
+        <h1>See the world like the local</h1>
 
         <div className='form'>
 
