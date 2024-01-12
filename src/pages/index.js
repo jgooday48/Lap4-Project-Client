@@ -11,3 +11,6 @@ export { default as TouristAllPlacesPage} from "./TouristAllPlacesPage"
 
 export { default as GuidePage } from "./GuidePage"
 
+
+export { default as IndividualGuidePage } from "./IndividualGuidePage"
+
