@@ -9,7 +9,7 @@ import SearchForm from './SearchForm';
 const TouristGuidePage = () => {
   const [guides, setGuides] = useState([]);
   const location = useLocation()
-  const filters = location.state && location.state.selectedFilters
+  const filters = (location.state && location.state.selectedFilters) || []
   const { id } = useParams()
 
 
@@ -41,26 +41,9 @@ const TouristGuidePage = () => {
         <h4>See the world like the local</h4>
       </div>
       <SearchForm guides={guides} fetchGuides={fetchGuides} />
-
-
-
     </div>
   );
 };
 
-
-
-
-// const TouristGuidePage = () => {
-
-
-//   return (
-//     <div>
-//       <h2>TouristGuidePage</h2>
-//       <GuidePanel />
-
-//       </div>
-//   )
-// }
 
 export default TouristGuidePage

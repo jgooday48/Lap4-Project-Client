@@ -10,7 +10,7 @@ const SearchForm = ({ guides, fetchGuides }) => {
     const { id } = useParams()
     const location = useLocation()
     const searchRes = location.state && location.state.search
-    const selectedFiltered = location.state && location.state.selectedFilters
+    const selectedFiltered = (location.state && location.state.selectedFilters)|| []
     const [selectedFilters, setSelectedFilters] = useState(selectedFiltered)
     const [search, setSearch] = useState(searchRes)
     const [placePicked, setPlacePicked] = useState(null)
