@@ -1,49 +1,7 @@
-
-
-
-.fa-search {
-  position: absolute;
-  top: 20px;
-  left: 13px;
-  color: #9ca3af;
-
-
+.your-guides{
+  padding: 2em;
 }
 
-.search-bar {
-  width: 650px;
-  position: relative;
+.results{
+  margin-top: 5em;
 }
-
-.searches{
-  position:absolute;
-}
-
-.search-result {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  text-align: left;
-  position: relative;
-  right: 30px;
-  z-index: 1000;
-  background-color: white;
-  width: 100vw;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  padding-left: 2vw;
-  width: 645px;
-
-}
-
-.search-result-text {
-  flex: 1;
-  margin-left: 20px;
-  padding: 10px;
-}
-
-
-
-.search-result:hover {
-  background-color: gainsboro;
-}
-

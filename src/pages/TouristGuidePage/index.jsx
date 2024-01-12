@@ -5,13 +5,16 @@ import { GuidesList } from '../../components';  // Adjust the import path based 
 import { useLocation, useParams } from 'react-router';
 import { baseApi } from '../../utils/baseApi';
 import SearchForm from './SearchForm';
+import SearchedGuides from './SearchedGuides';
+import './index.css'
 
 const TouristGuidePage = () => {
   const [guides, setGuides] = useState([]);
   const location = useLocation()
+   const searchRes = location.state && location.state.search
+
   const filters = (location.state && location.state.selectedFilters) || []
   const { id } = useParams()
-  const searchRes = location.state && location.state.search
 
 
   const fetchGuides = async (id, filters) => {
@@ -42,12 +45,7 @@ const TouristGuidePage = () => {
       </div>
       <SearchForm guides={guides} fetchGuides={fetchGuides} />
       <section className="results">
-        <section className="guides">
-          <div className="result-title">
-            <h3>Guides in {searchRes}</h3>
-          </div>
-
-        </section>
+        <SearchedGuides searchRes={searchRes} />
 
 
       </section>
