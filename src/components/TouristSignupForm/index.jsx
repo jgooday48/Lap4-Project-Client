@@ -109,13 +109,13 @@ const TouristSignupForm = () => {
                 <p className="error"> {errorMessage} </p>
             )}
             <label htmlFor="Name">Full Name</label>
-            <input aria-label="Name" name="name" type="text" onChange={updateName} placeholder="example name" className="input" role="name" />
+            <input aria-label="Name" name="name" type="text" onChange={updateName} placeholder="example name" className="input" role="name" required/>
             <label htmlFor='Username'>Username</label>
-            <input aria-label="Username" name="username" type='text' onChange={updateUsername} placeholder="example username" className="input" role="username"/>
+            <input aria-label="Username" name="username" type='text' onChange={updateUsername} placeholder="example username" className="input" role="username" required/>
             <label htmlFor="Email">Email</label>
-            <input aria-label="Email" name="email" type="text" onChange={updateEmail} placeholder='example@email.com' className="input" role="email" />
+            <input aria-label="Email" name="email" type="text" onChange={updateEmail} placeholder='example@email.com' className="input" role="email" required/>
             <label htmlFor='Password'>Password</label>
-            <input aria-label='Password' name="password" type='password' onChange={updatePassword}  className="input" placeholder="example password" role="password"/>
+            <input aria-label='Password' name="password" type='password' onChange={updatePassword}  className="input" placeholder="example password" role="password" required/>
             <input role='submit' type='submit' value='REGISTER' className="signup-btn" onClick={handleSubmit} />
             <p role='signup' className="clickable" onClick={() => goTo('/touristloginpage')}>Already have an account With Us? Click here to login!</p>
             </form>

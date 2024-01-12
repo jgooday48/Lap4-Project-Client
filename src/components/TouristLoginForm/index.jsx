@@ -82,9 +82,9 @@ const TouristLoginForm = () => {
                 <p className="error"> {errorMessage} </p>
             )}
             <label htmlFor='Username'>Username</label>
-            <input className="input" aria-label="Username" name="username" type='text' onChange={updateUsername} placeholder="username" role="username" />
+            <input className="input" aria-label="Username" name="username" type='text' onChange={updateUsername} placeholder="username" role="username" required/>
             <label htmlFor='Password'>Password</label>
-            <input aria-label='Password' className="input" name="password" type='password' onChange={updatePassword} placeholder="password" role="password" />
+            <input aria-label='Password' className="input" name="password" type='password' onChange={updatePassword} placeholder="password" role="password" required/>
             <input role='submit' className='signup-btn' type='submit' value='LOGIN' onClick={handleSubmit}/>
             <p className='clickable' onClick={() => goTo('/touristsignuppage')}>Don't have an account yet? Register here!</p>
         </form>
