@@ -25,7 +25,7 @@ function App() {
 
         <Route path="/touristguidepage">
           <Route index element={<Pages.TouristGuidePage/>}/>
-          <Route path=":id" element={<Pages.GuidePage />}/>
+          <Route path=":id" element={<Pages.IndividualGuidePage />}/>
         </Route>
 
         <Route path="/guidehomepage" element={<Pages.GuideHomePage/>}/>
