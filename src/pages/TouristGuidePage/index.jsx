@@ -11,10 +11,10 @@ const TouristGuidePage = () => {
   const location = useLocation()
   const filters = (location.state && location.state.selectedFilters) || []
   const { id } = useParams()
+  const searchRes = location.state && location.state.search
 
 
   const fetchGuides = async (id, filters) => {
-
     await axios.get(`${baseApi}guides/placeId:${id}`)
       .then(res => {
         const filteredData = res.data.filter(place => {
@@ -41,6 +41,16 @@ const TouristGuidePage = () => {
         <h4>See the world like the local</h4>
       </div>
       <SearchForm guides={guides} fetchGuides={fetchGuides} />
+      <section className="results">
+        <section className="guides">
+          <div className="result-title">
+            <h3>Guides in {searchRes}</h3>
+          </div>
+
+        </section>
+
+
+      </section>
     </div>
   );
 };

@@ -37,15 +37,12 @@ const SearchForm = ({ guides, fetchGuides }) => {
     return (
         <form className="search-form" onSubmit={handleSubmit}>
             <div className="search-container">
-                {/* <FontAwesomeIcon icon={faLocationDot} id="location-dot" />
-                <input type="text" className="search-input" placeholder="Search places..." value={search} onChange={(e) => setSearch(e.target.value)}/>
-                <button className="search-button" type="submit">Search</button> */}
                 <FindPlacesMatch search={search} setSearch={setSearch} setPlacePicked={setPlacePicked} isHome={false} />
                 <button className="search-button" >Search</button>
                 
             </div>
             <section className="search-filters">
-                {/* <h4>Filters</h4> */}
+        
                 <FiltersSection selectedValues={selectedFilters} setSelectedValues={setSelectedFilters} />
             </section>
 
@@ -56,7 +53,6 @@ const SearchForm = ({ guides, fetchGuides }) => {
                 &nbsp;&nbsp;
                 <span className="search-info-span">
                     {guides.length} guides are available in this destination.
-                    {/* More than 500 accomodations are available in this city. */}
                 </span>
             </div>
         </form>

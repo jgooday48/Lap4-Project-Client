@@ -32,7 +32,7 @@ const FiltersSection = ({selectedValues, setSelectedValues}) => {
 
     return (
         <div className="filters-section">
-            <h3>Taylor Your Journey: Shape Your Experience with Guide Filters!</h3>
+            <h3>Tailor Your Experience with Guide Filters!</h3>
             <h4>Choose up to 5 preferences.</h4>
 
             <div className="filter-container">
@@ -46,16 +46,13 @@ const FiltersSection = ({selectedValues, setSelectedValues}) => {
                             {key}
                         </div>
                     ))
-
                 }
-
             </div>
             {maxSelected &&
                 <div className="filters-message">
                     <h5>Maximum filters selected. Please unselect one filter before selecting new.</h5>
                 </div>
             }
-
 
         </div>
     )
