@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { GuideCard } from '../../components';
+import { GuideCard, BackButton } from '../../components';
 import { baseApi } from '../../utils/baseApi'
 const IndividualGuidePage = () => {
   const [guide, setGuide] = useState({});
@@ -24,6 +24,7 @@ const IndividualGuidePage = () => {
     <div className='guidesPage'>
       <h1>Guide page</h1>
       <GuideCard guide={guide} />
+      <BackButton />
     </div>
   );
 };
