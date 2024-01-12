@@ -10,6 +10,10 @@ import FiltersSection from './FiltersSection';
 import { FindPlacesMatch, RenderFoundPlaces } from '../../components';
 
 const TouristHomePage = () => {
+   const [search, setSearch] = useState('')
+  const [placePicked, setPlacePicked] = useState(null)
+  const navigate = useNavigate()
+  const [selectedFilters, setSelectedFilters] = useState([]);
 
   const handleNavigate = () => {
     navigate(`/places/placeId/${placePicked}`, {state: {selectedFilters, search}})
