@@ -41,47 +41,27 @@ const PageWrapper = () => {
 
       {tourist && (
         <>
-        <div className='touristWrapper'>
+          <div className='touristWrapper'>
             <header className='tourist-header'>
-            <span className='brand'>TravelGuide</span>
-              <nav id="tourist-navbar">
-                <section className='links'>
-                  <NavLink to="/touristhomepage">Home</NavLink>
-                  <NavLink to="/touristguidepage">Your guides</NavLink>
-                  <NavLink to="/activity">Activity</NavLink>
-                  <NavLink to="/chat">Chat</NavLink>
-                  <NavLink to="/guide">Guide</NavLink>
-                  <NavLink to="/logout">Logout</NavLink>
-                </section>
-              </nav>
+              <span className='brand'>TravelGuide</span>
+              <div className='tourist-nav'>
+                <nav id="link-navbar">
+                  <section className='links'>
+                    <NavLink to="/touristhomepage">Home</NavLink>
+                    <NavLink to="/activity">Activity</NavLink>
+                    <NavLink to="/livechat">Chat</NavLink>
+                    <NavLink to="/touristguidepage">Guide</NavLink>
+                    <section className='logout-button'>
+                      <NavLink to="/logout">Logout</NavLink>
+                    </section>
+                  </section>
+                </nav>
+              </div>
             </header>
           </div>
           <Outlet />
         </>
       )}
-
-  {/* {tourist && (
-        <>
-          <div className='touristWrapper'>
-            <div id="tourist-header">
-              <header>
-                <nav>
-                  <section className='links'>
-                    <NavLink to="/touristhomepage">Home</NavLink>
-                    <NavLink to="/touristguidepage">Your guides</NavLink>
-                    <NavLink to="/activity">Activity</NavLink>
-                    <NavLink to="/chat">Chat</NavLink>
-                    <NavLink to="/guide">Guide</NavLink>
-                    <NavLink to="/logout">Logout</NavLink>
-                  </section>
-                </nav>
-              </header>
-            </div>
-
-            <Outlet />
-          </div>
-        </>
-      )} */}
 
 
       {guide && (

@@ -1,10 +1,12 @@
 import { React, useState } from 'react'
 import { useTourist } from '../../contexts/touristContext'
 import { useWelcome } from '../../contexts/welcomeContext';
-
+import { useNavigate } from 'react-router-dom';
+import { baseApi } from '../../utils/baseApi'
+import axios from 'axios';
 const TouristLoginForm = () => {
 
-    const { email, setEmail, password, setPassword, error, Loading, setTourist } = useTourist(); 
+    const { email, setEmail, password, setPassword, errorMessage, setErrorMessage, Loading, setTourist, username, setUsername } = useTourist(); 
     const { setWelcome } = useWelcome(); 
 
     // const [email, setEmail ] = useState('')
@@ -12,62 +14,82 @@ const TouristLoginForm = () => {
     // const [error, setError] = useState(null)
     // const [Loading, setLoading] = useState(null)
 
-    // const useTouristLogin = async (email, password) => {
-    //   setLoading(true)
-    //   setError(null)
-  
-    //   const response = await fetch('http://localhost:3000/users/login', {
-    //     method: 'POST',
-    //     headers: {'Content-Type': 'application/json'},
-    //     body: JSON.stringify({ email, password })
-    //   })
-    //   const json = await response.json()
-  
-    //   if (!response.ok) {
-    //     setLoading(false)
-    //     setError(json.error)
-    //   }
-    //   if (response.ok) {
-  
-    //     localStorage.setItem('user', JSON.stringify(json))
-  
-    //     dispatch({type: 'LOGIN', payload: json})
+    const goTo = useNavigate();
 
-    //     setTourist(true)
-    //     setWelcome(false)
-  
-    //     setLoading(false)
-    //   }
-    // }
-     
-    const handleSubmit = async (e) => {
-      e.preventDefault()
+    const loginFunction = async () => {
+        try {
+            const userData = {
+                "username": username,
+                "password": password
+            }
     
-  
-      // await useTouristLogin(email, password)
+            const response = await axios.post(`${baseApi}tourists/login`, userData)
+            // URL needs updating before deployment
+            const data = await response.data
+            if (data.err)
+            {throw Error(data.err)}
+            login(data)
+        } catch (err) {
+            console.warn(err);
+        }
+    
     }
 
-  return (
-    <form role="form" className="login" onSubmit={handleSubmit}>
-        <h1>Tourist Log In</h1>
-        
-        <label role="email">Email:</label>
-        <input 
-          type="email" 
-          onChange={(e) => setEmail(e.target.value)} 
-          value={email} 
-        />
-        <label role="password">Password:</label>
-        <input 
-          type="password" 
-          onChange={(e) => setPassword(e.target.value)} 
-          value={password} 
-        />
+    const handleSubmit = async (e) =>{
+        e.preventDefault();
+        setErrorMessage('');
+        await loginFunction(e);
+        if(localStorage.length){
+            setTourist(true);
+            setWelcome(false)
+            goTo("/touristhomepage")
+        }
+        else {setErrorMessage("Could not log in right now, we are fixing this")}
+
+
+    }
+
+    const updateUsername = e => {
+        const input = e.target.value;
+        setUsername(input )
+    }
+
+    const updatePassword = e =>{
+        const input = e.target.value
+        setPassword(input)
+
+    }
+
+    function login(data) {
+        localStorage.setItem("access token", data.access_token)
+        localStorage.setItem("refresh token", data.refresh_token)
+    }
+
+
+
+    
+
+
+
+
   
-        <button disabled={Loading} id="loginButton">Log in</button>
-        {error && <div className="error">{error}</div>}
-      </form>
-  )
+
+
+    return (
+        <>
+        <form aria-label='form' onSubmit={handleSubmit} id="tourist-register-form">
+            {errorMessage && (
+                <p className="error"> {errorMessage} </p>
+            )}
+            <label htmlFor='Username'>Username</label>
+            <input className="input" aria-label="Username" name="username" type='text' onChange={updateUsername} placeholder="username" role="username" required/>
+            <label htmlFor='Password'>Password</label>
+            <input aria-label='Password' className="input" name="password" type='password' onChange={updatePassword} placeholder="password" role="password" required/>
+            <input role='submit' className='signup-btn' type='submit' value='LOGIN' onClick={handleSubmit}/>
+            <p className='clickable' onClick={() => goTo('/touristsignuppage')}>Don't have an account yet? Register here!</p>
+        </form>
+        </>
+    );
 }
 
 export default TouristLoginForm
