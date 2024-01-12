@@ -37,6 +37,7 @@ function App() {
                 <Route path="/guideprofilepage" element={<Pages.GuideProfilePage />} />
                 <Route path="/places/:search" element={<Pages.TouristAllPlacesPage />} />
                 <Route path="/places/placeId/:id" element={<Pages.TouristGuidePage />} />
+                <Route path="/livechat" element={<Pages.WebSocketPage/>}/>
 
 
               </Route>
