@@ -8,7 +8,7 @@ export const TouristProvider = ({ children }) => {
     const [ password, setPassword ] = useState();
     const [ name, setName ] = useState();
     const [ email, setEmail ] = useState(); 
-    const [ tourist, setTourist] = useState(true); 
+    const [ tourist, setTourist] = useState(false); 
 
     return (
         <TouristContext.Provider value={{ 

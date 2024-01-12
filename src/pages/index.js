@@ -5,5 +5,9 @@ export { default as TouristSignUpPage } from "./TouristSignUpPage"
 export { default as TouristGuidePage } from "./TouristGuidePage"
 export { default as GuideHomePage } from "./GuideHomePage"
 export { default as GuideLoginPage } from "./GuideLoginPage"
+
 export { default as GuideProfilePage } from "./GuideProfilePage"
 export { default as TouristAllPlacesPage} from "./TouristAllPlacesPage"
+
+export { default as GuidePage } from "./GuidePage"
+
