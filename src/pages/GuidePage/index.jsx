@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { GuideCard } from '../../components';
-
+import { baseApi } from '../../utils/baseApi'
 const GuidePage = () => {
   const [guide, setGuide] = useState({});
   const { id } = useParams();
@@ -11,7 +11,7 @@ const GuidePage = () => {
   useEffect(() => {
     const displayGuide = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5000/guides`);
+        const { data } = await axios.get(`${baseApi}/guides`);
         const guideData = data['all guides'].find(g => g.guide_id === Number(id));
         setGuide(guideData || {});
       } catch (error) {
