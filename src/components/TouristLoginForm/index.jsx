@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const TouristLoginForm = () => {
 
-    const { email, setEmail, password, setPassword, errorMessage, setErrorMessage, Loading, setTourist } = useTourist(); 
+    const { email, setEmail, password, setPassword, errorMessage, setErrorMessage, Loading, setTourist, username, setUsername } = useTourist(); 
     const { setWelcome } = useWelcome(); 
 
     // const [email, setEmail ] = useState('')
@@ -16,11 +16,11 @@ const TouristLoginForm = () => {
 
     const goTo = useNavigate();
 
-    const loginFunction = async (e) => {
+    const loginFunction = async () => {
         try {
             const userData = {
-                username: e.target.username.value,
-                password: e.target.password.value
+                "username": username,
+                "password": password
             }
     
             const response = await axios.post(baseApi + "tourists/login", userData)
@@ -51,7 +51,7 @@ const TouristLoginForm = () => {
 
     const updateUsername = e => {
         const input = e.target.value;
-        setEmail(input )
+        setUsername(input )
     }
 
     const updatePassword = e =>{
