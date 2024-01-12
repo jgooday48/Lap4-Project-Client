@@ -9,7 +9,7 @@ expect.extend(matchers);
 
 import GuideList from '.';
 
-describe('Functiom', ()=> {
+describe('Guides List', ()=> {
     beforeEach(() => {
 
         render(
@@ -23,8 +23,11 @@ describe('Functiom', ()=> {
         cleanup()
     })
 
-    it.skip('is defined', () => {
-        expect(GuideList).toBeDefined()
+    it.skip('exists', () => {
+        const list = screen.getByRole("listcontainer")
+        expect(list).toBeInTheDocument(); 
+
+        
 
     })
 

@@ -3,11 +3,31 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useTourist } from '../../contexts/touristContext'
 import { useWelcome } from '../../contexts/welcomeContext'
+import { baseApi } from '../../utils/baseApi'
 
 const TouristSignupForm = () => {
 
     const { errorMessage, setErrorMessage, setUsername, setPassword, setName, setEmail,setTourist } = useTourist();
     const { setWelcome } =useWelcome()
+
+    const registerFunction = async (e) => {
+        try {
+            const userData = {
+                username: e.target.username.value,
+                password: e.target.password.value,
+                name: e.target.name.value,
+                email:e.target.email.value
+            }
+    
+            const response = await axios.post(baseApi + "tourist/register", userData)
+            const data = await response.data
+            if (data.err)
+            {throw Error(data.err)}
+        } catch (err) {
+            console.warn(err);
+        }
+    
+    }
 
     const loginFunction = async (e) => {
         try {
@@ -18,7 +38,8 @@ const TouristSignupForm = () => {
                 name: e.target.name.value
             }
     
-            const response = null//= await axios.post('http://127.0.0.1:3000/user/login', userData)
+            const response = await axios.post(baseApi + "tourists/register", userData)
+            // URL needs updating before deployment
             const data = await response.data
             if (data.err)
             {throw Error(data.err)}
@@ -30,7 +51,8 @@ const TouristSignupForm = () => {
     }
 
     function login(data) {
-        localStorage.setItem("token", data.token)
+        localStorage.setItem("access token", data.access_token)
+        localStorage.setItem("refresh token", data.refresh_token)
     }
 
     
@@ -50,7 +72,7 @@ const TouristSignupForm = () => {
     const handleSubmit = async(e) => {
         e.preventDefault();
         setErrorMessage('')
-        //await registerFunction(e);
+        await registerFunction(e);
         await loginFunction(e);
         if(localStorage.length){
             setTourist(true)
@@ -96,7 +118,7 @@ const TouristSignupForm = () => {
             <input aria-label="Email" name="email" type="text" onChange={updateEmail} placeholder='example@email.com' className="input" role="email" />
             <label htmlFor='Password'>Password</label>
             <input aria-label='Password' name="password" type='password' onChange={updatePassword}  className="input" placeholder="example password" role="password"/>
-            <input role='submit' type='submit' value='REGISTER' className="signup-btn" />
+            <input role='submit' type='submit' value='REGISTER' className="signup-btn" onClick={handleSubmit} />
             <p role='signup' className="clickable" onClick={() => goTo('/touristloginpage')}>Already have an account With Us? Click here to login!</p>
             </form>
     </>
