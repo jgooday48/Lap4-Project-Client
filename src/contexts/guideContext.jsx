@@ -13,7 +13,7 @@ export const GuideProvider = ({ children }) => {
 
     return (
         <GuideContext.Provider value={{ 
-            error, setError, password, setPassword, email, setEmail, guide, setGuide, Loading, setLoading
+            errorMessage, setErrorMessage, password, setPassword, email, setEmail, guide, setGuide, Loading, setLoading
          }}>
             {children}
         </GuideContext.Provider>

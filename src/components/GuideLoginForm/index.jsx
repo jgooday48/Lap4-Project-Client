@@ -1,5 +1,5 @@
 import { React, useState } from 'react'
-import { useGuide } from '../../contexts/touristContext'
+import { useGuide } from '../../contexts/guideContext'
 import { useWelcome } from '../../contexts/welcomeContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -91,5 +91,5 @@ const GuideLoginForm = () => {
     );
 }
 
-export default TouristLoginForm
+export default GuideLoginForm
 
