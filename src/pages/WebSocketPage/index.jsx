@@ -2,9 +2,11 @@ import React, {useState, useEffect } from 'react'
 import { io } from "socket.io-client";
 import { WebSocketCall } from '../../components'
 
+let socket; 
+
 const WebSocketPage = () => {
 
-  const [socketInstance, setSocketInstance] = useState(null)
+  const [socketInstance, setSocketInstance] = useState('')
   const [loading, setLoading] = useState(true)
   const [buttonStatus, setButtonStatus] = useState(false)
 
@@ -18,74 +20,76 @@ const WebSocketPage = () => {
 
   useEffect(() => {
     if (buttonStatus === true) {
-      const socket = io("http://localhost:5000/", {
-        transports: ["websocket"],
+      const socket = io("http://localhost:5000"
+      , {
+        transports: ["polling","websocket"]
+        ,
         cors: {
           origin: "http://localhost:5173",
         },
-      });
+        reconnection: false,
+        path: "/socket.io",
+        upgrade: true
+      }
+      );
 
-      console.log(socket)
+      socket.connect()
+
+      console.log(socket.connected)
   
       setSocketInstance(socket);
   
       socket.on("connect", () => {
-        // setLoading(false); // Set loading to false only when connected
-        console.log("connected");
+        console.log(socket.id)
+        setLoading(false);
+        console.log("connected", socket.connected);
       });
 
       setLoading(false)
+
+      console.log(socket)
+
   
       socket.on("disconnect", (data) => {
-        console.log("disconnected", JSON.stringify(data));
+        console.log((data));
       });
-  
+      
       return function cleanup() {
+        if (socket){
         socket.disconnect();
         setLoading(true);
-        setSocketInstance(null);
       };
+    }
     }
   }, [buttonStatus]);
   // useEffect(() => {
-
   //   if (buttonStatus === true) {
-  //     const socket = io("localhost:5000/", {
+  //     const socket = io("localhost:5001/", {
   //       transports: ["websocket"],
   //       cors: {
-  //         origin: "http://localhost:5173/",
-  //       }
+  //         origin: "http://localhost:3000/",
+  //       },
   //     });
 
   //     setSocketInstance(socket);
 
   //     socket.on("connect", (data) => {
-  //       console.log("connected", data);
+  //       console.log(data);
   //     });
 
   //     setLoading(false);
 
   //     socket.on("disconnect", (data) => {
-  //       console.log("disconnected", JSON.stringify(data));
+  //       console.log(data);
   //     });
 
   //     return function cleanup() {
-        
-  //      socket.disconnect()
-  //      setLoading(true);
-  //      setSocketInstance(null);
-
+  //       socket.disconnect();
   //     };
   //   }
-  //   // } else {
-  //   //   socketInstance.disconnect();
-  //   //   setSocketInstance(null);
-  //   //   setLoading(true)
-
-  //   // }
   // }, [buttonStatus]);
 
-  console.log(loading)
+  console.log(socketInstance)
 
   return (
 <div>

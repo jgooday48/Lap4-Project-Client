@@ -1,4 +1,5 @@
 import {React, useState, useEffect } from 'react'
+import { io } from "socket.io-client"
 
 const WebSocketCall = ({ socket }) => {
   const [message, setMessage] = useState("");
