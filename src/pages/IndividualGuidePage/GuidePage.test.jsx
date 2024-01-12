@@ -8,13 +8,14 @@ import * as matchers from '@testing-library/jest-dom/matchers';
 expect.extend(matchers);
 
 import GuidePage from '.';
+import IndividualGuidePage from '.';
 
 describe('Functiom', ()=> {
     beforeEach(() => {
 
         render(
             <MemoryRouter>
-                <GuidePage />
+                <IndividualGuidePage />
             </MemoryRouter>
         )
     })
@@ -24,7 +25,7 @@ describe('Functiom', ()=> {
     })
 
     it('is defined', () => {
-        expect(GuidePage).toBeDefined()
+        expect(IndividualGuidePage).toBeDefined()
 
     })
 

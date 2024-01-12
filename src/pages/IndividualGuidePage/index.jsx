@@ -1,10 +1,9 @@
-// GuidePage.jsx
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { GuideCard } from '../../components';
 import { baseApi } from '../../utils/baseApi'
-const GuidePage = () => {
+const IndividualGuidePage = () => {
   const [guide, setGuide] = useState({});
   const { id } = useParams();
 
@@ -29,4 +28,4 @@ const GuidePage = () => {
   );
 };
 
-export default GuidePage;
+export default IndividualGuidePage;
