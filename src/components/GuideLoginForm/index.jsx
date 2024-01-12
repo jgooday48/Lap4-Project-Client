@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const GuideLoginForm = () => {
 
-    const { email, setEmail, password, setPassword, errorMessage, setErrorMessage, Loading, setGuide } = useGuide(); 
+    const { email, setEmail, password, setPassword, errorMessage, setErrorMessage, Loading, setGuide, username, setUsername } = useGuide(); 
     const { setWelcome } = useWelcome(); 
 
     // const [email, setEmail ] = useState('')
@@ -19,8 +19,8 @@ const GuideLoginForm = () => {
     const loginFunction = async (e) => {
         try {
             const userData = {
-                username: e.target.username.value,
-                password: e.target.password.value
+                "username": username,
+                "password": password
             }
     
             const response = await axios.post(baseApi + "guides/login", userData)
@@ -51,7 +51,7 @@ const GuideLoginForm = () => {
 
     const updateUsername = e => {
         const input = e.target.value;
-        setEmail(input )
+        setUsername(input )
     }
 
     const updatePassword = e =>{

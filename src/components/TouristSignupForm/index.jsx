@@ -7,16 +7,16 @@ import { baseApi } from '../../utils/baseApi'
 
 const TouristSignupForm = () => {
 
-    const { errorMessage, setErrorMessage, setUsername, setPassword, setName, setEmail,setTourist } = useTourist();
+    const { errorMessage, setErrorMessage, setUsername, setPassword, setName, setEmail,setTourist, username, password, name, email} = useTourist();
     const { setWelcome } =useWelcome()
 
-    const registerFunction = async (e) => {
+    const registerFunction = async () => {
         try {
             const userData = {
-                username: e.target.username.value,
-                password: e.target.password.value,
-                name: e.target.name.value,
-                email:e.target.email.value
+                "username": username,
+                "password": password,
+                "name": name,
+                "email": email
             }
     
             const response = await axios.post(baseApi + "tourist/register", userData)
@@ -29,13 +29,11 @@ const TouristSignupForm = () => {
     
     }
 
-    const loginFunction = async (e) => {
+    const loginFunction = async () => {
         try {
             const userData = {
-                username: e.target.username.value,
-                password: e.target.password.value, 
-                email: e.target.email.value,
-                name: e.target.name.value
+                "username": username,
+                "password": password
             }
     
             const response = await axios.post(baseApi + "tourists/register", userData)
