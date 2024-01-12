@@ -1,10 +1,234 @@
+/* TopContainer */
 #topContainer {
   background-color: #5228f5;
-  height: 100vh;
+  height: 82vh;
 }
 
 #headerContainer {
   background-color: #5228f5;
+  height: -15vh;
+}
+
+#centeredContainer {
+  background-color: #5228f5;
+  text-align: center;
+  padding: 20px;
+}
+
+#headerContainer h1 {
+  font-size: 4em;
+  color: white;
+  max-height: 80%;
+  padding: 5%;
+}
+
+.Sub-Head h1 {
+  font-size: 1.8em;
+  color: white;
+}
+
+/* Details Section */
+#Details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 60vh;
+}
+
+#Details1 {
+  display: flex;
+  background-color: white;
+  color: black;
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-top: 3%;
+}
+
+#DetailsText {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */ /* Remove this line */
+  align-items: flex-start; /* Add this line */
+}
+
+#Details1 h1 {
+  font-size: 1.5em;
+  margin-bottom: 5%;
+  padding: 1px;
+  color: #5228f5;
+}
+
+#Details1 h2 {
+  font-size: 3em;
+  margin-bottom: 5%;
+  color: black;
+}
+
+#Details1 p {
+  font-size: 1.5em;
+  margin-bottom: 5%;
+  color: black;
+}
+
+#img1 {
+  border-radius: 100%;
+  overflow: hidden;
+  width: 60%;
+  margin-left: auto;
+}
+
+#img1 img {
+  float: left;
+  margin-left: 300px;
+  margin-top: 75px;
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+/* Features */
+#Features {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f1f2ff;
+  height: 82vh;
+}
+
+#Features1 {
+  background-color: #f0f1f2ff;
+  color: black;
+  padding: 20px;
+}
+
+#Features1 h1 {
+  font-size: 0.5em;
+  margin: 0;
+  padding: 1px;
+  color: #5228f5;
+}
+
+#Features1 h2 {
+  font-size: 2.5em;
+  margin: 0;
+  padding: 2px;
+  color: black;
+}
+
+#Features1 p {
+  font-size: 0.5em;
+  margin: 0;
+  padding: 1px;
+  color: #595959ff;
+}
+
+.feature-box-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.feature-box,
+.feature-box2 {
+  width: 48%;
+  background-color: white;
+  color: black;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+/* Gallery */
+#Gallery {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 98vh;
+}
+
+#Gallery1 {
+  background-color: white;
+  color: black;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  gap: 5px;
+}
+
+.gallery-item {
+  border-radius: 10px; /* Adjust the radius as needed */
+  overflow: hidden;
+}
+
+.gallery-item img {
+  width: 30%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px; /* Same as the border-radius of .gallery-item */
+}
+
+
+/* Booking */
+#Booking {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  height: 35vh;
+}
+
+#Booking1 {
+  background-color: black;
+  color: white;
+  padding: 20px;
+}
+
+.learn-more-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #5228f5;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.learn-more-button:hover {
+  background-color: #4220c5;
+}
+
+/* FAQ */
+#FAQ {
+  flex: 1;
+  display: flex;
+  background-color: white;
+  height: 46vh;
+}
+
+#FAQ1 {
+  background-color: white;
+  color: black;
+  padding: 20px;
+  width: 30%; /* Adjust as needed */
+}
+
+#FAQ2 {
+  background-color: white;
+  color: black;
+  padding: 20px;
+  width: 70%; /* Adjust as needed */
    display: flex;
   flex-direction: column;
   /* justify-content: center; */
