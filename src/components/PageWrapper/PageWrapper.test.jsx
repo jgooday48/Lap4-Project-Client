@@ -8,12 +8,23 @@ expect.extend(matchers);
 
 import PageWrapper from ".";
 
+import { TouristProvider } from "../../contexts/touristContext";
+import { GuideProvider } from "../../contexts/guideContext";
+import { WelcomeProvider } from "../../contexts/welcomeContext";
+
 describe("Page wrapper functionality", () => {
     beforeEach(() => {
       render(
+        <WelcomeProvider>
+        <GuideProvider>
+        <TouristProvider>
         <MemoryRouter>
           <PageWrapper />
         </MemoryRouter>
+        </TouristProvider>
+        </GuideProvider>
+        </WelcomeProvider>
+      
       );
     });
   
@@ -28,12 +39,12 @@ describe("Page wrapper functionality", () => {
     })
 
     it("displays the nav bar", () => {
-        const nav = screen.getByRole('navigation')
+        const nav = screen.getByRole('navbar')
         expect(nav).toBeInTheDocument()
     })
 
     it("displays the nav element", async () => {
-        const nav = screen.getByRole('navigation')
+        const nav = screen.getByRole('navbar')
         expect(nav.textContent).toBe('Login')
     })
 

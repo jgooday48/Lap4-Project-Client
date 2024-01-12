@@ -1,11 +1,16 @@
 import { React, useState } from 'react'
+import { useTourist } from '../../contexts/touristContext'
+import { useWelcome } from '../../contexts/welcomeContext';
 
 const TouristLoginForm = () => {
 
-    const [email, setEmail ] = useState('')
-    const [password, setPassword ] = useState('')
-    const [error, setError] = useState(null)
-    const [Loading, setLoading] = useState(null)
+    const { email, setEmail, password, setPassword, error, Loading, setTourist } = useTourist(); 
+    const { setWelcome } = useWelcome(); 
+
+    // const [email, setEmail ] = useState('')
+    // const [password, setPassword ] = useState('')
+    // const [error, setError] = useState(null)
+    // const [Loading, setLoading] = useState(null)
 
     // const useTouristLogin = async (email, password) => {
     //   setLoading(true)
@@ -27,6 +32,9 @@ const TouristLoginForm = () => {
     //     localStorage.setItem('user', JSON.stringify(json))
   
     //     dispatch({type: 'LOGIN', payload: json})
+
+    //     setTourist(true)
+    //     setWelcome(false)
   
     //     setLoading(false)
     //   }
@@ -34,21 +42,22 @@ const TouristLoginForm = () => {
      
     const handleSubmit = async (e) => {
       e.preventDefault()
+    
   
       // await useTouristLogin(email, password)
     }
 
   return (
-    <form className="login" onSubmit={handleSubmit}>
+    <form role="form" className="login" onSubmit={handleSubmit}>
         <h1>Tourist Log In</h1>
         
-        <label>Email:</label>
+        <label role="email">Email:</label>
         <input 
           type="email" 
           onChange={(e) => setEmail(e.target.value)} 
           value={email} 
         />
-        <label>Password:</label>
+        <label role="password">Password:</label>
         <input 
           type="password" 
           onChange={(e) => setPassword(e.target.value)} 

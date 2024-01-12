@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { useTourist } from '../../contexts/touristContext'
+import { useWelcome } from '../../contexts/welcomeContext'
 
 const TouristSignupForm = () => {
+
+    const { errorMessage, setErrorMessage, setUsername, setPassword, setName, setEmail,setTourist } = useTourist();
+    const { setWelcome } =useWelcome()
 
     const loginFunction = async (e) => {
         try {
@@ -32,11 +37,12 @@ const TouristSignupForm = () => {
 
     const goTo = useNavigate();
 
-    const [errorMessage, setErrorMessage] = useState();
-    const [ username, setUsername ] = useState();
-    const [ password, setPassword ] = useState();
-    const [ name, setName ] = useState();
-    const [ email, setEmail ] = useState(); 
+    // const [errorMessage, setErrorMessage] = useState();
+    // const [ username, setUsername ] = useState();
+    // const [ password, setPassword ] = useState();
+    // const [ name, setName ] = useState();
+    // const [ email, setEmail ] = useState(); 
+    // const [ tourist, setTourist ] = useState(false)
 
 
 
@@ -46,7 +52,10 @@ const TouristSignupForm = () => {
         setErrorMessage('')
         //await registerFunction(e);
         await loginFunction(e);
-        if(localStorage.length){goTo('/touristhomepage')}
+        if(localStorage.length){
+            setTourist(true)
+            setWelcome(false)
+            goTo('/touristhomepage')}
         else { setErrorMessage('User already exists!') }        
     }
 
@@ -84,11 +93,11 @@ const TouristSignupForm = () => {
             <label htmlFor='Username'>Username</label>
             <input aria-label="Username" name="username" type='text' onChange={updateUsername} placeholder="example username" className="input" role="username"/>
             <label htmlFor="Email">Email</label>
-            <input aria-label="Email" name="email" type="text" onChange={updateEmail} placeholder='example@email.com' className="input" role="username" />
+            <input aria-label="Email" name="email" type="text" onChange={updateEmail} placeholder='example@email.com' className="input" role="email" />
             <label htmlFor='Password'>Password</label>
             <input aria-label='Password' name="password" type='password' onChange={updatePassword}  className="input" placeholder="example password" role="password"/>
             <input role='submit' type='submit' value='REGISTER' className="signup-btn" />
-            <p role='text' className="clickable" onClick={() => goTo('/touristloginpage')}>Already have an account With Us? Click here to login!</p>
+            <p role='signup' className="clickable" onClick={() => goTo('/touristloginpage')}>Already have an account With Us? Click here to login!</p>
             </form>
     </>
   ) 

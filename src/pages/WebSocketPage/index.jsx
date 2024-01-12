@@ -1,5 +1,5 @@
 import React, {useState, useEffect } from 'react'
-import { io } from "socket.io-client";
+import { Manager, io } from "socket.io-client";
 import { WebSocketCall } from '../../components'
 
 let socket; 
@@ -22,19 +22,17 @@ const WebSocketPage = () => {
     if (buttonStatus === true) {
       const socket = io("http://localhost:5000"
       , {
-        transports: ["polling","websocket"]
+        transports: ["websocket", "polling"]
         ,
         cors: {
-          origin: "http://localhost:5173",
+          origin: "http://localhost:5173/",
         },
-        reconnection: false,
-        path: "/socket.io",
-        upgrade: true
+        reconnection: false
       }
       );
 
       socket.connect()
-
+    
       console.log(socket.connected)
   
       setSocketInstance(socket);

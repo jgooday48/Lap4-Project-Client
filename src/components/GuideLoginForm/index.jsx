@@ -1,11 +1,11 @@
 import { React, useState }from 'react'
+import { useGuide } from '../../contexts/guideContext'
+import { useWelcome } from '../../contexts/welcomeContext';
 
 const GuideLoginForm = () => {
 
-    const [email, setEmail ] = useState('')
-    const [password, setPassword ] = useState('')
-    const [error, setError] = useState(null)
-    const [Loading, setLoading] = useState(null)
+    const { email, setEmail, password, setPassword, error, setError, Loading, setLoading } = useGuide(); 
+    const { setWelcome } = useWelcome(); 
 
     // const useGuideLogin = async (email, password) => {
     //   setLoading(true)
@@ -25,6 +25,8 @@ const GuideLoginForm = () => {
     //   if (response.ok) {
   
     //     localStorage.setItem('user', JSON.stringify(json))
+    //     setGuide(true) 
+    //     setWelcome(false)
   
     //     dispatch({type: 'LOGIN', payload: json})
   
