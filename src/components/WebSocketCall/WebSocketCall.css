@@ -7,6 +7,8 @@
     display: flex;
     flex-direction: column;
     text-align: center;
+    justify-content: center;
+    align-items: center;
     margin: 0%;
     padding: 0%;
   }
@@ -42,10 +44,17 @@
   .joinChatContainer button:hover {
     background: #2e7d32;
   }
+
+  .line{
+    border: 10px red;
+    position: relative;
+  }
   
   .chat-window {
     width: 300px;
     height: 420px;
+    position: absolute;
+    right: 200px;
   }
   
   .chat-window p {
@@ -69,7 +78,7 @@
   .chat-window .chat-body {
     height: calc(450px - (45px + 70px));
     width: 150%;
-    border: 1px solid #263238;
+    border: 5px solid #263238;
     background: #fff;
     position: relative;
   }
