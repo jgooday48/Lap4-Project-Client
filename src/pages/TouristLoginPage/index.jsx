@@ -1,6 +1,7 @@
 import React from 'react'
 import { TouristLoginForm } from '../../components'
 import { Link, useNavigate } from 'react-router-dom'
+import { BackButton } from "../../components"
 
 
 const TouristLoginPage = () => {
@@ -13,8 +14,8 @@ const TouristLoginPage = () => {
   return (
     <>
     <div id="register-page">
+        <BackButton />
         <TouristLoginForm/>
-        <button className='btn' onClick={handleClick}>No account?</button>
         </div>
     </>
   )

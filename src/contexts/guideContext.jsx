@@ -6,7 +6,7 @@ export const GuideProvider = ({ children }) => {
 
     const [email, setEmail ] = useState('')
     const [password, setPassword ] = useState('')
-    const [error, setError] = useState(null)
+    const [errorMessage, setErrorMessage] = useState(null)
     const [Loading, setLoading] = useState(null)
     const [ guide, setGuide ] = useState(false)
    
