@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { filters } from '../../utils/filters'
 import { useState } from 'react';
+import './FiltersSection.css'
 
 const FiltersSection = ({selectedValues, setSelectedValues}) => {
 

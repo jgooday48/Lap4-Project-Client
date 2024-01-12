@@ -5,6 +5,7 @@
 
 .search-form{
     padding: 2em;
+    text-align: left;
     
 
 }
@@ -13,6 +14,7 @@
     border: 1px solid blueviolet;
     position: relative;
     width: 500px;
+  
 }
 
 #location-dot{
@@ -41,7 +43,7 @@
     margin: 0; 
     border: 1px solid blue;
     width: 300px;
-
+    margin-left: 60px;
 
 }
 
@@ -64,5 +66,22 @@
 
 #magnifying-icon {
     display: none; 
+}
+
+
+.icon-container{
+    border: 2px solid gainsboro;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.search-info{
+    display: inline-flex;
+    margin-top: 2em;
 }
 

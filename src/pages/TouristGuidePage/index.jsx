@@ -10,12 +10,12 @@ const TouristGuidePage = () => {
   const [guides, setGuides] = useState([]);
   const location = useLocation()
   const filters = location.state && location.state.selectedFilters
-  const {placeId} = useParams()
-
+  const {id} = useParams()
 
 
   const fetchGuides = async () => {
-    await axios.get("http://127.0.0.1:5000/guides/placeId:2")
+    // await axios.get("http://127.0.0.1:5000/guides/placeId:2")
+    await axios.get(`${baseApi}guides/placeId:${id}` )
       .then(res => {
         console.log(res.data)
         setGuides(res.data)
@@ -33,7 +33,7 @@ const TouristGuidePage = () => {
       <div>
         <h4>See the world like the local</h4>
       </div>
-      <SearchForm/>
+      <SearchForm guides={guides} />
 
 
     
