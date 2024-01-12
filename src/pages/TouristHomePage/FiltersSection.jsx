@@ -39,9 +39,9 @@ const FiltersSection = ({selectedValues, setSelectedValues}) => {
                 {
                     Object.entries(filters).map(([key, value], idx) => (
                         <div
-                            className={`filter ${selectedValues.includes(value) ? 'selected' : ''}`}
+                            className={`filter ${selectedValues.includes(key) ? 'selected' : ''}`}
                             key={idx}
-                            onClick={() => handleClick(value)}
+                            onClick={() => handleClick(key)}
                         >
                             {key}
                         </div>

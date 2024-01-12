@@ -14,11 +14,18 @@ const TouristGuidePage = () => {
 
 
   const fetchGuides = async () => {
-    // await axios.get("http://127.0.0.1:5000/guides/placeId:2")
+
     await axios.get(`${baseApi}guides/placeId:${id}` )
       .then(res => {
-        console.log(res.data)
-        setGuides(res.data)
+        const filteredData = res.data.filter(place => {
+          if (filters.length > 0) {
+            return filters.some(filter => place.filters.includes(filter));
+          } else {
+            return res.data 
+          }
+});
+console.log(filteredData);
+        setGuides(filteredData)
       })
       .catch(e => console.log(e))
     };
