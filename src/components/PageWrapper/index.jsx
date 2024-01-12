@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 
+import { useTourist } from '../../contexts/touristContext';
+import { useGuide } from '../../contexts/guideContext';
+import { useWelcome } from '../../contexts/welcomeContext';
+
 const PageWrapper = () => {
-  const [guide, setGuide] = useState(false);
-  const [tourist, setTourist] = useState(true);
-  const [welcome, setWelcome] = useState(false);
+
+  const { tourist, setTourist } = useTourist(); 
+  const { guide, setGuide } = useGuide();
+  const { welcome, setWelcome } = useWelcome();
 
   // const handleTouristLogin = () => {
   //   setTourist(true);
@@ -22,8 +27,8 @@ const PageWrapper = () => {
     <>
       {welcome && (
         <div className='welcomeWrapper'>
-          <header>
-            <nav id="nav">
+          <header className= "tourist-header">
+            <nav role="navbar" id="tourist-navbar">
               <section className='nav-link'>
                 <NavLink to="/touristloginpage">Login</NavLink>
               </section>
@@ -44,7 +49,7 @@ const PageWrapper = () => {
                   <section className='links'>
                     <NavLink to="/touristhomepage">Home</NavLink>
                     <NavLink to="/activity">Activity</NavLink>
-                    <NavLink to="/chat">Chat</NavLink>
+                    <NavLink to="/livechat">Chat</NavLink>
                     <NavLink to="/touristguidepage">Guide</NavLink>
                     <section className='logout-button'>
                       <NavLink to="/logout">Logout</NavLink>
