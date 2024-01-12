@@ -1,7 +1,8 @@
 import {React, useState, useEffect } from 'react'
-import { io } from "socket.io-client"
+import ScrollToBottom from "react-scroll-to-bottom"
+import "./WebSocketCall.css"
 
-const WebSocketCall = ({ socket }) => {
+const WebSocketCall = ({ socket, username, room }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
@@ -10,13 +11,24 @@ const WebSocketCall = ({ socket }) => {
     setMessage(inputMessage);
   };
 
-  const handleSubmit = () => {
-    if (!message) {
-      return;
+  const handleSubmit = async () => {
+    if (message) {
+      const messageData = {
+        roomID: room,
+        author: username,
+        message: message,
+        time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes()
+      }
+      await socket.emit("data", messageData);
+      setMessage("");
     }
-    socket.emit("data", message);
-    setMessage("");
   };
+
+  const handleKeyPress = (e) => {
+    if(e.key === 'Enter'){
+      handleSubmit()
+    }
+  }
 
   useEffect(() => {
     socket.on("data", (data) => {
@@ -25,17 +37,33 @@ const WebSocketCall = ({ socket }) => {
   }, [socket, messages]);
 
   return (
-    <div>
-      <h2>WebSocket Communication</h2>
-      <input type="text" value={message} onChange={handleText} />
-      <button onClick={handleSubmit}>submit</button>
-      <ul>
-        {messages.map((message, ind) => {
-          console.log(message)
-          return <li key={ind}>{message}</li>;
-        })}
-      </ul>
+  <div className="chat-window">
+    <div className="chat-header">
+        <p>Live Chat</p>
     </div>
+    <div className="chat-body">
+      <ScrollToBottom className="message-container">
+        {messages.map((message) => {return (
+          <div className='message' id={username === message.author ? "you" : "other"}>
+            <div>
+              <div className='message-content'>
+                <p>{message.message}</p>
+              </div>
+                <div className='message-meta'>
+                <p id='author'>{message.author}</p>
+                <p>{message.time}</p>
+                </div>
+            </div>
+          </div>
+        )
+        })}
+        </ScrollToBottom>
+      <div className='chat-footer'>
+        <input type="text" placeholder='Enter...' value={message} onChange={handleText} onKeyDown={handleKeyPress} />
+        <button onClick={handleSubmit}>submit</button>
+      </div>
+    </div>
+  </div>
   );
 }
 
