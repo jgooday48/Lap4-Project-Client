@@ -1,10 +1,14 @@
 import React, { useEffect } from 'react'
 import './SearchedGuides.css'
+import { useNavigate } from 'react-router'
 
 
 const SearchedGuides = ({ searchRes, guides }) => {
+  const navigate = useNavigate()
 
-
+  const handleClick = (id) => {
+    navigate(`/touristguidepage/${id}`, {state: {searchRes}})
+  }
 
   return (
     <>
@@ -13,20 +17,20 @@ const SearchedGuides = ({ searchRes, guides }) => {
       </div>
       <div className="guides-container">
         {
-          guides.map(g => 
-            <div className="guide-card" key={g.guide_id}>
-               <img src={g.images[0]} alt="guide-pic"/>
+          guides.map(g =>
+            <div className="guide-card" key={g.guide_id} onClick={() => handleClick(g.guide_id)}>
+              <img src={g.images[0]} alt="guide-pic" />
               <section className="guide-card-details">
                 <b>{g.name}</b>
                 <span>{g.tagline}</span>
                 <p className="guide-filters">
-                  {g.filters.map((filter, idx) => 
+                  {g.filters.map((filter, idx) =>
                     <div key={idx} className="guide-filter">{filter}</div>
-                    )}
+                  )}
                 </p>
-                
-             </section>
-             </div> 
+                <b>RATING HERE</b>
+              </section>
+            </div>
           )
         }
       </div>

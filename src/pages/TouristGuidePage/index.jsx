@@ -12,11 +12,9 @@ const TouristGuidePage = () => {
   const [guides, setGuides] = useState([]);
   const [activities, setActivities] = useState([])
   const [activitiesNotSelected, setActivitiesNotSelected] = useState([])
-  const [guidesNotSelected, setGuidesNotSelected]  = useState([])
+  const [guidesNotSelected, setGuidesNotSelected] = useState([])
   const location = useLocation()
   const searchRes = location.state && location.state.search
-
-
   const filters = (location.state && location.state.selectedFilters) || []
   const { id } = useParams()
 
@@ -56,9 +54,6 @@ const TouristGuidePage = () => {
       .catch(e => console.log(e))
   }
 
-
-
-
   useEffect(() => {
     fetchGuides(id, filters);
     fetchActivities(id, filters)
@@ -72,17 +67,17 @@ const TouristGuidePage = () => {
       <SearchForm guides={guides} fetchGuides={fetchGuides} fetchActivities={fetchActivities} />
       <div className="results">
         <div className="two-thirds">
-        <section className="guides">
-          <SearchedGuides searchRes={searchRes} guides={guides} />
+          <section className="guides">
+            <SearchedGuides searchRes={searchRes} guides={guides} />
           </section>
         </div>
-     
+
         <section className="activities">
           <SearchedActivities activities={activities} />
         </section>
 
-         </div>
-      
+      </div>
+
     </div>
   );
 };
