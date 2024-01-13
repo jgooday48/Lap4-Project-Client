@@ -8,12 +8,13 @@ const SearchedGuides = ({searchRes}) => {
     console.log("Searched res: ", searchRes)
   })
   return (
-     <section className="guides">
+     <>
           <div className="result-title">
             <h3>Guides in {searchRes}</h3>
-          </div>
+       </div>
+        
 
-        </section>
+        </>
   )
 }
 
