@@ -2,11 +2,11 @@ import { faInfo, faLocationDot, faMagnifyingGlass } from '@fortawesome/free-soli
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 import './SearchForm.css'
-import { useLocation, useParams } from 'react-router'
+import { useLocation, useNavigate, useParams } from 'react-router'
 import FiltersSection from '../TouristHomePage/FiltersSection'
 import { FindPlacesMatch } from '../../components'
 
-const SearchForm = ({ guides, fetchGuides }) => {
+const SearchForm = ({ guides, fetchGuides, fetchActivities}) => {
     const { id } = useParams()
     const location = useLocation()
     const searchRes = location.state && location.state.search
@@ -14,13 +14,8 @@ const SearchForm = ({ guides, fetchGuides }) => {
     const [selectedFilters, setSelectedFilters] = useState(selectedFiltered)
     const [search, setSearch] = useState(searchRes)
     const [placePicked, setPlacePicked] = useState(null)
+    const navigate = useNavigate()
 
-
-
-    useEffect(() => {
-        console.log("Search result: ", searchRes)
-        console.log("place id picked", id)
-    })
 
     const handleSubmit = (e) => {
    
@@ -28,10 +23,14 @@ const SearchForm = ({ guides, fetchGuides }) => {
          console.log("handleSubmit clicked")
         if (placePicked == null) {
             fetchGuides(id, selectedFilters)
+            fetchActivities(id, selectedFilters)
         } else {
-            fetchGuides(placePicked, selectedFilters)
+            // fetchGuides(placePicked, selectedFilters)
+            navigate(`/places/placeId/${placePicked}`, {state: {selectedFilters, search}})
         }
     }
+
+
 
 
     return (

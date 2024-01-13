@@ -26,7 +26,7 @@ const TouristHomePage = () => {
     <div id="topContainer">
       <div id="headerContainer">
 
-        <h1>See the world like the local</h1>
+        <h1>See the world like a local</h1>
 
         <div className='form'>
 

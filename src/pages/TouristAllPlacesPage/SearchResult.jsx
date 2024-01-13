@@ -7,7 +7,7 @@ const SearchResult = ({ place }) => {
 
     const handleNavigate = (place) => {
         const search = place.name + ", " + place.location
-        navigate(`/places/placeId/${place}`, {state: {search}} )
+        navigate(`/places/placeId/${place.place_id}`, {state: {search}} )
     }
 
 

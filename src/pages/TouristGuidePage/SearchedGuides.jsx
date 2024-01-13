@@ -1,20 +1,27 @@
 import React, { useEffect } from 'react'
 
-const SearchedGuides = ({searchRes}) => {
+const SearchedGuides = ({ searchRes, guides }) => {
 
 
 
-  useEffect(() => {
-    console.log("Searched res: ", searchRes)
-  })
   return (
-     <>
-          <div className="result-title">
-            <h3>Guides in {searchRes}</h3>
-       </div>
-        
+    <>
+      <div className="result-title">
+        <h3>Guides in {searchRes}</h3>
+      </div>
+      <div className="guides-container">
+        {
+          guides.map(g => 
+            <div className="guide-card" key={g.guide_id}>
+              {g.name}
+             </div> 
+          )
+        }
+      </div>
 
-        </>
+
+
+    </>
   )
 }
 
