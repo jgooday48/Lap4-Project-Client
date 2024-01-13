@@ -3,9 +3,14 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { GuideCard, BackButton } from '../../components';
 import { baseApi } from '../../utils/baseApi'
+import { useLocation } from 'react-router-dom';
+import './index.css'
+
 const IndividualGuidePage = () => {
   const [guide, setGuide] = useState({});
   const { id } = useParams();
+   const location = useLocation()
+  const placeName = location && location.state.searchRes
 
   useEffect(() => {
     const displayGuide = async () => {
@@ -23,8 +28,9 @@ const IndividualGuidePage = () => {
   return (
     <div className='guidesPage'>
       <h1>Guide page</h1>
-      <GuideCard guide={guide} />
-      <BackButton />
+          <BackButton />
+      <GuideCard guide={guide} placeName={placeName} />
+  
     </div>
   );
 };

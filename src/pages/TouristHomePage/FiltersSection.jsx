@@ -27,7 +27,6 @@ const FiltersSection = ({selectedValues, setSelectedValues}) => {
         if (selectedValues.length < 5) {
             setMaxSelected(false)
         }
-        console.log(selectedValues)
     })
 
     return (
