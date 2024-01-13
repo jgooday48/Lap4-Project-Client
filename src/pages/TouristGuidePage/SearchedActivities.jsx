@@ -1,22 +1,26 @@
 import React, { useEffect } from 'react'
-import { useState } from 'react'
-import axios from 'axios'
-import { baseApi } from '../../utils/baseApi'
-import { useLocation, useParams } from 'react-router'
+import './SearchedActivities.css'
 
 const SearchedActivities = ({activities}) => {
 
 
 
   return (
-      <>
-      <h3>Activities</h3>
+    <div className="activities-container">
+      
+      <h3 id="activity-title">Activities</h3>
+
       {
         activities.map(a => 
-          <div key={a.activity_id}> {a.name}</div>
+          <div className="activity-card" key={a.activity_id}>
+            <img src={a.images[0]} alt="activity-pic" />
+            <div className="activity-card-details">
+              <b>{a.name.toUpperCase()}</b>
+            </div>
+          </div>
         )
       }
-    </>
+    </div>
   )
 }
 

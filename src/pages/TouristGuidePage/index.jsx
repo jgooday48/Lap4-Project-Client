@@ -71,13 +71,18 @@ const TouristGuidePage = () => {
       </div>
       <SearchForm guides={guides} fetchGuides={fetchGuides} fetchActivities={fetchActivities} />
       <div className="results">
+        <div className="two-thirds">
         <section className="guides">
           <SearchedGuides searchRes={searchRes} guides={guides} />
-        </section>
+          </section>
+        </div>
+     
         <section className="activities">
           <SearchedActivities activities={activities} />
         </section>
-      </div>
+
+         </div>
+      
     </div>
   );
 };
