@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { useLocation } from 'react-router'
+import { useLocation, useNavigate } from 'react-router'
 import Carousel from 'react-bootstrap/Carousel';
 import './index.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faComment, faEye, faSave } from '@fortawesome/free-solid-svg-icons';
+import { faComment, faEye, faSuitcase, faPersonWalkingLuggage } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { baseApi } from '../../utils/baseApi';
@@ -14,6 +14,7 @@ import { baseApi } from '../../utils/baseApi';
 const GuideCard = ({ guide, placeName }) => {
 
   const [toggleSaveOrDelete, setToggleSaveOrDelete] = useState(true)
+  const navigate = useNavigate()
 
   const saveOrDeleteGuide = () => {
 
@@ -57,6 +58,9 @@ const GuideCard = ({ guide, placeName }) => {
 
   const startChat = () => {
 
+  }
+  const navToPlan = () => {
+    navigate(`/createPlan/${guide.guide_id}`, {state: {guide}})
   }
   return (
     
@@ -105,6 +109,13 @@ const GuideCard = ({ guide, placeName }) => {
         <div className={`chat-icon ${toggleSaveOrDelete ? '' : 'gold'}`}
           onClick={() => saveOrDeleteGuide()}>
           <FontAwesomeIcon icon={faEye} />
+        </div>
+        <div>
+          <b>Make Plans</b>
+          <div className="chat-icon" onClick={navToPlan}>
+            {/* <FontAwesomeIcon icon={faSuitcase} /> &rarr; */}
+            <FontAwesomeIcon icon={faPersonWalkingLuggage} />
+          </div>
         </div>
 
       </section>
