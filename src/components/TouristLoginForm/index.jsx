@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 const TouristLoginForm = () => {
 
-    const { email, setEmail, password, setPassword, errorMessage, setErrorMessage, Loading, setTourist, username, setUsername } = useTourist(); 
+    const { touristemail, setTouristEmail, touristpassword, setTouristPassword, errorMessage, setErrorMessage, Loading, setTourist, touristusername, setTouristUsername, setLoading, setTouristAccess, setTouristRefresh } = useTourist(); 
     const { setWelcome } = useWelcome(); 
 
     // const [email, setEmail ] = useState('')
@@ -19,8 +19,8 @@ const TouristLoginForm = () => {
     const loginFunction = async () => {
         try {
             const userData = {
-                "username": username,
-                "password": password
+                "username": touristusername,
+                "password": touristpassword
             }
     
             const response = await axios.post(`${baseApi}tourists/login`, userData)
@@ -51,18 +51,25 @@ const TouristLoginForm = () => {
 
     const updateUsername = e => {
         const input = e.target.value;
-        setUsername(input )
+        setTouristUsername(input )
     }
 
     const updatePassword = e =>{
         const input = e.target.value
-        setPassword(input)
+        setTouristPassword(input)
 
     }
 
     function login(data) {
-        localStorage.setItem("access token", data.access_token)
-        localStorage.setItem("refresh token", data.refresh_token)
+        localStorage.setItem("access token", data.tokens.access_token)
+        localStorage.setItem("refresh token", data.tokens.refresh_token)
+        if (
+            localStorage.getItem("access token") === data.tokens.access_token &&
+            localStorage.getItem("refresh token") === data.tokens.refresh_token
+        ) {
+            setTouristAccess(data.tokens.access_token);
+            setTouristRefresh(data.tokens.refresh_token);
+        }
     }
 
 
