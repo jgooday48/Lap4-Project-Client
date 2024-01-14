@@ -3,7 +3,7 @@ import { useLocation } from 'react-router'
 import Carousel from 'react-bootstrap/Carousel';
 import './index.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faComment, faSave } from '@fortawesome/free-solid-svg-icons';
+import { faComment, faEye, faSave } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { baseApi } from '../../utils/baseApi';
@@ -18,9 +18,9 @@ const GuideCard = ({ guide, placeName }) => {
   const saveOrDeleteGuide = () => {
 
     if (toggleSaveOrDelete) {
-      toast.success('The guide has been saved to your "Saved Guides".', {autoClose: 2000});
+      toast.success('The guide has been saved to your "Watchlist".', {autoClose: 2000});
     } else {
-            toast.warning('The guide has been removed from your "Saved Guides".', {autoClose:2000});
+            toast.warning('The guide has been removed from your "Watchlist".', {autoClose:2000});
 
 
     }
@@ -36,7 +36,7 @@ const GuideCard = ({ guide, placeName }) => {
 
     try {
       await axios.post(baseApi + "tourists/guides", data);
-            toast.success('The guide has been saved to your "Saved Guides".', {autoClose: 2000});
+            toast.success('The guide has been saved to your "Watchlist".', {autoClose: 2000});
 
     } catch (error) {
       console.error("Error creating tourist-guide pair:", error.message);
@@ -48,7 +48,7 @@ const GuideCard = ({ guide, placeName }) => {
 
     try {
       await axios.delete(baseApi + `tourists/guides/${touristId}/${guideId}`);
-            toast.warning('The guide has been removed from your "Saved Guides".', {autoClose:2000});
+            toast.warning('The guide has been removed from your "Watchlist".', {autoClose:2000});
     } catch (error) {
       console.error("Error deleting tourist-guide pair:", error.message);
       toast.error("The guide cannot be deleted.");
@@ -104,7 +104,7 @@ const GuideCard = ({ guide, placeName }) => {
         </div>
         <div className={`chat-icon ${toggleSaveOrDelete ? '' : 'gold'}`}
           onClick={() => saveOrDeleteGuide()}>
-          <FontAwesomeIcon icon={faSave} />
+          <FontAwesomeIcon icon={faEye} />
         </div>
 
       </section>
