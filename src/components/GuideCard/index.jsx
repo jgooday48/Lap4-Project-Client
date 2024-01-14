@@ -15,12 +15,12 @@ const GuideCard = ({ guide, placeName }) => {
   }
 return (
   <div className='guide-page-card'>
-   <div className="carousel">
+   <div className="carousel" style={{width: "35%"}}>
     <Carousel interval={null}>
       {
         guide.images?.map((image, idx) => 
           <Carousel.Item key={idx} className="carousel-item" style={{width:"500px", height:"600px"}}>
-            <img src={image} style={{width:"100%", height:"100%", objectFit:"cover"}} className="d-block w-100" alt="guide-pic"/>
+            <img src={image} style={{width:"100%", height:"100%", objectFit:"cover", display:"block"}} alt="guide-pic"/>
           </Carousel.Item>
         )
       }
@@ -38,15 +38,16 @@ return (
                   )}
       </p>
       
-      <li>send message</li>
+
       <li>activities that guides does</li>
-      <li>confirm plan</li>
+      <li>make and confirm plan</li>
       <li>review of that guide</li>
       <li>rating of that guide</li>
       <li>plans page</li>
       <li>save guides</li>
       <li>saved guides page</li>
       <li>dates</li>
+      <li>connect messaging system</li>
     </section>
     <section className="guide-contact">
       <div className="guide-chat-title">
