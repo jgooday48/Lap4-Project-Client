@@ -6,6 +6,7 @@ import { baseApi } from '../../utils/baseApi'
 import { useLocation } from 'react-router-dom';
 import './index.css'
 import GuideActivities from './GuideActivities';
+import GuideReviews from './GuideReviews';
 
 const IndividualGuidePage = () => {
   const [guide, setGuide] = useState([]);
@@ -39,8 +40,9 @@ const IndividualGuidePage = () => {
         <b>Activities</b>
         <GuideActivities id={id}/>
       </section>
-      <section>
-        
+      <section className="guide-reviews">
+        <b>Client reviews</b>
+        <GuideReviews id={id}/>
       </section>
     </div>
   );

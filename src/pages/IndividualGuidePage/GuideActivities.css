@@ -9,30 +9,30 @@
 }
 
 .guide-activity-card {
-  position: relative;
+    position: relative;
 
 }
 
 .activity-name {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #fff; /* Adjust text color */
-  font-size: 16px; /* Adjust font size */
-  opacity: 0; /* Initially hide the text */
-  transition: opacity 0.3s ease-in-out;
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 16px;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
 }
 
 
 .guide-activity-card:hover .activity-name {
-  opacity: 1; 
-  color: white;
+    opacity: 1;
+    color: white;
 }
 
 .guide-activity-card img:hover {
-  background-color: #333; 
-  opacity: 0.4;
+    background-color: #333;
+    opacity: 0.4;
 }
 
 
@@ -43,18 +43,19 @@
     width: 350px;
     object-fit: cover;
     margin-right: 2em;
-    
+
 }
 
 .guide-activity-container::-webkit-scrollbar {
-    height: 10px; /* Set the height of the scrollbar */
+    height: 10px;
+    /* Set the height of the scrollbar */
 }
 
 .guide-activity-container::-webkit-scrollbar-thumb {
     background-color: #888;
-    border-radius: 4px; 
+    border-radius: 4px;
 }
 
 .guide-activity-container::-webkit-scrollbar-track {
-    background-color: #f1f1f1; 
+    background-color: #f1f1f1;
 }

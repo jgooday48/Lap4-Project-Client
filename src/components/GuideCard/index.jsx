@@ -38,8 +38,6 @@ return (
                   )}
       </p>
       
-
-      <li>activities that guides does</li>
       <li>make and confirm plan</li>
       <li>review of that guide</li>
       <li>rating of that guide</li>

@@ -4,7 +4,8 @@
     padding: 3em;
 }
 
-.guide-activities{
+.guide-activities, .guide-reviews{
     font-size: x-large;
     margin-top: 2em;
 }
+
