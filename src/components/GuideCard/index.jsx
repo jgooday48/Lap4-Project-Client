@@ -2,14 +2,17 @@ import React from 'react'
 import { useLocation } from 'react-router'
 import Carousel from 'react-bootstrap/Carousel';
 import './index.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faComment } from '@fortawesome/free-solid-svg-icons';
+
 
 
 const GuideCard = ({ guide, placeName }) => {
 
 
-
-
-
+  const startChat = () => {
+    
+  }
 return (
   <div className='guide-page-card'>
    <div className="carousel">
@@ -33,12 +36,26 @@ return (
                   {guide.filters?.map((filter, idx) =>
                     <div key={idx} className="guide-filter">{filter}</div>
                   )}
-        </p>
-
-    {/* <h3>Email: {guide.email}</h3>
-    <h4>Specialities: {guide.filters}</h4>
-      <h4>Location: {placeName ? placeName : 'Unknown'}</h4> */}
-  </section>
+      </p>
+      
+      <li>send message</li>
+      <li>activities that guides does</li>
+      <li>confirm plan</li>
+      <li>review of that guide</li>
+      <li>rating of that guide</li>
+      <li>plans page</li>
+      <li>save guides</li>
+      <li>saved guides page</li>
+      <li>dates</li>
+    </section>
+    <section className="guide-contact">
+      <div className="guide-chat-title">
+      <b>Say Hello</b>
+      </div>
+      <div className="chat-icon" onClick={startChat}>
+        <FontAwesomeIcon icon={faComment} />
+        </div>
+    </section>
   </div>
 )
 
