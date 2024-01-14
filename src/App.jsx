@@ -34,11 +34,11 @@ function App() {
 
                 <Route path="/guidehomepage" element={<Pages.GuideHomePage />} />
                 <Route path="/guideloginpage" element={<Pages.GuideLoginPage />} />
-                {/* <Route path="/guideprofilepage" element={<Pages.GuideProfilePage />} /> */}
+                <Route path="/guideprofilepage" element={<Pages.GuideProfilePage />} />
                 <Route path="/places/:search" element={<Pages.TouristAllPlacesPage />} />
                 <Route path="/places/placeId/:id" element={<Pages.TouristGuidePage />} />
                 <Route path="/livechat" element={<Pages.WebSocketPage/>}/>
-
+                <Route path="/chat" element={<Pages.Chat/>}/>
 
               </Route>
             </Routes>

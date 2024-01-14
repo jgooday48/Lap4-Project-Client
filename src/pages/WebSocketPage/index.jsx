@@ -2,7 +2,7 @@ import React, {useState, useEffect } from 'react'
 import { Manager, io } from "socket.io-client";
 import { WebSocketCall } from '../../components'
 import "../../components/WebSocketCall/WebSocketCall.css"
-
+import { GuideProvider, useGuide } from '../../contexts/guideContext';
 
 let socket; 
 
@@ -10,11 +10,12 @@ const WebSocketPage = () => {
 
   const [socketInstance, setSocketInstance] = useState('')
   const [loading, setLoading] = useState(true)
-  // const [buttonStatus, setButtonStatus] = useState(false)
-
   const [username, setUsername] = useState('')
   const [room, setRoom] = useState('')
   const [chat, setChat] = useState(false)
+  const { email } = useGuide() 
+
+  console.log(email)
 
   useEffect(() => {
     if (chat === true) {
@@ -82,9 +83,7 @@ const WebSocketPage = () => {
       {!chat ? (
          <button onClick={handleClick}>Enter chat room</button>) : <><button onClick={handleClick}>Leave chat room</button></>
       }
-    {/* {!buttonStatus ? (
-        <button onClick={handleClick}>Turn on chat</button>
-        ) : <><button onClick={handleClick}>Turn off chat</button></>} */}
+
     </div>
     <div className='line'>
         {!loading && <WebSocketCall socket={socketInstance} username={username} room={room}/>}
