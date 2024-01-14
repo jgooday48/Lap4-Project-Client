@@ -77,6 +77,12 @@
         transform: rotate(10deg);
     }
 }
-.fa-comment{
+
+
+.chat-icon{
     color: white;
+}
+
+.chat-icon.gold{
+    color: gold;
 }

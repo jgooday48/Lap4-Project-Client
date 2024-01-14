@@ -11,10 +11,13 @@ import { GuideProvider } from "./contexts/guideContext";
 import { WelcomeProvider } from "./contexts/welcomeContext";
 
 
+
+
 function App() {
 
   return (
     <>
+
       <WelcomeProvider>
         <GuideProvider>
           <TouristProvider>
