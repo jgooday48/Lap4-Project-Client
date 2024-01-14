@@ -10,12 +10,14 @@ const Conversation = ({ data, currentUser }) => {
     console.log(data)
 
     useEffect(()=> {
-    const userId = data.find(obj => obj.sender === currentUser).map(obj => obj.receiver)
-
+    const userId = data.find(obj => obj.sender === currentUser)
+    if (userId) {
+        const receiverId = userId.receiver;
+    }
     const getUserData = async ()=> {
       try
       {
-        const res = await axios.get(`http://localhost:5000/guides/${userId}`)
+        const res = await axios.get(`http://localhost:5000/guides/${receiverId}`)
          setUserData(res.data)
         //  dispatch({type:"SAVE_USER", data:data})
       }
