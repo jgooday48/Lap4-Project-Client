@@ -39,6 +39,9 @@ const IndividualGuidePage = () => {
         <b>Activities</b>
         <GuideActivities id={id}/>
       </section>
+      <section>
+        
+      </section>
     </div>
   );
 };
