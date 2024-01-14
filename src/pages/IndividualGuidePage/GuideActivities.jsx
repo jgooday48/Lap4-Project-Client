@@ -4,12 +4,12 @@ import axios from 'axios'
 import { baseApi } from '../../utils/baseApi'
 
 const GuideActivities = ({ id }) => {
-      const [guideActivities, setGuideActvities] = useState([])
+      const [activities, setActvities] = useState([])
 
 
       const fetchGuideActivities = async () => {
     await axios.get(`${baseApi}guides/guideId:${id}/activities`)
-      .then(res => console.log(res.data))
+      .then(res => setActvities(res.data))
       .catch(e => console.log(e))
     }
     
@@ -17,7 +17,18 @@ const GuideActivities = ({ id }) => {
         fetchGuideActivities()
     }, [])
   return (
-    <div>GuideActivities</div>
+      <div className="guide-activity-container">
+          {
+              activities.map(a => (
+                  <div key={a.activity_id} className="guide-activity-card">
+                      <img src={a.images[0]} alt="activity-img" />
+                       <div className="activity-name">{a.name}</div>
+                    </div>
+             ))
+          }
+         
+          
+    </div>
   )
 }
 

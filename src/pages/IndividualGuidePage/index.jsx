@@ -36,6 +36,7 @@ const IndividualGuidePage = () => {
           <BackButton />
       <GuideCard guide={guide} placeName={placeName} />
       <section className="guide-activities">
+        <b>Activities</b>
         <GuideActivities id={id}/>
       </section>
     </div>
