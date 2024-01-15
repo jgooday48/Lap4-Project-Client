@@ -6,7 +6,13 @@ import './AddActivitiesToPlan.css'
 
 const AddActivitiesToPlan = ({ id, setActivityIds, activityIds }) => {
     const [activities, setActvities] = useState([])
-    const [activityState, setActivityState] = useState({});
+    const initialActivityState = activityIds.reduce((acc, activityId) => {
+        acc[activityId] = true;
+        return acc;
+    }, {});
+
+    const [activityState, setActivityState] = useState(initialActivityState);
+
 
 
 
@@ -36,6 +42,7 @@ const AddActivitiesToPlan = ({ id, setActivityIds, activityIds }) => {
 
     useEffect(() => {
         fetchGuideActivities()
+
     }, [])
 
 

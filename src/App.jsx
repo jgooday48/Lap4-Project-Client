@@ -42,9 +42,8 @@ function App() {
                 <Route path="/places/placeId/:id" element={<Pages.TouristGuidePage />} />
                 <Route path="/livechat" element={<Pages.WebSocketPage />} />
                 <Route path="/createPlan/:guideId" element={<Pages.CreatePlanPage />} />
-                <Route path="/plans" element={<Pages.TouristPlansPage/>}/>
-
-
+                <Route path="/plans" element={<Pages.TouristPlansPage />} />
+                <Route path="/plans/:id" element={<Pages.TouristEachPlanPage/>}/>
               </Route>
             </Routes>
           </TouristProvider>
