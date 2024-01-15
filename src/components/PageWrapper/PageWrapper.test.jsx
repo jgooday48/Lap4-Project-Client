@@ -35,23 +35,27 @@ describe("Page wrapper functionality", () => {
       cleanup();
     });
 
+    it('is defined', () => {
+      expect(PageWrapper).toBeDefined()
+    })
+
     it("displays the footer div", () => {
         const footer = screen.getByRole('contentinfo')
         expect(footer).toBeInTheDocument()
         expect(footer.childNodes[0].textContent).toBe(' Copyright 2024 ')
     })
 
-    it.skip("displays the nav bar", () => {
+    it("displays the nav bar", () => {
         const nav = screen.getByRole('navbar')
         expect(nav).toBeInTheDocument()
     })
 
-    it.skip("displays the nav element", async () => {
-        const nav = screen.getByRole('navbar')
-        expect(nav.textContent).toBe('LOGIN')
-    })
+    // it("displays the nav element", async () => {
+    //     const nav = screen.getByRole('navbar')
+    //     expect(nav.textContent).toBe('LOGIN')
+    // })
 
-    it.skip("navigates to correct endpoint when nav element is clicked", async () => {
+    it("navigates to correct endpoint when nav element is clicked", async () => {
 
        const loginNav = screen.getByText('Login')
         

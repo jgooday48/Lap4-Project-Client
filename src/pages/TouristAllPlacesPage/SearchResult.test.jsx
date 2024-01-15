@@ -6,16 +6,23 @@ import { MemoryRouter } from 'react-router-dom';
 
 import * as matchers from '@testing-library/jest-dom/matchers';
 expect.extend(matchers);
-
 import { TouristProvider } from "../../contexts/touristContext";
 import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
 
 
-import WebSocketPage from '.';
+
+import SearchResult from './SearchResult';
 
 describe('Function', ()=> {
     beforeEach(() => {
+
+        const fakePlace = {
+            place_id: 1,
+            name: 'Ibiza',
+            images: 'fake.jpg',
+            description: 'awesome'
+        }
 
         render(
             <MemoryRouter>
@@ -24,11 +31,10 @@ describe('Function', ()=> {
                 <TouristProvider>
 
                 <GuideProvider>
-
-                <WebSocketPage />
-                </GuideProvider>
+                    <SearchResult place={fakePlace}/>
+                    </GuideProvider>
                 </TouristProvider>
-                </WelcomeProvider>
+                </WelcomeProvider>                   
             </MemoryRouter>
         )
     })
@@ -37,14 +43,12 @@ describe('Function', ()=> {
         cleanup()
     })
 
+
     it('is defined', () => {
-        expect(WebSocketPage).toBeDefined()
+        expect(SearchResult).toBeDefined()
 
     })
 
-    it('displays a header', () => {
-        const h3 = screen.getByText('Join a chat!')
-        expect(h3).toBeInTheDocument()
-    })
+    
 
 })

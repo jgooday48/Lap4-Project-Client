@@ -8,7 +8,7 @@ export const TouristProvider = ({ children }) => {
     const [ touristpassword, setTouristPassword ] = useState();
     const [ touristname, setTouristName ] = useState();
     const [ touristemail, setTouristEmail ] = useState(); 
-    const [ tourist, setTourist] = useState(true); 
+    const [ tourist, setTourist] = useState(false); 
     const [ touristaccess, setTouristAccess ] = useState();
     const [ touristrefresh, setTouristRefresh ] = useState();
 

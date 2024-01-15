@@ -11,8 +11,7 @@ import { TouristProvider } from "../../contexts/touristContext";
 import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
 
-
-import WebSocketPage from '.';
+import GuideProfilePage from '.';
 
 describe('Function', ()=> {
     beforeEach(() => {
@@ -20,12 +19,10 @@ describe('Function', ()=> {
         render(
             <MemoryRouter>
                 <WelcomeProvider>
+                    <TouristProvider>
 
-                <TouristProvider>
-
-                <GuideProvider>
-
-                <WebSocketPage />
+                    <GuideProvider>   
+                        <GuideProfilePage />
                 </GuideProvider>
                 </TouristProvider>
                 </WelcomeProvider>
@@ -38,13 +35,8 @@ describe('Function', ()=> {
     })
 
     it('is defined', () => {
-        expect(WebSocketPage).toBeDefined()
+        expect(GuideProfilePage).toBeDefined()
 
-    })
-
-    it('displays a header', () => {
-        const h3 = screen.getByText('Join a chat!')
-        expect(h3).toBeInTheDocument()
     })
 
 })

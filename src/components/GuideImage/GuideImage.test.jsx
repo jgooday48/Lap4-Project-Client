@@ -12,8 +12,17 @@ import { WelcomeProvider } from "../../contexts/welcomeContext";
 
 import GuideImage from '.';
 
-describe('Functiom', ()=> {
+describe('Function', ()=> {
     beforeEach(() => {
+
+        const fakeGuide = {
+            guide_id: 1,
+            name: 'John Doe',
+            info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            tagline: 'Your friendly local guide!',
+            filters: ['Foodie', 'History Enthusiast'],
+            images: ['image1.jpg', 'image2.jpg'],
+          };
 
         render(
             <MemoryRouter>
@@ -22,7 +31,7 @@ describe('Functiom', ()=> {
                 <TouristProvider>
 
                 <GuideProvider>
-                    <GuideImage />
+                    <GuideImage guide={fakeGuide}/>
                     </GuideProvider>
                 </TouristProvider>
                 </WelcomeProvider>                   
@@ -35,7 +44,7 @@ describe('Functiom', ()=> {
     })
 
 
-    it.skip('is defined', () => {
+    it('is defined', () => {
         expect(GuideImage).toBeDefined()
 
     })

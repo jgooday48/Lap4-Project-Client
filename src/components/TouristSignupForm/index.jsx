@@ -22,6 +22,7 @@ const TouristSignupForm = () => {
     
             const response = await axios.post(`${baseApi}tourists/register`, userData)
             const data = await response.data
+            console.log(data)
             if (data.err)
             {throw Error(data.err)}
         } catch (err) {
@@ -31,35 +32,39 @@ const TouristSignupForm = () => {
     }
 
     const loginFunction = async () => {
-        try {
-            const userData = {
-                "username": touristusername,
-                "password": touristpassword
-            }
-    
-            const response = await axios.post(baseApi + "tourists/register", userData)
-            // URL needs updating before deployment
-            const data = await response.data
-            if (data.err)
-            {throw Error(data.err)}
-            login(data)
-        } catch (err) {
-            console.warn(err);
-        }
-    
+
+
+        const userData = {
+            "username": touristusername,
+            "password": touristpassword
     }
 
-    function login(data) {
-        localStorage.setItem("tourist_access_token", data.tokens.access_token)
-        localStorage.setItem("tourist_refresh_token", data.tokens.refresh_token)
-        if (
-            localStorage.getItem("tourist_access_token") === data.tokens.access_token &&
-            localStorage.getItem("tourist_refresh_token") === data.tokens.refresh_token
-        ) {
-            setTouristAccess(data.tokens.access_token);
-            setTouristRefresh(data.tokens.refresh_token);
-        }
+    await axios.post(baseApi + "tourists/login", userData)
+        .then(res => {
+            const data = res.data
+               localStorage.setItem("tourist_token", data.tokens.access)
+            localStorage.setItem("tourist_refresh", data.tokens.refresh)
+            if (data.tokens.access) {
+                getCurrentUser(data.tokens.access)
+            } else {
+                console.log("current user not got ")
+            }
+            
+        }).catch(e => console.log(e))
+
     }
+
+    // function login(data) {
+    //     localStorage.setItem("tourist_access_token", data.tokens.access_token)
+    //     localStorage.setItem("tourist_refresh_token", data.tokens.refresh_token)
+    //     if (
+    //         localStorage.getItem("tourist_access_token") === data.tokens.access_token &&
+    //         localStorage.getItem("tourist_refresh_token") === data.tokens.refresh_token
+    //     ) {
+    //         setTouristAccess(data.tokens.access_token);
+    //         setTouristRefresh(data.tokens.refresh_token);
+    //     }
+    // }
 
     
 
@@ -71,6 +76,21 @@ const TouristSignupForm = () => {
     // const [ name, setName ] = useState();
     // const [ email, setEmail ] = useState(); 
     // const [ tourist, setTourist ] = useState(false)
+
+    const getCurrentUser = async (token) => {
+        const axiosInstance = axios.create({
+     baseURL: baseApi,
+     headers: {
+         'Authorization': `Bearer ${token}`
+     }
+ })
+     axiosInstance.get("tourists/current")
+         .then(res => {
+             localStorage.setItem("touristId", res.data.user_details.tourist_id)
+             localStorage.setItem("touristUsername", res.data.user_details.username)
+     }).catch(e => console.log(e))
+
+ }
 
 
 
