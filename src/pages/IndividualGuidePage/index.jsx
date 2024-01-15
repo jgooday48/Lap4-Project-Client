@@ -12,8 +12,8 @@ const IndividualGuidePage = () => {
   const [guide, setGuide] = useState([]);
   const { id } = useParams();
    const location = useLocation()
-  const placeName = location && location.state.searchRes
-
+  // const placeName = location && location.state.searchRes
+  const placeName = location.state ? location.state.searchRes : null;
 
       const displayGuide = async () => {
       try {

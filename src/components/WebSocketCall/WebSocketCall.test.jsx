@@ -13,21 +13,20 @@ import WebSocketCall from '.';
 expect.extend(matchers);
 
 describe('Function', () => {
-  let mockSocket; // Mock socket instance
+  let mockSocket
 
   beforeEach(() => {
-    // Create a mock socket instance
-    mockSocket = io('http://localhost');
 
-    const user = 'jkl';
-    const room = 2;
+    mockSocket = io('http://localhost')
+
+    const user = 'jkl'
+    const room = 2
 
     render(
       <MemoryRouter>
         <WelcomeProvider>
           <TouristProvider>
             <GuideProvider>
-              {/* Pass the mock socket instance to the component */}
               <WebSocketCall socket={mockSocket} username={user} room={room} />
             </GuideProvider>
           </TouristProvider>
@@ -37,7 +36,7 @@ describe('Function', () => {
   });
 
   afterEach(() => {
-    // Disconnect the mock socket after each test
+
     mockSocket.disconnect();
     cleanup();
   });
