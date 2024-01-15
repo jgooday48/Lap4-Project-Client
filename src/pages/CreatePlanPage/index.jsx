@@ -19,11 +19,22 @@ const CreatePlanPage = () => {
 
 
     return (
+        // <div className="create-plan">
+        //     <div className="plan-guide-info">
+        //         <b>Create plans with {guide.name.substring(0, guide.name.indexOf(" "))}</b>
+        //         <img src={guide.images[0]} alt="guide-pic" />
+        //     </div>
         <div className="create-plan">
-            <div className="plan-guide-info">
-                <b>Create plans with {guide.name.substring(0, guide.name.indexOf(" "))}</b>
-                <img src={guide.images[0]} alt="guide-pic" />
-            </div>
+        <div className="plan-guide-info">
+            {guide ? (
+                <>
+                    <b>Create plans with {guide.name.substring(0, guide.name.indexOf(" "))}</b>
+                    <img src={guide.images[0]} alt="guide-pic" />
+                </>
+            ) : (
+                <b>Create plans with a guide</b>
+            )}
+        </div>
             <div className="create-plan-form-section">
                 <form>
                     
