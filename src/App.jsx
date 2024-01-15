@@ -56,7 +56,7 @@ function App() {
                   
                 <Pages.GuideLoginPage />
                 } />
-                {/* <Route path="/guideprofilepage" element={<Pages.GuideProfilePage />} /> */}
+                <Route path="/guideprofilepage" element={<Pages.GuideProfilePage />} />
                 <Route path="/places/:search" element={
                   <TouristProtectedRoute>
                 <Pages.TouristAllPlacesPage />

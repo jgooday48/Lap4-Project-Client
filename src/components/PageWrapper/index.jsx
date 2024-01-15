@@ -11,17 +11,6 @@ const PageWrapper = () => {
   const { guide, setGuide } = useGuide();
   const { welcome, setWelcome } = useWelcome();
 
-  // const handleTouristLogin = () => {
-  //   setTourist(true);
-  //   setWelcome(false);
-  //   setGuide(false);
-  // };
-
-  // const handleGuideLogin = () => {
-  //   setGuide(true);
-  //   setWelcome(false);
-  //   setTourist(false);
-  // };
 
   return (
     <>
@@ -66,18 +55,29 @@ const PageWrapper = () => {
 
 
       {guide && (
-        <div className='touristWrapper'>
-          <header>
-            <nav>
-              <section className='nav-link'>
-                <NavLink to="/guidehomepage">Home</NavLink>
-                <NavLink to="/guideprofilepage">Your profile</NavLink>
-              </section>
-            </nav>
-          </header>
+        <>
+          <div className='touristWrapper'>
+            <header className='tourist-header'>
+              <span className='brand'>TravelGuide</span>
+              <div className='tourist-nav'>
+                <nav id="link-navbar">
+                  <section className='links'>
+                    <NavLink to="/guidehomepage">Home</NavLink>
+                    <NavLink to="/activity">Plans</NavLink>
+                    <NavLink to="/touristguidepage">WatchList</NavLink>
+                    <NavLink to="/livechat">Chat</NavLink>
+                    <NavLink to="/profile">Profile</NavLink>
+                  </section>
+                  <section className='logout-button'>
+                    <NavLink to="/logout">Logout</NavLink>
+                  </section>
+                </nav>
+              </div>
+            </header>
+          </div>
 
           <Outlet />
-        </div>
+        </>
       )}
 
       <footer id="footer">
