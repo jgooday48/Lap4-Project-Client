@@ -65,6 +65,29 @@ describe("Tourist Sign up functionality", () => {
         
     })
 
+    it("updates email state on input change", () => {
+        const emailInput = screen.getByLabelText(/email/i);
+    
+        fireEvent.change(emailInput, { target: { value: "test@gmail.com" } });
+    
+        expect(emailInput.value).toBe("test@gmail.com");
+      });
+    it("updates username state on input change", () => {
+        const usernameInput = screen.getByLabelText(/username/i);
+    
+        fireEvent.change(usernameInput, { target: { value: "testuser" } });
+    
+        expect(usernameInput.value).toBe("testuser");
+      });
+    
+      it("updates password state on input change", () => {
+        const passwordInput = screen.getByLabelText(/password/i);
+    
+        fireEvent.change(passwordInput, { target: { value: "testpassword" } });
+    
+        expect(passwordInput.value).toBe("testpassword");
+      });
+
     it("displays a link which brings the user to the user login page", async ()=>{
         const link = screen.getByRole("signup")
         expect(link).toBeInTheDocument();
@@ -77,6 +100,7 @@ describe("Tourist Sign up functionality", () => {
             expect(logintitle).toBeInTheDocument();
             expect(logintitle.textContent).toBe("Tourist Log In")
         })
+        
     })
 
 

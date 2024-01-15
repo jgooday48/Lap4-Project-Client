@@ -1,5 +1,5 @@
 import React from "react";
-import { describe, it, expect, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, beforeEach, afterEach, vitest } from "vitest";
 import { screen, render, cleanup, waitFor, fireEvent, rerender} from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 // import { AuthProvider } from "../../context/AuthContext";
@@ -55,6 +55,22 @@ describe("Tourist Log in functionality", () => {
         expect(submit.textContent).toBe("LOGIN")
         
     })
+    it("updates username state on input change", () => {
+      const usernameInput = screen.getByLabelText(/username/i);
+  
+      fireEvent.change(usernameInput, { target: { value: "testuser" } });
+  
+      expect(usernameInput.value).toBe("testuser");
+    });
+  
+    it("updates password state on input change", () => {
+      const passwordInput = screen.getByLabelText(/password/i);
+  
+      fireEvent.change(passwordInput, { target: { value: "testpassword" } });
+  
+      expect(passwordInput.value).toBe("testpassword");
+    });
+
 
     
 })
