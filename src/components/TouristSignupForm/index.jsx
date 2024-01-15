@@ -13,7 +13,7 @@ const TouristSignupForm = () => {
     const registerFunction = async () => {
         try {
             const userData = {
-                "username": tourstusername,
+                "username": touristusername,
                 "password": touristpassword,
                 "name": touristname,
                 "email": touristemail,
@@ -104,7 +104,7 @@ const TouristSignupForm = () => {
 
     const updateEmail = e => {
         const input = e.target.value;
-        setEmail(input )
+        setTouristEmail(input )
     }
 
 
