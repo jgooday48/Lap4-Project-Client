@@ -10,3 +10,6 @@ export { default as GuideImage } from "./GuideImage"
 export { default as GuideProtectedRoute } from "./GuideAuth"
 export { default as TouristProtectedRoute } from "./TouristAuth"
 export { default as ProtectedRoute } from "./TGAuth"
+export { default as FindPlacesMatch} from './FindPlacesMatch'
+export { default as RenderFoundPlaces } from './RenderFoundPlaces'
+

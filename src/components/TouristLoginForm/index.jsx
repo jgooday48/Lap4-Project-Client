@@ -2,7 +2,7 @@ import { React, useState } from 'react'
 import { useTourist } from '../../contexts/touristContext'
 import { useWelcome } from '../../contexts/welcomeContext';
 import { useNavigate } from 'react-router-dom';
-
+import { baseApi } from '../../utils/baseApi'
 import axios from 'axios';
 const TouristLoginForm = () => {
 

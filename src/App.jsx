@@ -16,6 +16,7 @@ function App() {
 
   return (
     <>
+
       <WelcomeProvider>
         <GuideProvider>
           <TouristProvider>
@@ -68,6 +69,8 @@ function App() {
                   <ProtectedRoute>
                 <Pages.WebSocketPage/>
                 </ProtectedRoute>}/>
+                <Route path="/createPlan/:guideId" element={<Pages.CreatePlanPage/>}/>
+
 
 
               </Route>

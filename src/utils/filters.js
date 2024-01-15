@@ -4,7 +4,7 @@ export const filters  = {
     'Cultural': 'CULTURAL',
     'Dining': 'DINING',
     'Music': 'MUSIC',
-    'Female only': 'FEMALE_FRIENDLY',
+    'Female': 'FEMALE_FRIENDLY',
     'Disability friendly': 'DISABILITY_FRIENDLY',
     'Art': 'ART',
     'Sports': 'SPORTS',
