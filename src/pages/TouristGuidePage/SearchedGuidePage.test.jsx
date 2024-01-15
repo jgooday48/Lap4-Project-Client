@@ -9,7 +9,7 @@ expect.extend(matchers);
 
 import SearchedGuides from './SearchedGuides';
 
-describe('Function', ()=> {
+describe('Searched Guides functionality', ()=> {
     beforeEach(() => {
         const mockGuides = [{
             guide_id: 1,

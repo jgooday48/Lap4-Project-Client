@@ -10,7 +10,7 @@ expect.extend(matchers);
 
 import SearchedActivities from './SearchedActivities';
 
-describe('Function', ()=> {
+describe('Searched Activities functionality', ()=> {
     beforeEach(() => {
         const mockActivities = [{
             name: 'Abseiling',

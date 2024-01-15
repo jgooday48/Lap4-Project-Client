@@ -1,5 +1,5 @@
 import React from "react";
-import { describe, it, expect, beforeEach, afterEach, vitest } from "vitest";
+import { describe, it, expect, beforeEach, afterEach, vitest,vi } from "vitest";
 import { screen, render, cleanup, waitFor, fireEvent, rerender} from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 // import { AuthProvider } from "../../context/AuthContext";
@@ -11,6 +11,8 @@ import TouristLoginForm from ".";
 import { TouristProvider } from "../../contexts/touristContext";
 import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
+
+vi.mock('axios');
 
 describe("Tourist Log in functionality", () => {
     beforeEach(() => {
@@ -28,6 +30,8 @@ describe("Tourist Log in functionality", () => {
   
     afterEach(() => {
       cleanup();
+      vi.resetAllMocks();
+      localStorage.clear();
     });
 
     it("is defined", () => {
@@ -70,6 +74,8 @@ describe("Tourist Log in functionality", () => {
   
       expect(passwordInput.value).toBe("testpassword");
     });
+
+    
 
 
     

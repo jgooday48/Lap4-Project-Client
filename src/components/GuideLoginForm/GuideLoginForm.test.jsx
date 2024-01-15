@@ -12,7 +12,7 @@ import { TouristProvider } from "../../contexts/touristContext";
 import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
 
-describe("Tourist Log in functionality", () => {
+describe("Guide Log in functionality", () => {
     beforeEach(() => {
       render(
         <WelcomeProvider>

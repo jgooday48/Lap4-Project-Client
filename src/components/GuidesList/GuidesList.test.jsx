@@ -11,7 +11,7 @@ import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
 import GuideList from '.';
 
-describe('Guides List', ()=> {
+describe('Guides List functionality', ()=> {
     beforeEach(() => {
         const fakeGuide = [{
             guide_id: 1,

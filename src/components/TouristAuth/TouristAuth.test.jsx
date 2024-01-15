@@ -14,7 +14,7 @@ import { WelcomeProvider } from "../../contexts/welcomeContext";
 
 import TouristProtectedRoute from '.';
 
-describe('Function', ()=> {
+describe('Tourist auth functionlity', ()=> {
     beforeEach(() => {
 
         render(

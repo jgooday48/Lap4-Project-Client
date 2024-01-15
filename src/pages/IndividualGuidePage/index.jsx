@@ -13,7 +13,7 @@ const IndividualGuidePage = () => {
   const { id } = useParams();
    const location = useLocation()
   // const placeName = location && location.state.searchRes
-  const placeName = location.state ? location.state.searchRes : null;
+  const placeName = location.state ? location.state.searchRes : null
 
       const displayGuide = async () => {
       try {

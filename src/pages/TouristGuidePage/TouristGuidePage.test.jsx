@@ -9,7 +9,7 @@ expect.extend(matchers);
 
 import TouristGuidePage from '.';
 
-describe('Functiom', ()=> {
+describe('Tourist Guide Page functionality', ()=> {
     beforeEach(() => {
 
         render(

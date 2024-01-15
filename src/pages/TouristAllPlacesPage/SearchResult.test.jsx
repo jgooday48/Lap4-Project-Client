@@ -14,7 +14,7 @@ import { WelcomeProvider } from "../../contexts/welcomeContext";
 
 import SearchResult from './SearchResult';
 
-describe('Function', ()=> {
+describe('Search Result functionality', ()=> {
     beforeEach(() => {
 
         const fakePlace = {

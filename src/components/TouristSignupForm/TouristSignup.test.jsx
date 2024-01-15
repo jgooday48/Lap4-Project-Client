@@ -1,5 +1,5 @@
 import React from "react";
-import { describe, it, expect, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { screen, render, cleanup, waitFor, fireEvent, rerender} from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 // import { AuthProvider } from "../../context/AuthContext";
@@ -7,7 +7,7 @@ import * as matchers from "@testing-library/jest-dom/matchers";
 expect.extend(matchers);
 
 import TouristSignupForm from ".";
-
+import axios from "axios";
 import { TouristProvider } from "../../contexts/touristContext";
 import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
@@ -100,13 +100,11 @@ describe("Tourist Sign up functionality", () => {
             expect(logintitle).toBeInTheDocument();
             expect(logintitle.textContent).toBe("Tourist Log In")
         })
+
         
-    })
-
-
-
-
-    
+        
+      })
+          
 
     
 })
