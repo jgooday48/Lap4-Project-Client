@@ -1,50 +1,50 @@
 import React from 'react';
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { screen, render, cleanup } from '@testing-library/react';
-
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { screen, render, cleanup, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-
 import * as matchers from '@testing-library/jest-dom/matchers';
-expect.extend(matchers);
 import { TouristProvider } from "../../contexts/touristContext";
 import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
-
-
-
-
+import io from 'socket.io-client'; // Import the socket.io-client library
+import { fireEvent } from '@testing-library/react';
 import WebSocketCall from '.';
 
-describe('Function', ()=> {
-    beforeEach(() => {
+expect.extend(matchers);
 
-        const socket = 'grgr'
-        const user = 'jkl'
-        const room = 2
+describe('Function', () => {
+  let mockSocket; // Mock socket instance
 
-        render(
-            <MemoryRouter>
-                <WelcomeProvider>
+  beforeEach(() => {
+    // Create a mock socket instance
+    mockSocket = io('http://localhost');
 
-                    <TouristProvider>
+    const user = 'jkl';
+    const room = 2;
 
-                    <GuideProvider>
+    render(
+      <MemoryRouter>
+        <WelcomeProvider>
+          <TouristProvider>
+            <GuideProvider>
+              {/* Pass the mock socket instance to the component */}
+              <WebSocketCall socket={mockSocket} username={user} room={room} />
+            </GuideProvider>
+          </TouristProvider>
+        </WelcomeProvider>
+      </MemoryRouter>
+    );
+  });
 
-                    <WebSocketCall socket={socket} username={user} room={room}/>
-                    </GuideProvider>
-                    </TouristProvider>
-                    </WelcomeProvider>
-            </MemoryRouter>
-        )
-    })
+  afterEach(() => {
+    // Disconnect the mock socket after each test
+    mockSocket.disconnect();
+    cleanup();
+  });
 
-    afterEach(() => {
-        cleanup()
-    })
+  it('is defined', () => {
+    expect(WebSocketCall).toBeDefined();
+  });
 
-    it.skip('is defined', () => {
-        expect(WebSocketCall).toBeDefined()
 
-    })
-
-})
+});

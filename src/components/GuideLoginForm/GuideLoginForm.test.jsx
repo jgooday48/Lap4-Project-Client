@@ -52,10 +52,10 @@ describe("Tourist Log in functionality", () => {
         expect(password).toBeInTheDocument();
     })
 
-    it.skip("displays a submit button", () =>{
-        const submit = screen.getByRole("button")
+    it("displays a submit button", () =>{
+        const submit = screen.getByRole("submit")
         expect(submit).toBeInTheDocument();
-        expect(submit.textContent).toBe("LOGIN")
+        expect(submit.value).toBe("LOGIN")
         
     })
 
