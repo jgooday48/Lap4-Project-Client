@@ -49,7 +49,11 @@ const TouristHomePage = () => {
             <br />
             App
           </h1>
+          <h1 className="sub-heading">
+            Your ultimate companion for exploring new destinations
+          </h1>
         </div>
+        
         <div className='form'>
           <div className='search-bar'>
             <input
@@ -79,9 +83,7 @@ const TouristHomePage = () => {
           </>
         )}
       </div>
-      <div className='Sub-Head'>
-        <h1>Your ultimate companion for exploring new destinations</h1>
-      </div>
+      
       <div id="Details">
         <div id="Details1">
           <div id='DetailsText'>
