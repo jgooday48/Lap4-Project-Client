@@ -22,30 +22,12 @@ const TouristHomePage = () => {
 
 
   return (
-<<<<<<< HEAD
-    <>
-      <div id="topContainer">
-        <div id="headerContainer">
-          <h1>
-            Discover the World
-            <br />
-            with our Travel Guide
-            <br />
-            App
-          </h1>
-          <h1 className="sub-heading">
-            Your ultimate companion for exploring new destinations
-          </h1>
-        </div>
-        
-=======
     
     <div id="topContainer">
       <div id="headerContainer">
 
         <h1>See the world like a local</h1>
 
->>>>>>> origin/staging
         <div className='form'>
 
           <FindPlacesMatch search={search} setSearch={setSearch} setPlacePicked={setPlacePicked} isHome={true}/>

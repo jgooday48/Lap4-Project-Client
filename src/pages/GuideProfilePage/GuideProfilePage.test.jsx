@@ -6,12 +6,12 @@ import { MemoryRouter } from 'react-router-dom';
 
 import * as matchers from '@testing-library/jest-dom/matchers';
 expect.extend(matchers);
+
 import { TouristProvider } from "../../contexts/touristContext";
 import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
 
-
-import TouristAllPlacesPage from '.';
+import GuideProfilePage from '.';
 
 describe('Function', ()=> {
     beforeEach(() => {
@@ -19,14 +19,13 @@ describe('Function', ()=> {
         render(
             <MemoryRouter>
                 <WelcomeProvider>
+                    <TouristProvider>
 
-                <TouristProvider>
-
-                <GuideProvider>
-                    <TouristAllPlacesPage />
-                    </GuideProvider>
+                    <GuideProvider>   
+                        <GuideProfilePage />
+                </GuideProvider>
                 </TouristProvider>
-                </WelcomeProvider>                   
+                </WelcomeProvider>
             </MemoryRouter>
         )
     })
@@ -35,9 +34,8 @@ describe('Function', ()=> {
         cleanup()
     })
 
-
     it('is defined', () => {
-        expect(TouristAllPlacesPage).toBeDefined()
+        expect(GuideProfilePage).toBeDefined()
 
     })
 

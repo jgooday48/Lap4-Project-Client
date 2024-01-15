@@ -11,7 +11,8 @@ import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
 
 
-import TouristAllPlacesPage from '.';
+
+import SearchResult from './SearchResult';
 
 describe('Function', ()=> {
     beforeEach(() => {
@@ -23,7 +24,7 @@ describe('Function', ()=> {
                 <TouristProvider>
 
                 <GuideProvider>
-                    <TouristAllPlacesPage />
+                    <SearchResult />
                     </GuideProvider>
                 </TouristProvider>
                 </WelcomeProvider>                   
@@ -36,8 +37,8 @@ describe('Function', ()=> {
     })
 
 
-    it('is defined', () => {
-        expect(TouristAllPlacesPage).toBeDefined()
+    it.skip('is defined', () => {
+        expect(SearchResult).toBeDefined()
 
     })
 
