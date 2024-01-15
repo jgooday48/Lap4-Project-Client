@@ -15,7 +15,8 @@ const CreatePlanPage = () => {
     const { guideId } = useParams()
     const location = useLocation()
     const guide = location.state && location.state.guide
-    const [notes, setNotes] = useState()
+    const placeId = guide.place_id
+    const [notes, setNotes] = useState("")
     // const [dateFrom, setDateFrom] = useState(null);
     // const [dateTo, setDateTo] = useState(null);
     const [activityIds, setActivityIds] = useState([])
@@ -35,6 +36,7 @@ const CreatePlanPage = () => {
         const body = {
             "tourist_id": touristId,
             "guide_id": guideId,
+            "place_id": placeId,
             "date_to": formattedDateTimeTo.toString(),
             "date_from": formattedDateTimeFrom.toString(),
             "status": "ONGOING",
@@ -54,13 +56,6 @@ const CreatePlanPage = () => {
 
     };
 
-    // useEffect(() => {
-    //     console.log("dateTo: ", dateTimeTo)
-    //     console.log("dateFrom: ", dateTimeFrom)
-    //     console.log("touristId: ", touristId)
-    //     console.log("activity_ids: ", activityIds)
-    //     console.log("notes: ", notes)
-    // }, )
 
 
 

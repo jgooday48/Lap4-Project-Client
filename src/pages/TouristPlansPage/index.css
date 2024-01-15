@@ -1,0 +1,42 @@
+
+
+.tourist-plan-container{
+    padding: 2em;
+    margin-top: 3em;
+    width: 70%;
+}
+
+.tourist-plans{
+    padding: 2em; 
+    font-size: large;
+   
+}
+
+.tourist-plans-sum{
+    width: 20%;
+    border: 1px solid black;
+    margin-top: 2em;
+
+}
+
+
+.tourist-plans-sum ul{
+    padding: 10px;
+    list-style: none;
+   
+}
+
+.tourist-plans-sum ul li{
+    padding: 10px;
+    transition: 0.2s ease-in-out;
+    font-weight: bold;
+}
+
+.tourist-plans-sum ul li:hover{
+    cursor: pointer;
+    background-color:#dfdfdf;
+}
+.tourist-plans-info{
+    display: flex; 
+    flex-direction: row;
+}
