@@ -50,11 +50,11 @@ const TouristSignupForm = () => {
     }
 
     function login(data) {
-        localStorage.setItem("access token", data.tokens.access_token)
-        localStorage.setItem("refresh token", data.tokens.refresh_token)
+        localStorage.setItem("tourist_access_token", data.tokens.access_token)
+        localStorage.setItem("tourist_refresh_token", data.tokens.refresh_token)
         if (
-            localStorage.getItem("access token") === data.tokens.access_token &&
-            localStorage.getItem("refresh token") === data.tokens.refresh_token
+            localStorage.getItem("tourist_access_token") === data.tokens.access_token &&
+            localStorage.getItem("tourist_refresh_token") === data.tokens.refresh_token
         ) {
             setTouristAccess(data.tokens.access_token);
             setTouristRefresh(data.tokens.refresh_token);

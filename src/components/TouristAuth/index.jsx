@@ -9,10 +9,10 @@ const TouristProtectedRoute = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!touristaccess) {
+    if (!touristaccess || !localStorage.getItem("tourist_access_token")) {
       navigate("/touristloginpage");
     }
-  }, [touristaccess, navigate]);
+  }, [touristaccess, localStorage.getItem("tourist_access_token"), navigate]);
 
   return touristaccess ? children : null;
 };
