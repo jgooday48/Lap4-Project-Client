@@ -22,12 +22,21 @@ const TouristHomePage = () => {
 
 
   return (
-    
-    <div id="topContainer">
-      <div id="headerContainer">
-
-        <h1>See the world like a local</h1>
-
+    <>
+      <div id="topContainer">
+        <div id="headerContainer">
+          <h1>
+            Discover the World
+            <br />
+            with our Travel Guide
+            <br />
+            App
+          </h1>
+          <h1 className="sub-heading">
+            Your ultimate companion for exploring new destinations
+          </h1>
+        </div>
+        
         <div className='form'>
 
           <FindPlacesMatch search={search} setSearch={setSearch} setPlacePicked={setPlacePicked} isHome={true}/>
@@ -42,9 +51,7 @@ const TouristHomePage = () => {
           </>
         )}
       </div>
-      <div className='Sub-Head'>
-        <h1>Your ultimate companion for exploring new destinations</h1>
-      </div>
+      
       <div id="Details">
         <div id="Details1">
           <div id='DetailsText'>
@@ -130,7 +137,7 @@ const TouristHomePage = () => {
           <p>Yes, the app provides a day planner feature to help you plan your activities.</p>
         </div>
       </div>
-    </div>
+      </>
   );
 };
 

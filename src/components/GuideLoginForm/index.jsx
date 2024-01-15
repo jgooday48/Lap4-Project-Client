@@ -3,6 +3,7 @@ import { useGuide } from '../../contexts/guideContext'
 import { useWelcome } from '../../contexts/welcomeContext';
 import { useNavigate } from 'react-router-dom';
 import { baseApi } from '../../utils/baseApi';
+import axios from 'axios';
 
 
 const GuideLoginForm = () => {

@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useEffect, useState } from 'react'
 import { useTourist } from '../../contexts/touristContext'
 import { useWelcome } from '../../contexts/welcomeContext';
 import { useNavigate } from 'react-router-dom';
@@ -14,46 +14,66 @@ const TouristLoginForm = () => {
     // const [error, setError] = useState(null)
     // const [Loading, setLoading] = useState(null)
 
-    const[currentUser, setCurrentUser] = useState(null)
     const goTo = useNavigate();
 
     const loginFunction = async () => {
-        try {
+
+
             const userData = {
                 "username": touristusername,
                 "password": touristpassword
-            }
-            const response = await axios.post(`http://localhost:5000/tourists/login`, userData)
-            // URL needs updating before deployment
-            
-            const data = response.data
-            console.log("login details: ", data)
-            localStorage.setItem("token", data.tokens.access)
-            localStorage.setItem("refresh_token", data.tokens.refresh)
-
-            if (data.err)
-            {throw Error(data.err)}
-            // login(data)
-            getCurrentUser()
-        } catch (err) {
-            console.warn(err);
         }
+
+        await axios.post("http://localhost:5000/tourists/login", userData)
+            .then(res => {
+                const data = res.data
+                   localStorage.setItem("tourist_token", data.tokens.access)
+                localStorage.setItem("tourist_refresh", data.tokens.refresh)
+                if (data.tokens.access) {
+                    getCurrentUser(data.tokens.access)
+                } else {
+                    console.log("current user not got ")
+                }
+                
+            }).catch(e => console.log(e))
+        
+        // try {
+        //     const userData = {
+        //         "username": touristusername,
+        //         "password": touristpassword
+        //     }
+    
+        //     const response = await axios.post(`${baseApi}tourists/login`, userData)
+        //     // URL needs updating before deployment
+            
+        //     const data = await response.data
+        //     console.log("login details: ", data)
+        //     localStorage.setItem("token", data.tokens.access)
+        //     localStorage.setItem("refresh_token", data.tokens.refresh)
+
+        //     if (data.err)
+        //     {throw Error(data.err)}
+        //     // login(data)
+        //     getCurrentUser()
+        // } catch (err) {
+        //     console.warn(err);
+        // }
     
     }
 
-    const axiosInstance = axios.create({
+ 
+
+    const getCurrentUser = async (token) => {
+           const axiosInstance = axios.create({
         baseURL: baseApi,
         headers: {
-            'Authorization': `Bearer ${localStorage.getItem("token")}`,
+            'Authorization': `Bearer ${token}`
         }
     })
-
-    const getCurrentUser = async () => {
-        await axios.get("http://localhost:5000/tourists/current", { headers: {
-            'Authorization': `Bearer ${localStorage.getItem("token")}`
-        }})
+        axiosInstance.get("tourists/current")
             .then(res => {
-                setCurrentUser(res.data)
+                localStorage.setItem("touristId", res.data.user_details.tourist_id)
+                localStorage.setItem("touristUsername", res.data.user_details.username)
         }).catch(e => console.log(e))
 
     }
@@ -98,17 +118,11 @@ const TouristLoginForm = () => {
 
 
 
-    
-
-
-
-
-  
-
-
     return (
         <>
-        <form aria-label='form' onSubmit={handleSubmit} id="tourist-register-form">
+      
+            <form aria-label='form' onSubmit={handleSubmit} id="tourist-register-form">
+                
             {errorMessage && (
                 <p className="error"> {errorMessage} </p>
             )}

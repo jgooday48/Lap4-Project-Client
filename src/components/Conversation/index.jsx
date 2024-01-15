@@ -7,16 +7,17 @@ const Conversation = ({ data, currentUser }) => {
     const [userData, setUserData] = useState({})
     const [online, setOnline ] = useState(true)
 
-    console.log(data)
-
     useEffect(()=> {
-    const userId = data.find(obj => obj.sender === currentUser)?.receiver;
+    // const userId = data.find(obj => obj.sender == currentUser)?.receiver;
+    const userId = data.receiver
+    console.log("data",userId)
 
     const getUserData = async ()=> {
       try
       {
         const res = await axios.get(`http://localhost:5000/guides/${userId}`)
          setUserData(res.data.data)
+         console.log("convo",userData)
         //  dispatch({type:"SAVE_USER", data:data})
       }
       catch(error)
@@ -27,21 +28,15 @@ const Conversation = ({ data, currentUser }) => {
 
     getUserData();
   }, [data, currentUser])
-  console.log(userData)
 
   return (
     <>
     <div className="follower conversation">
         <div>
           {online && <div className="online-dot"></div>}
-          {/* <img
-            src={userData?.profilePicture? process.env.REACT_APP_PUBLIC_FOLDER + userData.profilePicture : process.env.REACT_APP_PUBLIC_FOLDER + "defaultProfile.png"}
-            alt="Profile"
-            className="followerImage"
-            style={{ width: "50px", height: "50px" }}
-          /> */}
           <div className="name" style={{fontSize: '0.8rem'}}>
             <span>{userData.name}</span>
+            <span>{userData.image}</span>
             <span style={{color: online?"#51e200":""}}>{online? "Online" : "Offline"}</span>
           </div>
         </div>

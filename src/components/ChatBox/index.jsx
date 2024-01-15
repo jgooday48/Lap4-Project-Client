@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import axios from 'axios';
 import "./ChatBox.css"
 import InputEmoji from 'react-input-emoji'
@@ -8,20 +8,23 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage}) => {
     const [userData, setUserData] = useState({});
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
+    const [id, setId] = useState([])
 
-    console.log(chat)
-    console.log(currentUser)
-    console.log(messages)
+    const loginId = localStorage.getItem('touristId')
+    const scroll = useRef()
   
+    console.log("chat", chat)
+
     const handleChange = (newMessage)=> {
       setNewMessage(newMessage)
     }
-  
+
     // fetching data for header
     useEffect(() => {
-        const userId = chat?.find(obj => obj.sender === currentUser)?.receiver;
-        console.log(userId)
-        
+
+        const userId = chat.receiver
+        console.log("userID", userId)
+
         const getUserData = async ()=> {
             try
             {
@@ -35,24 +38,23 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage}) => {
             }
         }
       if (chat !== null) {
-
       getUserData();
       }
-    }, [chat, currentUser]);
+    }, [chat]);
   
     // fetch messages
     useEffect(() => {
       const fetchMessages = async () => {
         try {
-          const res = await axios.get(`http://localhost:5000/message/${chat[0].chat_id}`);
+          const res = await axios.get(`http://localhost:5000/message/${chat.chat_id}`);
           setMessages(res.data);
-          console.log(res)
+          console.log("Response data:", res.data);
         } catch (error) {
           console.log(error);
         }
       };
   
-      if (chat !== null) fetchMessages();
+    fetchMessages();
     }, [chat]);
   
   
@@ -67,12 +69,12 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage}) => {
     const handleSend = async(e)=> {
       e.preventDefault()
       const message = {
-        chatId: chat[0].chat_id,
+        chatId: chat.chat_id,
         senderId : currentUser,
         text: newMessage,
     }
-    const receiverId = chat.filter(obj => obj.sender !== currentUser).map(obj => obj.receiver);
-    console.log(receiverId)
+    // const receiverId = chat.filter(obj => obj.sender !== currentUser).map(obj => obj.receiver);
+    const receiverId = chat.receiver
     // // send message to socket server
     setSendMessage({...message, receiverId})
     // // send message to database
@@ -97,8 +99,8 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage}) => {
   
   },[receivedMessage])
 
+
   return (
-    <>
       <div className="ChatBox-container">
         {chat ? (
           <>
@@ -136,18 +138,17 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage}) => {
             {/* chat-body */}
             <div className="chat-body" >
               {messages.map((message) => (
-                <>
-                  <div ref={scroll}
+                  <div ref={scroll} key={message.message_id}
                     className={
-                      message.sender_id === currentUser
+                      message.sender_id == currentUser
                         ? "message own"
                         : "message"
                     }
                   >
-                    <span>{message.text}</span>{" "}
+                    <span>{message.text}</span>
                   </div>
-                </>
-              ))}
+                
+                ))}
             </div>
             {/* chat-sender */}
             <div className="chat-sender">
@@ -172,7 +173,6 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage}) => {
           </span>
         )}
       </div>
-    </>
   )
 }
 
