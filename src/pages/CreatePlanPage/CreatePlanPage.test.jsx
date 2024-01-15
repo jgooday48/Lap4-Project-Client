@@ -1,6 +1,6 @@
 import React from 'react';
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { render, cleanup, waitFor } from '@testing-library/react';
+import { render, cleanup } from '@testing-library/react';
 
 import { MemoryRouter } from 'react-router-dom';
 
@@ -10,37 +10,40 @@ expect.extend(matchers);
 import { TouristProvider } from "../../contexts/touristContext";
 import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
-import GuideHomePage from '.';
+
+import CreatePlanPage from '.';
 
 describe('Function', () => {
     beforeEach(() => {
+        const mockGuide = {
+            state: {
+                guide: {
+                    guide_id: 1,
+                    name: 'John Doe',
+                    images: ['image1.jpg', 'image2.jpg'],
+                },
+            },
+        };
+
         render(
             <MemoryRouter>
                 <WelcomeProvider>
                     <TouristProvider>
                         <GuideProvider>
-                            <GuideHomePage />
+                            <CreatePlanPage />
                         </GuideProvider>
                     </TouristProvider>
                 </WelcomeProvider>
-            </MemoryRouter>
-        )
-    })
+            </MemoryRouter>,
+            { wrapperProps: { route: '/create-plan', initialEntries: ['/createPlan/1'], initialIndex: 0, initialIndexSignature: null, location: mockGuide } }
+        );
+    });
 
     afterEach(() => {
-        cleanup()
-    })
+        cleanup();
+    });
 
-    it('is defined', async () => {
-        // Wrap your test logic in a try/catch block to handle errors
-        try {
-            // Use waitFor to wait for asynchronous operations to complete
-            await waitFor(() => {
-                expect(GuideHomePage).toBeDefined();
-            });
-        } catch (error) {
-            // Handle the error (log or throw it if necessary)
-            console.error('Error in test:', error);
-        }
-    })
+    it('is defined', () => {
+        expect(CreatePlanPage).toBeDefined();
+    });
 });

@@ -137,7 +137,8 @@ const TouristHomePage = () => {
           <p>Yes, the app provides a day planner feature to help you plan your activities.</p>
         </div>
       </div>
-      </>
+    </ >
+     
   );
 };
 

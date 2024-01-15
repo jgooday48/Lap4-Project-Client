@@ -1,18 +1,33 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect, useRef, Children} from 'react'
 import axios from 'axios';
 import "./ChatBox.css"
 import InputEmoji from 'react-input-emoji'
 
-const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage}) => {
+const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage}) => {
 
     const [userData, setUserData] = useState({});
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
     const [id, setId] = useState([])
 
-    const loginId = localStorage.getItem('touristId')
+    let currentUser = null
+    let guideId = null
+    let touristId = null
+
+    if (localStorage.getItem('touristUsername') && localStorage.getItem('touristUsername').length > 0) {
+        currentUser = localStorage.getItem('touristId');
+        touristId = localStorage.getItem('touristId')
+      } else if (localStorage.getItem('guide_Username') && localStorage.getItem('guide_Username').length > 0) {
+        currentUser = localStorage.getItem('guide_id')
+        guideId = localStorage.getItem('guide_id')
+      }
+
+    // const loginId = localStorage.getItem('touristId')
     const scroll = useRef()
   
+    console.log(currentUser)
+    console.log(guideId)
+    console.log(touristId)
     console.log("chat", chat)
 
     const handleChange = (newMessage)=> {
@@ -22,10 +37,32 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage}) => {
     // fetching data for header
     useEffect(() => {
 
-        const userId = chat.receiver
+        let userId = null
+
+        if(guideId){
+         userId = chat.sender
         console.log("userID", userId)
+        } else if (touristId){
+            userId = chat.receiver
+        }
+
+        console.log(userId)
 
         const getUserData = async ()=> {
+
+            if(guideId){
+            try
+            {
+              const res = await axios.get(`http://localhost:5000/tourist/${userId}`)
+               setUserData(res.data.data)
+               console.log("data", userData)
+              //  dispatch({type:"SAVE_USER", data:data})
+            }
+            catch(error)
+            {
+              console.log(error)
+            }
+        } else if (touristId){
             try
             {
               const res = await axios.get(`http://localhost:5000/guides/${userId}`)
@@ -36,6 +73,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage}) => {
             {
               console.log(error)
             }
+        }
         }
       if (chat !== null) {
       getUserData();

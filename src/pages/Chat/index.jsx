@@ -8,12 +8,24 @@ import { io } from 'socket.io-client';
 
 const Chat = () => {
 
-    // const dispatch = useDispatch();
-    
-    const loginUsername = localStorage.getItem('touristUsername')
-    const loginId = localStorage.getItem('touristId')
+    let loginId = ''
 
-    //Need to chnage this hard code to the tourist log in
+    let touristloginId = ''
+    let touristloginUsername = ''
+
+    let guideLoginId = ''
+    let guideLoginUsername = ''
+
+    // const dispatch = useDispatch();
+    if (localStorage.getItem('touristUsername') && localStorage.getItem('touristUsername').length > 0) {
+        touristloginUsername = localStorage.getItem('touristUsername');
+        touristloginId = localStorage.getItem('touristId');
+      } else if (localStorage.getItem('guide_Username') && localStorage.getItem('guide_Username').length > 0) {
+        guideLoginUsername = localStorage.getItem('guide_Username');
+        guideLoginId = localStorage.getItem('guide_id');
+      }
+    
+      //Need to chnage this hard code to the tourist log in
     // const tourist =  {
     //     "tourist_id": 1,
     //     "name": "Jane Doe",
@@ -41,7 +53,12 @@ const Chat = () => {
 
     useEffect(() => {
         socket.current = io("http://localhost:5000");
-        socket.current.emit("new-user-add", loginId);
+        if(guideLoginId){
+        socket.current.emit("new-user-add", guideLoginId);
+        }
+        else if(touristloginId){
+          socket.current.emit("new-user-add", touristloginId)
+        }
         socket.current.on("get-users", (users) => {
           setOnlineUsers(users);
         });
@@ -64,14 +81,25 @@ useEffect(() => {
 
     useEffect(() => {
         const getChats = async () => {
+            if(guideLoginId){
           try {
-            const res = await axios.get(`http://localhost:5000/chat/${loginId}`);
+            const res = await axios.get(`http://localhost:5000/chat/guide/${guideLoginId}`);
             setChats(res.data);
-            // setCurrentChat(chats)
           } catch (error) {
             console.log(error);
           }
-        };
+        } else if (touristloginId){
+            try {
+                const res = await axios.get(`http://localhost:5000/chat/tourist/${touristloginId}`);
+                setChats(res.data);
+                // setCurrentChat(chats)
+              } catch (error) {
+                console.log(error);
+              }
+        }
+
+      
+        }
         getChats();
       }, []);
 
@@ -102,7 +130,8 @@ useEffect(() => {
           >
             <Conversation
               data={chat}
-              currentUser={loginId}
+              touristUser ={touristloginId}
+              guideUser = {guideLoginId}
               // online={checkOnlineStatus(chat)}
             />
           </div>
@@ -132,7 +161,8 @@ useEffect(() => {
         </div>
         <ChatBox
           chat={currentChat}
-          currentUser={loginId}
+          touristUser={touristloginId}
+          guideUser = {guideLoginId}
           setSendMessage={setSendMessage}
           receivedMessage={receivedMessage}
         />

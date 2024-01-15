@@ -6,6 +6,7 @@ import { baseApi } from '../../utils/baseApi';
 import axios from 'axios';
 
 
+
 const GuideLoginForm = () => {
 
     const { guideeemail, setGuideEmail, guidepassword, setGuidePassword, errorMessage, setErrorMessage, Loading, setGuide, guideusername, setGuideUsername, guideaccess, setGuideAccess, guiderefresh, setGuideRefresh } = useGuide(); 
@@ -18,24 +19,43 @@ const GuideLoginForm = () => {
 
     const goTo = useNavigate();
 
-    const loginFunction = async (e) => {
-        try {
-            const userData = {
-                "username": guideusername,
-                "password": guidepassword
-            }
-    
-            const response = await axios.post(`${baseApi}guides/login`, userData)
-            // URL needs updating before deployment
-            const data = await response.data
-            if (data.err)
-            {throw Error(data.err)}
-            login(data)
-        } catch (err) {
-            console.warn(err);
-        }
-    
+    const loginFunction = async () => {
+
+
+        const userData = {
+            "username": guideusername,
+            "password": guidepassword
     }
+
+    await axios.post(baseApi + "guides/login", userData)
+        .then(res => {
+            const data = res.data
+               localStorage.setItem("guide_token", data.tokens.access)
+            localStorage.setItem("guide_refresh", data.tokens.refresh)
+            if (data.tokens.access) {
+                getCurrentUser(data.tokens.access)
+            } else {
+                console.log("current user (guide) not got ")
+            }
+            
+        }).catch(e => console.log(e))
+
+    }
+
+    const getCurrentUser = async (token) => {
+        const axiosInstance = axios.create({
+     baseURL: baseApi,
+     headers: {
+         'Authorization': `Bearer ${token}`
+     }
+ })
+     axiosInstance.get("guides/current")
+         .then(res => {
+             localStorage.setItem("guide_id", res.data.user_details.guide_id)
+             localStorage.setItem("guide_Username", res.data.user_details.username)
+     }).catch(e => console.log(e))
+
+ }
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
@@ -62,17 +82,17 @@ const GuideLoginForm = () => {
 
     }
 
-    function login(data) {
-        localStorage.setItem("guide_access_token", data.tokens.access_token)
-        localStorage.setItem("guide_refresh_token", data.tokens.refresh_token)
-        if (
-            localStorage.getItem("guide_access_token") === data.tokens.access_token &&
-            localStorage.getItem("guide_refresh_token") === data.tokens.refresh_token
-        ) {
-            setTouristAccess(data.tokens.access_token);
-            setTouristRefresh(data.tokens.refresh_token);
-        }
-    }
+    // function login(data) {
+    //     localStorage.setItem("guide_access_token", data.tokens.access_token)
+    //     localStorage.setItem("guide_refresh_token", data.tokens.refresh_token)
+    //     if (
+    //         localStorage.getItem("guide_access_token") === data.tokens.access_token &&
+    //         localStorage.getItem("guide_refresh_token") === data.tokens.refresh_token
+    //     ) {
+    //         setTouristAccess(data.tokens.access_token);
+    //         setTouristRefresh(data.tokens.refresh_token);
+    //     }
+    // }
 
 
 

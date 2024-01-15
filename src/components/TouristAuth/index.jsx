@@ -4,17 +4,17 @@ import { useTourist } from "../../contexts/touristContext";
 import { useGuide } from "../../contexts/guideContext";
 
 const TouristProtectedRoute = ({ children }) => {
-  const { touristaccess } = useTourist();
-  const { guideaccess } = useGuide();
+  // const { touristaccess } = useTourist();
+  // const { guideaccess } = useGuide();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!touristaccess || !localStorage.getItem("tourist_access_token")) {
+    if (!localStorage.getItem("tourist_token")) {
       navigate("/touristloginpage");
     }
-  }, [touristaccess, localStorage.getItem("tourist_access_token"), navigate]);
+  }, [localStorage.getItem("tourist_token"), navigate]);
 
-  return touristaccess ? children : null;
+  return localStorage.getItem("tourist_token") ? children : null;
 };
 
 export default TouristProtectedRoute;
