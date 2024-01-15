@@ -14,6 +14,7 @@ const TouristLoginForm = () => {
     // const [error, setError] = useState(null)
     // const [Loading, setLoading] = useState(null)
 
+    const[currentUser, setCurrentUser] = useState(null)
     const goTo = useNavigate();
 
     const loginFunction = async () => {
@@ -25,21 +26,43 @@ const TouristLoginForm = () => {
     
             const response = await axios.post(`${baseApi}tourists/login`, userData)
             // URL needs updating before deployment
+            
             const data = await response.data
+            console.log("login details: ", data)
+            localStorage.setItem("token", data.tokens.access)
+            localStorage.setItem("refresh_token", data.tokens.refresh)
+
             if (data.err)
             {throw Error(data.err)}
-            login(data)
+            // login(data)
+            getCurrentUser()
         } catch (err) {
             console.warn(err);
         }
     
     }
 
+    const axiosInstance = axios.create({
+        baseURL: baseApi,
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem("token")}`,
+        }
+    })
+
+    const getCurrentUser = async () => {
+        axiosInstance.get("tourists/current")
+            .then(res => {
+                setCurrentUser(res.data)
+        }).catch(e => console.log(e))
+
+    }
+
     const handleSubmit = async (e) =>{
         e.preventDefault();
         setErrorMessage('');
         await loginFunction(e);
-        if(localStorage.length){
+        if (localStorage.length > 0) {
+            
             setTourist(true);
             setWelcome(false)
             goTo("/touristhomepage")
@@ -60,17 +83,17 @@ const TouristLoginForm = () => {
 
     }
 
-    function login(data) {
-        localStorage.setItem("tourist_access_token", data.tokens.access_token)
-        localStorage.setItem("tourist_refresh_token", data.tokens.refresh_token)
-        if (
-            localStorage.getItem("tourist_access_token") === data.tokens.access_token &&
-            localStorage.getItem("tourist_refresh_token") === data.tokens.refresh_token
-        ) {
-            setTouristAccess(data.tokens.access_token);
-            setTouristRefresh(data.tokens.refresh_token);
-        }
-    }
+    // function login(data) {
+    //     localStorage.setItem("tourist_access_token", data.tokens.access_token)
+    //     localStorage.setItem("tourist_refresh_token", data.tokens.refresh_token)
+    //     if (
+    //         localStorage.getItem("tourist_access_token") === data.tokens.access_token &&
+    //         localStorage.getItem("tourist_refresh_token") === data.tokens.refresh_token
+    //     ) {
+    //         setTouristAccess(data.tokens.access_token);
+    //         setTouristRefresh(data.tokens.refresh_token);
+    //     }
+    // }
 
 
 
