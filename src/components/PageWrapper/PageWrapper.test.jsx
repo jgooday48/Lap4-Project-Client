@@ -35,6 +35,10 @@ describe("Page wrapper functionality", () => {
       cleanup();
     });
 
+    it('is defined', () => {
+      expect(PageWrapper).toBeDefined()
+    })
+
     it("displays the footer div", () => {
         const footer = screen.getByRole('contentinfo')
         expect(footer).toBeInTheDocument()

@@ -17,6 +17,13 @@ import SearchResult from './SearchResult';
 describe('Function', ()=> {
     beforeEach(() => {
 
+        const fakePlace = {
+            place_id: 1,
+            name: 'Ibiza',
+            images: 'fake.jpg',
+            description: 'awesome'
+        }
+
         render(
             <MemoryRouter>
                 <WelcomeProvider>
@@ -24,7 +31,7 @@ describe('Function', ()=> {
                 <TouristProvider>
 
                 <GuideProvider>
-                    <SearchResult />
+                    <SearchResult place={fakePlace}/>
                     </GuideProvider>
                 </TouristProvider>
                 </WelcomeProvider>                   
@@ -37,9 +44,11 @@ describe('Function', ()=> {
     })
 
 
-    it.skip('is defined', () => {
+    it('is defined', () => {
         expect(SearchResult).toBeDefined()
 
     })
+
+    
 
 })
