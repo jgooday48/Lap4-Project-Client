@@ -7,16 +7,16 @@ import { baseApi } from '../../utils/baseApi'
 
 const TouristSignupForm = () => {
 
-    const { errorMessage, setErrorMessage, setUsername, setPassword, setName, setEmail,setTourist, username, password, name, email} = useTourist();
+    const { errorMessage, setErrorMessage, setTouristUsername, setTouristPassword, setTouristName, setTouristEmail,setTourist, touristusername, touristpassword, touristname, touristemail, setTouristAccess, setTouristRefresh} = useTourist();
     const { setWelcome } =useWelcome()
 
     const registerFunction = async () => {
         try {
             const userData = {
-                "username": username,
-                "password": password,
-                "name": name,
-                "email": email,
+                "username": touristusername,
+                "password": touristpassword,
+                "name": touristname,
+                "email": touristemail,
                 "user_type": "TOURIST"
             }
     
@@ -33,8 +33,8 @@ const TouristSignupForm = () => {
     const loginFunction = async () => {
         try {
             const userData = {
-                "username": username,
-                "password": password
+                "username": touristusername,
+                "password": touristpassword
             }
     
             const response = await axios.post(baseApi + "tourists/register", userData)
@@ -50,8 +50,15 @@ const TouristSignupForm = () => {
     }
 
     function login(data) {
-        localStorage.setItem("access token", data.access_token)
-        localStorage.setItem("refresh token", data.refresh_token)
+        localStorage.setItem("tourist_access_token", data.tokens.access_token)
+        localStorage.setItem("tourist_refresh_token", data.tokens.refresh_token)
+        if (
+            localStorage.getItem("tourist_access_token") === data.tokens.access_token &&
+            localStorage.getItem("tourist_refresh_token") === data.tokens.refresh_token
+        ) {
+            setTouristAccess(data.tokens.access_token);
+            setTouristRefresh(data.tokens.refresh_token);
+        }
     }
 
     
@@ -82,22 +89,22 @@ const TouristSignupForm = () => {
 
     const updateUsername = e => {
         const input = e.target.value;
-        setUsername(input)
+        setTouristUsername(input)
     }
 
     const updatePassword = e => {
         const input = e.target.value;
-        setPassword(input)
+        setTouristPassword(input)
     }
 
     const updateName = e => {
         const input = e.target.value;
-        setName(input)
+        setTouristName(input)
     }
 
     const updateEmail = e => {
         const input = e.target.value;
-        setEmail(input )
+        setTouristEmail(input )
     }
 
 
