@@ -12,7 +12,7 @@ import { WelcomeProvider } from "../../contexts/welcomeContext";
 
 import GuideImage from '.';
 
-describe('Functiom', ()=> {
+describe('Function', ()=> {
     beforeEach(() => {
 
         render(

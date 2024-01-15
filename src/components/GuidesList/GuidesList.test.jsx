@@ -42,4 +42,8 @@ describe('Guides List', ()=> {
 
     })
 
+    it.skip('is defined', () => {
+        expect(GuideList).toBeDefined()
+    })
+
 })

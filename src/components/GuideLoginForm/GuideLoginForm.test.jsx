@@ -6,7 +6,7 @@ import { MemoryRouter } from "react-router-dom";
 import * as matchers from "@testing-library/jest-dom/matchers";
 expect.extend(matchers);
 
-import TouristLoginForm from ".";
+import GuideLoginForm from ".";
 
 import { TouristProvider } from "../../contexts/touristContext";
 import { GuideProvider } from "../../contexts/guideContext";
@@ -17,9 +17,12 @@ describe("Tourist Log in functionality", () => {
       render(
         <WelcomeProvider>
         <TouristProvider>
+            <GuideProvider>
+
         <MemoryRouter>
-          <TouristLoginForm/>
+          <GuideLoginForm/>
         </MemoryRouter>
+            </GuideProvider>
         </TouristProvider>
         </WelcomeProvider>
       
@@ -31,7 +34,7 @@ describe("Tourist Log in functionality", () => {
     });
 
     it("is defined", () => {
-      expect(TouristLoginForm).toBeDefined()
+      expect(GuideLoginForm).toBeDefined()
     })
 
     it("displays the login form for tourists", () => {
@@ -40,8 +43,8 @@ describe("Tourist Log in functionality", () => {
     })
 
     it("displays a username input", () =>{
-        const email = screen.getByRole("username")
-        expect(email).toBeInTheDocument();
+        const username = screen.getByRole("username")
+        expect(username).toBeInTheDocument();
     })
 
     it("displays a password input", ()=>{
