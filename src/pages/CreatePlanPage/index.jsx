@@ -4,6 +4,7 @@ import './index.css'
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import GuideActivities from '../IndividualGuidePage/GuideActivities';
+import AddActivitiesToPlan from './AddActivitiesToPlan';
 
 
 const CreatePlanPage = () => {
@@ -26,7 +27,7 @@ const CreatePlanPage = () => {
             </div>
             <div className="create-plan-form-section">
                 <form>
-                    
+
                     <div>
                         <label>Date from: </label>
                         <DatePicker
@@ -45,18 +46,18 @@ const CreatePlanPage = () => {
                             dateFormat="dd/MM/yyyy"
                         />
                     </div>
-                     <GuideActivities id={guideId}/>
+                    <AddActivitiesToPlan id={guideId}/>
                     <div>
-                    <label>Notes:</label>
-                    <textarea
-                        value={notes}
-                        className="form-control"
-                        onChange={(e) => setNotes(e.target.value)}
-                        placeholder="Share your thoughts, ideas, or any additional notes..."
-                        rows={5}
-                        cols={60}
+                        <label>Notes:</label>
+                        <textarea
+                            value={notes}
+                            className="form-control"
+                            onChange={(e) => setNotes(e.target.value)}
+                            placeholder="Share your thoughts, ideas, or any additional notes..."
+                            rows={5}
+                            cols={60}
                         />
-                        </div>
+                    </div>
                     <button className="btn btn-primary">Craft a plan</button>
                 </form>
             </div>

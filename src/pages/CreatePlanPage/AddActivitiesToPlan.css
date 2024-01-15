@@ -1,0 +1,37 @@
+
+
+.add-activity-container{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap; 
+    border: 2px solid gold;
+}
+
+.add-activity-card img{
+   height: 200px;
+    width: 350px;
+    object-fit: cover;
+}
+
+.add-activity-card {
+ margin: 20px;
+ position: relative;
+}
+
+
+.activity-name {
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 16px;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+
+.add-activity-card:hover .activity-name {
+    opacity: 1;
+    color: white;
+}
