@@ -5,14 +5,24 @@ import { screen, render, cleanup, fireEvent, waitFor } from '@testing-library/re
 
 import * as matchers from '@testing-library/jest-dom/matchers';
 expect.extend(matchers);
-
+import { TouristProvider } from "../../contexts/touristContext";
+import { GuideProvider } from "../../contexts/guideContext";
+import { WelcomeProvider } from "../../contexts/welcomeContext";
 import WelcomePage from '.';
 
 describe('Welcome Page', () => {
     beforeEach(() => {
         render (
             <BrowserRouter>
+                <WelcomeProvider>
+
+                <TouristProvider>
+
+                <GuideProvider>
                 <WelcomePage />
+                </GuideProvider>
+                </TouristProvider>
+                </WelcomeProvider>    
             </BrowserRouter>
         );
     });

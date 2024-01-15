@@ -6,15 +6,14 @@ import { MemoryRouter } from 'react-router-dom';
 
 import * as matchers from '@testing-library/jest-dom/matchers';
 expect.extend(matchers);
-
 import { TouristProvider } from "../../contexts/touristContext";
 import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
 
 
-import WebSocketPage from '.';
+import GuideProtectedRoute from '.';
 
-describe('Function', ()=> {
+describe('Functiom', ()=> {
     beforeEach(() => {
 
         render(
@@ -24,11 +23,10 @@ describe('Function', ()=> {
                 <TouristProvider>
 
                 <GuideProvider>
-
-                <WebSocketPage />
-                </GuideProvider>
+                    <GuideProtectedRoute />
+                    </GuideProvider>
                 </TouristProvider>
-                </WelcomeProvider>
+                </WelcomeProvider>                   
             </MemoryRouter>
         )
     })
@@ -37,14 +35,10 @@ describe('Function', ()=> {
         cleanup()
     })
 
+
     it('is defined', () => {
-        expect(WebSocketPage).toBeDefined()
+        expect(GuideProtectedRoute).toBeDefined()
 
-    })
-
-    it('displays a header', () => {
-        const h3 = screen.getByText('Join a chat!')
-        expect(h3).toBeInTheDocument()
     })
 
 })

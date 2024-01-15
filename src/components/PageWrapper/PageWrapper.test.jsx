@@ -41,7 +41,7 @@ describe("Page wrapper functionality", () => {
         expect(footer.childNodes[0].textContent).toBe(' Copyright 2024 ')
     })
 
-    it.skip("displays the nav bar", () => {
+    it("displays the nav bar", () => {
         const nav = screen.getByRole('navbar')
         expect(nav).toBeInTheDocument()
     })
@@ -51,7 +51,7 @@ describe("Page wrapper functionality", () => {
         expect(nav.textContent).toBe('LOGIN')
     })
 
-    it.skip("navigates to correct endpoint when nav element is clicked", async () => {
+    it("navigates to correct endpoint when nav element is clicked", async () => {
 
        const loginNav = screen.getByText('Login')
         
