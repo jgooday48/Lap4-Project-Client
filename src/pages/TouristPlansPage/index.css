@@ -2,7 +2,6 @@
 
 .tourist-plan-container{
     padding: 2em;
-    margin-top: 3em;
     width: 70%;
 }
 
@@ -14,9 +13,14 @@
 
 .tourist-plans-sum{
     width: 20%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     margin-top: 2em;
 
+}
+
+.tourist-plan-title{
+    font-size: x-large;
+    margin-bottom: 2em;
 }
 
 

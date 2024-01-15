@@ -40,15 +40,15 @@ const TouristPlansPage = () => {
                     </div>
                     <ul>
                         <li>Recently viewed</li>
-                        <li>Offers</li>
-                        <li>Explore</li>
-                        <li>Bookings</li>
-                        <li>Activities</li>
-                        <li>Reviews</li>
-                        <li>Contact</li>
+                        <li>Ongoing</li>
+                        <li>Booked</li>
+                        <li>Cancelled</li>
                     </ul>
                 </article>
                 <div className="tourist-plan-container">
+                    <div className="tourist-plan-title">
+                        <b>All Plans</b>
+                    </div>
                     {
                         plans?.map(plan => (
                             <div key={plan.plan_id}>
