@@ -12,7 +12,7 @@ import { WelcomeProvider } from "../../contexts/welcomeContext";
 
 import GuideImage from '.';
 
-describe('Function', ()=> {
+describe('Guide Image functionality', ()=> {
     beforeEach(() => {
 
         const fakeGuide = {

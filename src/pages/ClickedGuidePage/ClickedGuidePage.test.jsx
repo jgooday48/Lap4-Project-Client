@@ -12,7 +12,7 @@ import { WelcomeProvider } from "../../contexts/welcomeContext";
 
 import ClickedGuidePage from '.';
 
-describe('Functiom', ()=> {
+describe('Clicked Guide Page functionality', ()=> {
     beforeEach(() => {
 
         render(

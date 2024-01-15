@@ -13,7 +13,7 @@ import { WelcomeProvider } from "../../contexts/welcomeContext";
 
 import CreatePlanPage from '.';
 
-describe('Function', () => {
+describe('Create Plan Page functionality', () => {
     beforeEach(() => {
         const mockGuide = {
             state: {

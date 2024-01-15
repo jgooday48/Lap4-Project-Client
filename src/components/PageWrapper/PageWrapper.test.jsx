@@ -11,9 +11,7 @@ import PageWrapper from ".";
 import { TouristProvider } from "../../contexts/touristContext";
 import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
-import { useTourist } from "../../contexts/touristContext";
-import { useGuide } from "../../contexts/guideContext";
-import { useWelcome } from "../../contexts/welcomeContext";
+
 
 describe("Page wrapper functionality", () => {
     beforeEach(() => {
@@ -71,5 +69,7 @@ describe("Page wrapper functionality", () => {
 
       
      })
+
+
 })
 

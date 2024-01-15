@@ -13,7 +13,7 @@ import { WelcomeProvider } from "../../contexts/welcomeContext";
 
 import Stars from '.';
 
-describe('Function', ()=> {
+describe('Stars functionality', ()=> {
     beforeEach(() => {
 
         render(

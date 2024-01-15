@@ -14,7 +14,7 @@ import { WelcomeProvider } from "../../contexts/welcomeContext";
 
 import FindPlacesMatch from '.';
 
-describe('Function', ()=> {
+describe('Find Places Match functionality', ()=> {
     beforeEach(() => {
 
         render(
