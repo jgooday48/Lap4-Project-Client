@@ -4,21 +4,19 @@ import "../../pages/Chat/Chat.css"
 
 const Conversation = ({ data, currentUser }) => {
 
-    const [userData, setUserData] = useState(null)
+    const [userData, setUserData] = useState({})
     const [online, setOnline ] = useState(true)
 
     console.log(data)
 
     useEffect(()=> {
-    const userId = data.find(obj => obj.sender === currentUser)
-    if (userId) {
-        const receiverId = userId.receiver;
-    }
+    const userId = data.find(obj => obj.sender === currentUser)?.receiver;
+
     const getUserData = async ()=> {
       try
       {
-        const res = await axios.get(`http://localhost:5000/guides/${receiverId}`)
-         setUserData(res.data)
+        const res = await axios.get(`http://localhost:5000/guides/${userId}`)
+         setUserData(res.data.data)
         //  dispatch({type:"SAVE_USER", data:data})
       }
       catch(error)
@@ -28,7 +26,7 @@ const Conversation = ({ data, currentUser }) => {
     }
 
     getUserData();
-  }, [])
+  }, [data, currentUser])
   console.log(userData)
 
   return (

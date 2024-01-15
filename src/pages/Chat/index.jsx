@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import "./Chat.css"
 import { Conversation, ChatBox } from '../../components';
+import { io } from 'socket.io-client';
 
 
 const Chat = () => {
@@ -46,7 +47,29 @@ const Chat = () => {
         getChats();
       }, []);
 
-      console.log(chats)
+      useEffect(() => {
+        socket.current = io("http://localhost:5000");
+        socket.current.emit("new-user-add", tourist.tourist_id);
+        socket.current.on("get-users", (users) => {
+          setOnlineUsers(users);
+        });
+      }, []);
+
+        // Send Message to socket server
+useEffect(() => {
+    if (sendMessage!==null) {
+      socket.current.emit("send-message", sendMessage);}
+  }, [sendMessage]);
+
+
+  // Get the message from socket server
+  useEffect(() => {
+    socket.current.on("recieve-message", (data) => {
+      setReceivedMessage(data);
+    }
+    );
+  }, []);
+
 
     //   const checkOnlineStatus = (chat) => {
     //     const chatMember = chat.members.find((member) => member !== user._id);
@@ -62,10 +85,10 @@ const Chat = () => {
       <div className="Chat-container">
         <h2>Chats</h2>
         <div className="Chat-list">
-          {chats.map((chat) => (
+
             <div
               onClick={() => {
-                setCurrentChat(chat);
+                setCurrentChat(chats);
               }}
             >
               <Conversation
@@ -74,7 +97,7 @@ const Chat = () => {
                 // online={checkOnlineStatus(chat)}
               />
             </div>
-          ))}
+         
         </div>
       </div>
     </div>
