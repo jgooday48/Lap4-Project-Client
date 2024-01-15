@@ -3,6 +3,7 @@
 .tourist-plan-container{
     padding: 2em;
     width: 70%;
+    min-height: 100vh;
 }
 
 .tourist-plans{

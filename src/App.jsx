@@ -43,7 +43,8 @@ function App() {
                 <Route path="/livechat" element={<Pages.WebSocketPage />} />
                 <Route path="/createPlan/:guideId" element={<Pages.CreatePlanPage />} />
                 <Route path="/plans" element={<Pages.TouristPlansPage />} />
-                <Route path="/plans/:id" element={<Pages.TouristEachPlanPage/>}/>
+                <Route path="/plans/:id" element={<Pages.TouristEachPlanPage />} />
+                <Route path="/watchList" element={<Pages.TouristWatchListPage/>}/>
               </Route>
             </Routes>
           </TouristProvider>
