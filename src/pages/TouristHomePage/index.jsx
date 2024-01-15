@@ -22,7 +22,6 @@ const TouristHomePage = () => {
 
 
   return (
-<<<<<<< HEAD
     <>
       <div id="topContainer">
         <div id="headerContainer">
@@ -38,14 +37,6 @@ const TouristHomePage = () => {
           </h1>
         </div>
         
-=======
-    
-    <div id="topContainer">
-      <div id="headerContainer">
-
-        <h1>See the world like a local</h1>
-
->>>>>>> origin/staging
         <div className='form'>
 
           <FindPlacesMatch search={search} setSearch={setSearch} setPlacePicked={setPlacePicked} isHome={true}/>
@@ -146,7 +137,8 @@ const TouristHomePage = () => {
           <p>Yes, the app provides a day planner feature to help you plan your activities.</p>
         </div>
       </div>
-    </div>
+    </ >
+     
   );
 };
 
