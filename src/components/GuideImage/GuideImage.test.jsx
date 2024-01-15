@@ -9,9 +9,10 @@ expect.extend(matchers);
 import { TouristProvider } from "../../contexts/touristContext";
 import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
-import GuideList from '.';
 
-describe('Guides List', ()=> {
+import GuideImage from '.';
+
+describe('Functiom', ()=> {
     beforeEach(() => {
 
         render(
@@ -21,11 +22,10 @@ describe('Guides List', ()=> {
                 <TouristProvider>
 
                 <GuideProvider>
-
-                <GuideList />
-                </GuideProvider>
+                    <GuideImage />
+                    </GuideProvider>
                 </TouristProvider>
-                </WelcomeProvider>
+                </WelcomeProvider>                   
             </MemoryRouter>
         )
     })
@@ -34,11 +34,9 @@ describe('Guides List', ()=> {
         cleanup()
     })
 
-    it.skip('exists', () => {
-        const list = screen.getByRole("listcontainer")
-        expect(list).toBeInTheDocument(); 
 
-        
+    it.skip('is defined', () => {
+        expect(GuideImage).toBeDefined()
 
     })
 

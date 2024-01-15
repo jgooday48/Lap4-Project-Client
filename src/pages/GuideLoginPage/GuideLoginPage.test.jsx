@@ -6,26 +6,16 @@ import { MemoryRouter } from 'react-router-dom';
 
 import * as matchers from '@testing-library/jest-dom/matchers';
 expect.extend(matchers);
-import { TouristProvider } from "../../contexts/touristContext";
-import { GuideProvider } from "../../contexts/guideContext";
-import { WelcomeProvider } from "../../contexts/welcomeContext";
 
-import IndividualGuidePage from '.';
+
+import GuideLoginPage from '.';
 
 describe('Function', ()=> {
     beforeEach(() => {
 
         render(
             <MemoryRouter>
-                <WelcomeProvider>
-
-                <TouristProvider>
-
-                <GuideProvider>                
-                <IndividualGuidePage />
-                </GuideProvider>
-                </TouristProvider>
-                </WelcomeProvider>
+                <GuideLoginPage />
             </MemoryRouter>
         )
     })
@@ -35,7 +25,7 @@ describe('Function', ()=> {
     })
 
     it.skip('is defined', () => {
-        expect(IndividualGuidePage).toBeDefined()
+        expect(GuideLoginPage).toBeDefined()
 
     })
 

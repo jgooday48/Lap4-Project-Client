@@ -6,23 +6,22 @@ import { MemoryRouter } from 'react-router-dom';
 
 import * as matchers from '@testing-library/jest-dom/matchers';
 expect.extend(matchers);
+
 import { TouristProvider } from "../../contexts/touristContext";
 import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
-import GuideList from '.';
+import GuideHomePage from '.';
 
-describe('Guides List', ()=> {
+describe('Function', ()=> {
     beforeEach(() => {
 
         render(
             <MemoryRouter>
                 <WelcomeProvider>
+                    <TouristProvider>
 
-                <TouristProvider>
-
-                <GuideProvider>
-
-                <GuideList />
+                    <GuideProvider>   
+                        <GuideHomePage />
                 </GuideProvider>
                 </TouristProvider>
                 </WelcomeProvider>
@@ -34,11 +33,8 @@ describe('Guides List', ()=> {
         cleanup()
     })
 
-    it.skip('exists', () => {
-        const list = screen.getByRole("listcontainer")
-        expect(list).toBeInTheDocument(); 
-
-        
+    it('is defined', () => {
+        expect(GuideHomePage).toBeDefined()
 
     })
 
