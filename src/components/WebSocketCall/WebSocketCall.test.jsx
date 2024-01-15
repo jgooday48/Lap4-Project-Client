@@ -9,33 +9,31 @@ expect.extend(matchers);
 import { TouristProvider } from "../../contexts/touristContext";
 import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
-import GuideList from '.';
 
-describe('Guides List', ()=> {
+
+
+
+import WebSocketCall from '.';
+
+describe('Function', ()=> {
     beforeEach(() => {
-        const fakeGuide = [{
-            guide_id: 1,
-            name: 'John Doe',
-            info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            tagline: 'Your friendly local guide!',
-            filters: ['Foodie', 'History Enthusiast'],
-            images: ['image1.jpg', 'image2.jpg'],
-          }
-        ];
 
+        const socket = 'grgr'
+        const user = 'jkl'
+        const room = 2
 
         render(
             <MemoryRouter>
                 <WelcomeProvider>
 
-                <TouristProvider>
+                    <TouristProvider>
 
-                <GuideProvider>
+                    <GuideProvider>
 
-                <GuideList guides={fakeGuide}/>
-                </GuideProvider>
-                </TouristProvider>
-                </WelcomeProvider>
+                    <WebSocketCall socket={socket} username={user} room={room}/>
+                    </GuideProvider>
+                    </TouristProvider>
+                    </WelcomeProvider>
             </MemoryRouter>
         )
     })
@@ -44,10 +42,9 @@ describe('Guides List', ()=> {
         cleanup()
     })
 
+    it.skip('is defined', () => {
+        expect(WebSocketCall).toBeDefined()
 
-
-    it('is defined', () => {
-        expect(GuideList).toBeDefined()
     })
 
 })

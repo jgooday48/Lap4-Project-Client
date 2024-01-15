@@ -14,6 +14,14 @@ import IndividualGuidePage from '.';
 
 describe('Function', ()=> {
     beforeEach(() => {
+        const fakeGuide = {
+            guide_id: 1,
+            name: 'John Doe',
+            info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            tagline: 'Your friendly local guide!',
+            filters: ['Foodie', 'History Enthusiast'],
+            images: ['image1.jpg', 'image2.jpg'],
+          };
 
         render(
             <MemoryRouter>
@@ -22,7 +30,7 @@ describe('Function', ()=> {
                 <TouristProvider>
 
                 <GuideProvider>                
-                <IndividualGuidePage />
+                <IndividualGuidePage/>
                 </GuideProvider>
                 </TouristProvider>
                 </WelcomeProvider>
