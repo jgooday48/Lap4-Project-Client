@@ -25,5 +25,9 @@ describe('App', () => {
       const homePage = screen.getByText(/Find a travel guide/i);
       expect(homePage).toBeInTheDocument();
     });
+
+    it('is defined', () => {
+      expect(App).toBeDefined()
+    })
   
   });

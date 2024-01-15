@@ -7,19 +7,20 @@ import { baseApi } from '../../utils/baseApi'
 
 const TouristSignupForm = () => {
 
-    const { errorMessage, setErrorMessage, setUsername, setPassword, setName, setEmail,setTourist, username, password, name, email} = useTourist();
+    const { errorMessage, setErrorMessage, setTouristUsername, setTouristPassword, setTouristName, setTouristEmail,setTourist, touristusername, touristpassword, touristname, touristemail, setTouristAccess, setTouristRefresh} = useTourist();
     const { setWelcome } =useWelcome()
 
     const registerFunction = async () => {
         try {
             const userData = {
-                "username": username,
-                "password": password,
-                "name": name,
-                "email": email
+                "username": touristusername,
+                "password": touristpassword,
+                "name": touristname,
+                "email": touristemail,
+                "user_type": "TOURIST"
             }
     
-            const response = await axios.post(baseApi + "tourist/register", userData)
+            const response = await axios.post(`${baseApi}tourists/register`, userData)
             const data = await response.data
             if (data.err)
             {throw Error(data.err)}
@@ -32,8 +33,8 @@ const TouristSignupForm = () => {
     const loginFunction = async () => {
         try {
             const userData = {
-                "username": username,
-                "password": password
+                "username": touristusername,
+                "password": touristpassword
             }
     
             const response = await axios.post(baseApi + "tourists/register", userData)
@@ -49,8 +50,15 @@ const TouristSignupForm = () => {
     }
 
     function login(data) {
-        localStorage.setItem("access token", data.access_token)
-        localStorage.setItem("refresh token", data.refresh_token)
+        localStorage.setItem("tourist_access_token", data.tokens.access_token)
+        localStorage.setItem("tourist_refresh_token", data.tokens.refresh_token)
+        if (
+            localStorage.getItem("tourist_access_token") === data.tokens.access_token &&
+            localStorage.getItem("tourist_refresh_token") === data.tokens.refresh_token
+        ) {
+            setTouristAccess(data.tokens.access_token);
+            setTouristRefresh(data.tokens.refresh_token);
+        }
     }
 
     
@@ -81,22 +89,22 @@ const TouristSignupForm = () => {
 
     const updateUsername = e => {
         const input = e.target.value;
-        setUsername(input)
+        setTouristUsername(input)
     }
 
     const updatePassword = e => {
         const input = e.target.value;
-        setPassword(input)
+        setTouristPassword(input)
     }
 
     const updateName = e => {
         const input = e.target.value;
-        setName(input)
+        setTouristName(input)
     }
 
     const updateEmail = e => {
         const input = e.target.value;
-        setEmail(input )
+        setTouristEmail(input )
     }
 
 
@@ -109,13 +117,13 @@ const TouristSignupForm = () => {
                 <p className="error"> {errorMessage} </p>
             )}
             <label htmlFor="Name">Full Name</label>
-            <input aria-label="Name" name="name" type="text" onChange={updateName} placeholder="example name" className="input" role="name" />
+            <input aria-label="Name" name="name" type="text" onChange={updateName} placeholder="example name" className="input" role="name" required/>
             <label htmlFor='Username'>Username</label>
-            <input aria-label="Username" name="username" type='text' onChange={updateUsername} placeholder="example username" className="input" role="username"/>
+            <input aria-label="Username" name="username" type='text' onChange={updateUsername} placeholder="example username" className="input" role="username" required/>
             <label htmlFor="Email">Email</label>
-            <input aria-label="Email" name="email" type="text" onChange={updateEmail} placeholder='example@email.com' className="input" role="email" />
+            <input aria-label="Email" name="email" type="text" onChange={updateEmail} placeholder='example@email.com' className="input" role="email" required/>
             <label htmlFor='Password'>Password</label>
-            <input aria-label='Password' name="password" type='password' onChange={updatePassword}  className="input" placeholder="example password" role="password"/>
+            <input aria-label='Password' name="password" type='password' onChange={updatePassword}  className="input" placeholder="example password" role="password" required/>
             <input role='submit' type='submit' value='REGISTER' className="signup-btn" onClick={handleSubmit} />
             <p role='signup' className="clickable" onClick={() => goTo('/touristloginpage')}>Already have an account With Us? Click here to login!</p>
             </form>

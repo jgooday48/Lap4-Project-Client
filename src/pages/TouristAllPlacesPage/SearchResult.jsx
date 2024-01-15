@@ -5,13 +5,14 @@ const SearchResult = ({ place }) => {
     const navigate = useNavigate()
 
 
-    const handleNavigate = (id) => {
-        navigate(`/places/placeId/${id}`)
+    const handleNavigate = (place) => {
+        const search = place.name + ", " + place.location
+        navigate(`/places/placeId/${place.place_id}`, {state: {search}} )
     }
 
 
     return (
-        <div key={place.place_id} className="search-card" onClick={() => { handleNavigate(place.place_id) }}>
+        <div key={place.place_id} className="search-card" onClick={() => { handleNavigate(place) }}>
             <img src={place.images[0]} alt="place-img" />
             <div className="search-card-info">
                 <h2>{place.name}</h2>

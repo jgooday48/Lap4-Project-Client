@@ -7,3 +7,9 @@ export { default as WebSocketCall } from "./WebSocketCall"
 export { default as GuidesList } from "./GuidesList"
 export { default as GuideCard } from "./GuideCard"
 export { default as GuideImage } from "./GuideImage"
+export { default as GuideProtectedRoute } from "./GuideAuth"
+export { default as TouristProtectedRoute } from "./TouristAuth"
+export { default as ProtectedRoute } from "./TGAuth"
+export { default as FindPlacesMatch} from './FindPlacesMatch'
+export { default as RenderFoundPlaces } from './RenderFoundPlaces'
+

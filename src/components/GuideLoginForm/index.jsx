@@ -2,11 +2,12 @@ import { React, useState } from 'react'
 import { useGuide } from '../../contexts/guideContext'
 import { useWelcome } from '../../contexts/welcomeContext';
 import { useNavigate } from 'react-router-dom';
+import { baseApi } from '../../utils/baseApi';
 
 
 const GuideLoginForm = () => {
 
-    const { email, setEmail, password, setPassword, errorMessage, setErrorMessage, Loading, setGuide, username, setUsername } = useGuide(); 
+    const { guideeemail, setGuideEmail, guidepassword, setGuidePassword, errorMessage, setErrorMessage, Loading, setGuide, guideusername, setGuideUsername, guideaccess, setGuideAccess, guiderefresh, setGuideRefresh } = useGuide(); 
     const { setWelcome } = useWelcome(); 
 
     // const [email, setEmail ] = useState('')
@@ -19,11 +20,11 @@ const GuideLoginForm = () => {
     const loginFunction = async (e) => {
         try {
             const userData = {
-                "username": username,
-                "password": password
+                "username": guideusername,
+                "password": guidepassword
             }
     
-            const response = await axios.post(baseApi + "guides/login", userData)
+            const response = await axios.post(`${baseApi}guides/login`, userData)
             // URL needs updating before deployment
             const data = await response.data
             if (data.err)
@@ -51,18 +52,25 @@ const GuideLoginForm = () => {
 
     const updateUsername = e => {
         const input = e.target.value;
-        setUsername(input )
+        setGuideUsername(input )
     }
 
     const updatePassword = e =>{
         const input = e.target.value
-        setPassword(input)
+        setGuidePassword(input)
 
     }
 
     function login(data) {
-        localStorage.setItem("access token", data.access_token)
-        localStorage.setItem("refresh token", data.refresh_token)
+        localStorage.setItem("guide_access_token", data.tokens.access_token)
+        localStorage.setItem("guide_refresh_token", data.tokens.refresh_token)
+        if (
+            localStorage.getItem("guide_access_token") === data.tokens.access_token &&
+            localStorage.getItem("guide_refresh_token") === data.tokens.refresh_token
+        ) {
+            setTouristAccess(data.tokens.access_token);
+            setTouristRefresh(data.tokens.refresh_token);
+        }
     }
 
 
@@ -77,7 +85,7 @@ const GuideLoginForm = () => {
 
     return (
         <>
-        <form aria-label='form' onSubmit={handleSubmit} id="register-form">
+        <form aria-label='form' onSubmit={handleSubmit} id="tourist-register-form">
             {errorMessage && (
                 <p className="error"> {errorMessage} </p>
             )}

@@ -2,11 +2,11 @@ import { React, useState } from 'react'
 import { useTourist } from '../../contexts/touristContext'
 import { useWelcome } from '../../contexts/welcomeContext';
 import { useNavigate } from 'react-router-dom';
-
-
+import { baseApi } from '../../utils/baseApi'
+import axios from 'axios';
 const TouristLoginForm = () => {
 
-    const { email, setEmail, password, setPassword, errorMessage, setErrorMessage, Loading, setTourist, username, setUsername } = useTourist(); 
+    const { touristemail, setTouristEmail, touristpassword, setTouristPassword, errorMessage, setErrorMessage, Loading, setTourist, touristusername, setTouristUsername, setLoading, setTouristAccess, setTouristRefresh } = useTourist(); 
     const { setWelcome } = useWelcome(); 
 
     // const [email, setEmail ] = useState('')
@@ -14,32 +14,55 @@ const TouristLoginForm = () => {
     // const [error, setError] = useState(null)
     // const [Loading, setLoading] = useState(null)
 
+    const[currentUser, setCurrentUser] = useState(null)
     const goTo = useNavigate();
 
     const loginFunction = async () => {
         try {
             const userData = {
-                "username": username,
-                "password": password
+                "username": touristusername,
+                "password": touristpassword
             }
     
-            const response = await axios.post(baseApi + "tourists/login", userData)
+            const response = await axios.post(`${baseApi}tourists/login`, userData)
             // URL needs updating before deployment
+            
             const data = await response.data
+            console.log("login details: ", data)
+            localStorage.setItem("token", data.tokens.access)
+            localStorage.setItem("refresh_token", data.tokens.refresh)
+
             if (data.err)
             {throw Error(data.err)}
-            login(data)
+            // login(data)
+            getCurrentUser()
         } catch (err) {
             console.warn(err);
         }
     
     }
 
+    const axiosInstance = axios.create({
+        baseURL: baseApi,
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem("token")}`,
+        }
+    })
+
+    const getCurrentUser = async () => {
+        axiosInstance.get("tourists/current")
+            .then(res => {
+                setCurrentUser(res.data)
+        }).catch(e => console.log(e))
+
+    }
+
     const handleSubmit = async (e) =>{
         e.preventDefault();
         setErrorMessage('');
         await loginFunction(e);
-        if(localStorage.length){
+        if (localStorage.length > 0) {
+            
             setTourist(true);
             setWelcome(false)
             goTo("/touristhomepage")
@@ -51,19 +74,26 @@ const TouristLoginForm = () => {
 
     const updateUsername = e => {
         const input = e.target.value;
-        setUsername(input )
+        setTouristUsername(input )
     }
 
     const updatePassword = e =>{
         const input = e.target.value
-        setPassword(input)
+        setTouristPassword(input)
 
     }
 
-    function login(data) {
-        localStorage.setItem("access token", data.access_token)
-        localStorage.setItem("refresh token", data.refresh_token)
-    }
+    // function login(data) {
+    //     localStorage.setItem("tourist_access_token", data.tokens.access_token)
+    //     localStorage.setItem("tourist_refresh_token", data.tokens.refresh_token)
+    //     if (
+    //         localStorage.getItem("tourist_access_token") === data.tokens.access_token &&
+    //         localStorage.getItem("tourist_refresh_token") === data.tokens.refresh_token
+    //     ) {
+    //         setTouristAccess(data.tokens.access_token);
+    //         setTouristRefresh(data.tokens.refresh_token);
+    //     }
+    // }
 
 
 
@@ -77,14 +107,14 @@ const TouristLoginForm = () => {
 
     return (
         <>
-        <form aria-label='form' onSubmit={handleSubmit} id="register-form">
+        <form aria-label='form' onSubmit={handleSubmit} id="tourist-register-form">
             {errorMessage && (
                 <p className="error"> {errorMessage} </p>
             )}
             <label htmlFor='Username'>Username</label>
-            <input className="input" aria-label="Username" name="username" type='text' onChange={updateUsername} placeholder="username" role="username" />
+            <input className="input" aria-label="Username" name="username" type='text' onChange={updateUsername} placeholder="username" role="username" required/>
             <label htmlFor='Password'>Password</label>
-            <input aria-label='Password' className="input" name="password" type='password' onChange={updatePassword} placeholder="password" role="password" />
+            <input aria-label='Password' className="input" name="password" type='password' onChange={updatePassword} placeholder="password" role="password" required/>
             <input role='submit' className='signup-btn' type='submit' value='LOGIN' onClick={handleSubmit}/>
             <p className='clickable' onClick={() => goTo('/touristsignuppage')}>Don't have an account yet? Register here!</p>
         </form>
