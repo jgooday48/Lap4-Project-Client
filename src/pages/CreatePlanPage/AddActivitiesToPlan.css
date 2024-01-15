@@ -14,8 +14,9 @@
 }
 
 .add-activity-card {
- margin: 20px;
+ margin: 20px 50px;
  position: relative;
+ background-color: black;
 }
 
 
@@ -33,5 +34,29 @@
 
 .add-activity-card:hover .activity-name {
     opacity: 1;
-    color: white;
+}
+
+.add-activity-card img:hover {
+    background-color: black;
+    opacity: 0.6;
+}
+
+
+.tick{
+    color: green; 
+    position: absolute;
+    font-size: 100px;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.8;
+
+}
+
+.ticked-name{
+    color: white; 
+    font-size: 15px;
 }

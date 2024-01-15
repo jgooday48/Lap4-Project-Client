@@ -14,6 +14,7 @@ const CreatePlanPage = () => {
     const [notes, setNotes] = useState()
     const [dateFrom, setDateFrom] = useState(null);
     const [dateTo, setDateTo] = useState(null);
+    const [activityIds, setActivityIds] = useState([])
 
 
 
@@ -46,7 +47,7 @@ const CreatePlanPage = () => {
                             dateFormat="dd/MM/yyyy"
                         />
                     </div>
-                    <AddActivitiesToPlan id={guideId}/>
+                    <AddActivitiesToPlan id={guideId} setActivityIds={setActivityIds} activityIds={activityIds} />
                     <div>
                         <label>Notes:</label>
                         <textarea
@@ -58,6 +59,7 @@ const CreatePlanPage = () => {
                             cols={60}
                         />
                     </div>
+
                     <button className="btn btn-primary">Craft a plan</button>
                 </form>
             </div>
