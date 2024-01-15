@@ -30,6 +30,10 @@ describe("Tourist Sign up functionality", () => {
       cleanup();
     });
 
+    it('is defined', () => {
+        expect(TouristSignupForm).toBeDefined()
+    })
+
     it("displays the signup form for tourists", () => {
         const form = screen.getByRole('form')
         expect(form).toBeInTheDocument()
@@ -68,7 +72,7 @@ describe("Tourist Sign up functionality", () => {
 
         fireEvent.click(link)
 
-        waitFor(async ()=>{
+        waitFor( async ()=>{
             const logintitle = await screen.getByRole("heading")
             expect(logintitle).toBeInTheDocument();
             expect(logintitle.textContent).toBe("Tourist Log In")
