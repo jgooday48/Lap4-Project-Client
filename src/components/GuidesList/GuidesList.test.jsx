@@ -6,7 +6,9 @@ import { MemoryRouter } from 'react-router-dom';
 
 import * as matchers from '@testing-library/jest-dom/matchers';
 expect.extend(matchers);
-
+import { TouristProvider } from "../../contexts/touristContext";
+import { GuideProvider } from "../../contexts/guideContext";
+import { WelcomeProvider } from "../../contexts/welcomeContext";
 import GuideList from '.';
 
 describe('Guides List', ()=> {
@@ -14,7 +16,16 @@ describe('Guides List', ()=> {
 
         render(
             <MemoryRouter>
+                <WelcomeProvider>
+
+                <TouristProvider>
+
+                <GuideProvider>
+
                 <GuideList />
+                </GuideProvider>
+                </TouristProvider>
+                </WelcomeProvider>
             </MemoryRouter>
         )
     })

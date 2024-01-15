@@ -4,15 +4,18 @@ const TouristContext = createContext();
 
 export const TouristProvider = ({ children }) => {
     const [errorMessage, setErrorMessage] = useState();
-    const [ username, setUsername ] = useState();
-    const [ password, setPassword ] = useState();
-    const [ name, setName ] = useState();
-    const [ email, setEmail ] = useState(); 
+    const [ touristusername, setTouristUsername ] = useState();
+    const [ touristpassword, setTouristPassword ] = useState();
+    const [ touristname, setTouristName ] = useState();
+    const [ touristemail, setTouristEmail ] = useState(); 
     const [ tourist, setTourist] = useState(false); 
+    const [ touristaccess, setTouristAccess ] = useState();
+    const [ touristrefresh, setTouristRefresh ] = useState();
+
 
     return (
         <TouristContext.Provider value={{ 
-            errorMessage, setErrorMessage, username, setUsername, password, setPassword, name, setName, email, setEmail, tourist, setTourist
+            errorMessage, setErrorMessage, touristusername, setTouristUsername, touristpassword, setTouristPassword, touristname, setTouristName, touristemail, setTouristEmail, tourist, setTourist, touristaccess, setTouristAccess, touristrefresh, setTouristRefresh
          }}>
             {children}
         </TouristContext.Provider>
