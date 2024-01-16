@@ -48,7 +48,7 @@ const Conversation = ({ data, touristUser, guideUser }) => {
     } else if (touristId){
         try
         {
-          const res = await axios.get(`http://localhost:5000/guides/${userId}`)
+          const res = await axios.get(baseApi+`/guides/${userId}`)
            setUserData(res.data.data)
           //  dispatch({type:"SAVE_USER", data:data})
         }
