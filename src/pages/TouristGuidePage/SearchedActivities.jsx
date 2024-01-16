@@ -8,7 +8,7 @@ const SearchedActivities = ({activities}) => {
   return (
     <div className="activities-container">
       
-      <h3 id="activity-title">Activities</h3>
+      <h4 id="activity-title">Activities</h4>
 
       {
         activities.map(a => 

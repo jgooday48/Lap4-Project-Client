@@ -7,6 +7,7 @@ import { faComment, faEye, faSuitcase, faPersonWalkingLuggage } from '@fortaweso
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { baseApi } from '../../utils/baseApi';
+import ImageCarousel from '../ImageCarousel';
 
 
 
@@ -68,8 +69,11 @@ const GuideCard = ({ guide, placeName }) => {
 
     <div className='guide-page-card'>
       
-      <div className="carousel" style={{ width: "35%" }}>
-        <Carousel interval={null}>
+      {/* <div className="carousel" style={{ width: "35%" }}> */}
+      <div style={{width: '35%'}}>
+        <ImageCarousel guide={guide} />
+      </div>
+        {/* <Carousel interval={null}>
           {
             guide.images?.map((image, idx) =>
               <Carousel.Item key={idx} className="carousel-item" style={{ width: "500px", height: "600px" }}>
@@ -77,8 +81,8 @@ const GuideCard = ({ guide, placeName }) => {
               </Carousel.Item>
             )
           }
-        </Carousel>
-      </div>
+        </Carousel> */}
+      {/* </div> */}
       <section className="guide-info-section">
         <b>Meet {guide.name}</b>
         <p>A local from <u>{placeName}</u></p>
