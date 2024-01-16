@@ -80,7 +80,7 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
       if (chat !== null) {
       getUserData();
       }
-    }, [chat]);
+    }, );
   
     // fetch messages
     useEffect(() => {
