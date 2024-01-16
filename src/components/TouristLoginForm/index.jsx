@@ -53,11 +53,9 @@ const TouristLoginForm = () => {
     })
         axiosInstance.get(baseApi + "/tourists/current")
             .then(res => {
-
                 sessionStorage.setItem("touristId", res.data.user_details.tourist_id)
-                sessionStorage.setItem("touristEmail", res.data.user_details.email)
                 sessionStorage.setItem("touristUsername", res.data.user_details.username)
-
+                sessionStorage.setItem("touristEmail", res.data.user_details.email)
         }).catch(e => console.log(e))
 
     }
@@ -83,7 +81,6 @@ const TouristLoginForm = () => {
         const input = e.target.value;
 
         setTouristEmail(input)
-
     }
 
     const updatePassword = e =>{

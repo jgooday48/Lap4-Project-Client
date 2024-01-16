@@ -22,9 +22,10 @@
 .message {
 
   background: var(--buttonBg);
-  color: white;
+  background: linear-gradient(98.63deg, #24e4f0 0%, #90EE90
+  100%);
   padding: 0.7rem;
-  border-radius: 1rem 1rem 1rem 0;
+  border-radius: 1rem 1rem 0 1rem ;
   max-width: 28rem;
   width: fit-content;
   display: flex;

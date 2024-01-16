@@ -8,71 +8,71 @@ let socket;
 
 const WebSocketPage = () => {
 
-  // const [socketInstance, setSocketInstance] = useState('')
-  // const [loading, setLoading] = useState(true)
-  // const [username, setUsername] = useState('')
-  // const [room, setRoom] = useState('')
-  // const [chat, setChat] = useState(false)
-  // const { email } = useGuide() 
+  const [socketInstance, setSocketInstance] = useState('')
+  const [loading, setLoading] = useState(true)
+  const [username, setUsername] = useState('')
+  const [room, setRoom] = useState('')
+  const [chat, setChat] = useState(false)
+  const { email } = useGuide() 
 
-  // console.log(email)
+  console.log(email)
 
-  // useEffect(() => {
-  //   if (chat === true) {
-  //     const socket = io("http://localhost:5000"
-  // , {
-  //   transports: ["websocket", "polling"]
-  //   ,
-  //   cors: {
-  //     origin: "http://localhost:5173/",
-  //   },
-  //   reconnection: false
-  // }
-  // );
+  useEffect(() => {
+    if (chat === true) {
+      const socket = io("http://localhost:5000"
+  , {
+    transports: ["websocket", "polling"]
+    ,
+    cors: {
+      origin: "http://localhost:5173/",
+    },
+    reconnection: false
+  }
+  );
             
-  //     setSocketInstance(socket);
+      setSocketInstance(socket);
   
-  //     socket.on("connect", () => {
-  //       console.log(socket.id)
-  //       setLoading(false);
-  //       console.log("connected", socket.connected);
-  //     });
+      socket.on("connect", () => {
+        console.log(socket.id)
+        setLoading(false);
+        console.log("connected", socket.connected);
+      });
 
-  //     setLoading(false)
+      setLoading(false)
 
-  //     if (username !== "" && room !== ""){
-  //       socket.emit("join_room", { username: username, room: room})
-  //     }
+      if (username !== "" && room !== ""){
+        socket.emit("join_room", { username: username, room: room})
+      }
 
-  //     console.log(socket)
+      console.log(socket)
 
   
-  //     socket.on("disconnect", (data) => {
-  //       console.log((data));
-  //     });
+      socket.on("disconnect", (data) => {
+        console.log((data));
+      });
       
-  //     return function cleanup() {
-  //       if (socket){
-  //       socket.disconnect();
-  //       setLoading(true);
-  //       setRoom('')
-  //       setUsername('')
-  //     };
-  //   }
-  //   }
-  // }, [chat]);
+      return function cleanup() {
+        if (socket){
+        socket.disconnect();
+        setLoading(true);
+        setRoom('')
+        setUsername('')
+      };
+    }
+    }
+  }, [chat]);
 
-  // const handleClick = () => {
-  //   if(chat === false){
-  //       setChat(true)
-  //   } else {
-  //       setChat(false)
-  //   }
-  // }
+  const handleClick = () => {
+    if(chat === false){
+        setChat(true)
+    } else {
+        setChat(false)
+    }
+  }
 
   return (
 <div>
-    {/* <div className="joinChatContainer">
+    <div className="joinChatContainer">
       <h3>Join a chat!</h3>
       <input type='text' placeholder='Type...' onChange={(e) => {
         setUsername(e.target.value)
@@ -87,7 +87,7 @@ const WebSocketPage = () => {
     </div>
     <div className='line'>
         {!loading && <WebSocketCall socket={socketInstance} username={username} room={room}/>}
-    </div> */}
+    </div>
 </div>
   )
 }
