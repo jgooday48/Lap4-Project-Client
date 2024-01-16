@@ -6,7 +6,7 @@ import userEvent from "@testing-library/user-event";
 import * as matchers from '@testing-library/jest-dom/matchers';
 expect.extend(matchers);
 
-import App from './src/App';
+import App from './App';
 
 describe('App', () => {
     beforeEach(() => {
@@ -21,7 +21,7 @@ describe('App', () => {
       cleanup();
     });
   
-    it.skip('renders the Welcome page by default', () => {
+    it('renders the Welcome page by default', () => {
       const homePage = screen.getByText(/Find a travel guide/i);
       expect(homePage).toBeInTheDocument();
     });

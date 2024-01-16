@@ -20,7 +20,7 @@ const TouristLoginForm = () => {
 
 
             const userData = {
-                "username": touristusername,
+                "email": touristemail,
                 "password": touristpassword
         }
 
@@ -93,7 +93,7 @@ const TouristLoginForm = () => {
 
     }
 
-    const updateUsername = e => {
+    const updateEmail = e => {
         const input = e.target.value;
         setTouristUsername(input)
     }
@@ -126,8 +126,8 @@ const TouristLoginForm = () => {
             {errorMessage && (
                 <p className="error"> {errorMessage} </p>
             )}
-            <label htmlFor='Username'>Username</label>
-            <input className="input" aria-label="Username" name="username" type='text' onChange={updateUsername} placeholder="username" role="username" required/>
+            <label htmlFor='Email'>Email</label>
+            <input className="input" aria-label="Email" name="email" type='text' onChange={updateEmail} placeholder="email" role="email" required/>
             <label htmlFor='Password'>Password</label>
             <input aria-label='Password' className="input" name="password" type='password' onChange={updatePassword} placeholder="password" role="password" required/>
             <input role='submit' className='signup-btn' type='submit' value='LOGIN' onClick={handleSubmit}/>

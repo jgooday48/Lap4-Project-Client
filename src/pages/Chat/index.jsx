@@ -57,6 +57,8 @@ const Chat = () => {
 
       });
 
+      console.log(socket)
+
       useEffect(() => {
         if(guideLoginId){
         socket.emit("new-user-add", guideLoginId);

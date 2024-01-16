@@ -14,7 +14,7 @@ import { WelcomeProvider } from "../../contexts/welcomeContext";
 
 import ProtectedRoute from '.';
 
-describe('Function', ()=> {
+describe('TG auth functionality', ()=> {
     beforeEach(() => {
 
         render(

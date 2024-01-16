@@ -26,4 +26,8 @@ describe("Back Button component", () => {
         // expect(button.textContent).toBe("Go Back");
     });
 
+    it('is defined', () => {
+        expect(BackButton).toBeDefined()
+    })
+
 });

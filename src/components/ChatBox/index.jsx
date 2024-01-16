@@ -101,13 +101,13 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
       if (guideId){
        message = {
         chatId: chat.chat_id,
-        senderId : currentUser,
+        senderId : guideId,
         text: newMessage,
     }
 } else if (touristId){
     message = {
         chatId: chat.chat_id,
-        senderId : currentUser,
+        senderId : touristId,
         text: newMessage,
 }
 }

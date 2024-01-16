@@ -1,6 +1,6 @@
 import React from 'react';
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { screen, render, cleanup } from '@testing-library/react';
+import { screen, render, cleanup, fireEvent } from '@testing-library/react';
 
 import { MemoryRouter } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ import { WelcomeProvider } from "../../contexts/welcomeContext";
 
 import WebSocketPage from '.';
 
-describe('Function', ()=> {
+describe('Web Socket Page functionality', ()=> {
     beforeEach(() => {
 
         render(
@@ -46,5 +46,16 @@ describe('Function', ()=> {
         const h3 = screen.getByText('Join a chat!')
         expect(h3).toBeInTheDocument()
     })
+
+    it('renders correctly on initial state', () => {
+        const { container } = render(<WebSocketPage />)
+        expect(container).toBeDefined()
+    });
+
+    
+    
+    
+    
+    
 
 })

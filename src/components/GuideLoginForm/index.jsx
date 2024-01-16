@@ -23,7 +23,7 @@ const GuideLoginForm = () => {
 
 
         const userData = {
-            "username": guideusername,
+            "email": guideeemail,
             "password": guidepassword
     }
 
@@ -71,9 +71,9 @@ const GuideLoginForm = () => {
 
     }
 
-    const updateUsername = e => {
+    const updateEmail = e => {
         const input = e.target.value;
-        setGuideUsername(input )
+        setGuideEmail(input)
     }
 
     const updatePassword = e =>{
@@ -110,8 +110,8 @@ const GuideLoginForm = () => {
             {errorMessage && (
                 <p className="error"> {errorMessage} </p>
             )}
-            <label htmlFor='Username'>Username</label>
-            <input className="input" aria-label="Username" name="username" type='text' onChange={updateUsername} placeholder="username" role="username" />
+            <label htmlFor='Email'>Email</label>
+            <input className="input" aria-label="email" name="email" type='text' onChange={updateEmail} placeholder="email" role="email" />
             <label htmlFor='Password'>Password</label>
             <input aria-label='Password' className="input" name="password" type='password' onChange={updatePassword} placeholder="password" role="password" />
             <input role='submit' className='signup-btn' type='submit' value='LOGIN' onClick={handleSubmit} />

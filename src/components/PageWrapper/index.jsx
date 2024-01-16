@@ -48,8 +48,8 @@ const PageWrapper = () => {
                 <nav id="link-navbar">
                   <section className='links'>
                     <NavLink to="/touristhomepage">Home</NavLink>
-                    <NavLink to="/activity">Plans</NavLink>
-                    <NavLink to="/touristguidepage">WatchList</NavLink>
+                    <NavLink to="/plans">Plans</NavLink>
+                    <NavLink to="/watchList">WatchList</NavLink>
                     <NavLink to="/livechat">Chat</NavLink>
                     <NavLink to="/profile">Profile</NavLink>
                     <section className='logout-button'>
