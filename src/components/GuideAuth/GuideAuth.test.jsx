@@ -13,7 +13,7 @@ import { WelcomeProvider } from "../../contexts/welcomeContext";
 
 import GuideProtectedRoute from '.';
 
-describe('Functiom', ()=> {
+describe('Guide Protected Route functionality', ()=> {
     beforeEach(() => {
 
         render(

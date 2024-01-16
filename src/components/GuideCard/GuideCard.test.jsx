@@ -9,12 +9,12 @@ expect.extend(matchers);
 
 import GuideCard from '.';
 
-describe('Function', () => {
+describe('Guide Card functionality', () => {
   beforeEach(() => {
     const fakeGuide = {
       guide_id: 1,
       name: 'John Doe',
-      info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      info: 'a person',
       tagline: 'Your friendly local guide!',
       filters: ['Foodie', 'History Enthusiast'],
       images: ['image1.jpg', 'image2.jpg'],

@@ -12,7 +12,7 @@ import { WelcomeProvider } from "../../contexts/welcomeContext";
 
 import IndividualGuidePage from '.';
 
-describe('Function', ()=> {
+describe('Individual Guide Page functionality', ()=> {
     beforeEach(() => {
         const fakeGuide = {
             guide_id: 1,

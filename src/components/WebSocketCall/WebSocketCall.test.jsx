@@ -12,7 +12,7 @@ import WebSocketCall from '.';
 
 expect.extend(matchers);
 
-describe('Function', () => {
+describe('Web socket call functionality', () => {
   let mockSocket
 
   beforeEach(() => {

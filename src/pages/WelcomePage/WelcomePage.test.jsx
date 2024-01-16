@@ -10,7 +10,7 @@ import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
 import WelcomePage from '.';
 
-describe('Welcome Page', () => {
+describe('Welcome Page functionality', () => {
     beforeEach(() => {
         render (
             <BrowserRouter>

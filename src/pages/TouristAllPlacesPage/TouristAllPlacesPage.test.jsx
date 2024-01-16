@@ -13,7 +13,7 @@ import { WelcomeProvider } from "../../contexts/welcomeContext";
 
 import TouristAllPlacesPage from '.';
 
-describe('Function', ()=> {
+describe('Tourist All Places Page functionality', ()=> {
     beforeEach(() => {
 
         render(
