@@ -24,8 +24,9 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
 
     // const loginId = localStorage.getItem('touristId')
     const scroll = useRef()
-  
 
+    console.log(chat)
+  
     const handleChange = (newMessage)=> {
       setNewMessage(newMessage)
     }
@@ -84,7 +85,7 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
       };
   
     fetchMessages();
-    }, [chat]);
+    },[chat]);
   
   
     // Always scroll to last Message
@@ -101,13 +102,13 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
       if (guideId){
        message = {
         chatId: chat.chat_id,
-        senderId : currentUser,
+        senderId : guideId,
         text: newMessage,
     }
 } else if (touristId){
     message = {
         chatId: chat.chat_id,
-        senderId : currentUser,
+        senderId : touristId,
         text: newMessage,
 }
 }
@@ -120,10 +121,11 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
         receiverId = chat.receiver
     }
     // // send message to socket server
-    setSendMessage({...messages, receiverId})
+    setSendMessage({...message, receiverId})
     // // send message to database
     try {
       const { data } = await axios.post("http://localhost:5000/message", message);
+      console.log(data)
       setMessages([...messages, data]);
       setNewMessage("");
     }
@@ -181,10 +183,10 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
             </div>
             {/* chat-body */}
             <div className="chat-body" >
-              {messages.map((message) => (
+              {guideId && (messages.map((message) => (
                   <div ref={scroll} key={message.message_id}
                     className={
-                      message.sender_id == currentUser
+                      message.sender_id == guideId
                         ? "message own"
                         : "message"
                     }
@@ -192,7 +194,19 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
                     <span>{message.text}</span>
                   </div>
                 
-                ))}
+                )))}
+                {touristId && (messages.map((message) => (
+                  <div ref={scroll} key={message.message_id}
+                    className={
+                      message.sender_id == touristId
+                        ? "message own"
+                        : "message"
+                    }
+                  >
+                    <span>{message.text}</span>
+                  </div>
+                
+                )))}
             </div>
             {/* chat-sender */}
             <div className="chat-sender">
