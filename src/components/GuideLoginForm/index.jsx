@@ -3,8 +3,8 @@ import { useGuide } from '../../contexts/guideContext'
 import { useWelcome } from '../../contexts/welcomeContext';
 import { useNavigate } from 'react-router-dom';
 import { baseApi } from '../../utils/baseApi';
+import axios from 'axios';
 
-import axios from "axios"
 
 
 const GuideLoginForm = () => {
@@ -30,8 +30,8 @@ const GuideLoginForm = () => {
     await axios.post(baseApi + "guides/login", userData)
         .then(res => {
             const data = res.data
-               localStorage.setItem("guide_token", data.tokens.access)
-            localStorage.setItem("guide_refresh", data.tokens.refresh)
+               sessionStorage.setItem("guide_token", data.tokens.access)
+            sessionStorage.setItem("guide_refresh", data.tokens.refresh)
             if (data.tokens.access) {
                 getCurrentUser(data.tokens.access)
             } else {
@@ -51,8 +51,9 @@ const GuideLoginForm = () => {
  })
      axiosInstance.get("guides/current")
          .then(res => {
-             localStorage.setItem("guide_id", res.data.user_details.guide_id)
-             localStorage.setItem("guide_Email", res.data.user_details.email)
+             sessionStorage.setItem("guide_id", res.data.user_details.guide_id)
+             sessionStorage.setItem("guide_Username", res.data.user_details.username)
+
      }).catch(e => console.log(e))
 
  }
@@ -61,7 +62,7 @@ const GuideLoginForm = () => {
         e.preventDefault();
         setErrorMessage('');
         await loginFunction(e);
-        if(localStorage.length){
+        if(sessionStorage.length){
             setGuide(true);
             setWelcome(false)
             goTo("/guidehomepage")

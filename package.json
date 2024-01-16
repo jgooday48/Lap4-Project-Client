@@ -24,6 +24,7 @@
     "react-bootstrap": "^2.9.2",
     "react-datepicker": "^4.25.0",
     "react-dom": "^18.2.0",
+    "react-input-emoji": "^5.6.5",
     "react-router-dom": "^6.21.1",
     "react-scroll-to-bottom": "^4.2.0",
     "react-toastify": "^10.0.0",

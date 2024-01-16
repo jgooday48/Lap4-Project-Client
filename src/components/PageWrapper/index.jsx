@@ -72,7 +72,9 @@ const PageWrapper = () => {
               <section className='nav-link'>
                 <NavLink to="/guidehomepage">Home</NavLink>
                 <NavLink to="/guideprofilepage">Your profile</NavLink>
-              
+                <NavLink to="/livechat">Chat</NavLink>
+                <NavLink to="/logout">Logout</NavLink>
+
               </section>
             </nav>
           </header>
