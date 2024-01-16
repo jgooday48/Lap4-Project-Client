@@ -239,6 +239,7 @@
 
 #centeredContainer {
   background-color: #5228f5;
+
   text-align: center;
   padding: 20px;
 
@@ -320,3 +321,38 @@ h1 {
   background-color: gainsboro;
 }
 
+.filters-section{
+  width: 80vw;
+  border: 2px solid white;
+    text-align: left;
+}
+
+.filter-container{
+  display: flex; 
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 1em;
+  color: white;
+
+}
+
+.filter{
+  padding: 1em;
+  border: 1px solid white;
+  margin: 10px;
+  border-radius: 50px;
+  transition: 0.1s ease-in-out;
+
+}
+
+.filter:hover{
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  box-shadow: 0 0 10px white;
+}
+
+.filter.selected{
+  background-color: white;
+  color: black;
+}
