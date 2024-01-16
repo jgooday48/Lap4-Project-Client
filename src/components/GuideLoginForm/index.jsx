@@ -57,19 +57,22 @@ const GuideLoginForm = () => {
 
  }
 
-    const handleSubmit = async (e) =>{
-        e.preventDefault();
-        setErrorMessage('');
-        await loginFunction(e);
-        if(sessionStorage.length){
-            setGuide(true);
-            setWelcome(false)
-            goTo("/guidehomepage")
-        }
-        else {setErrorMessage("Could not log in right now, we are fixing this")}
+ const handleSubmit = async (e) => {
+    e.preventDefault();
+    setErrorMessage('');
+    await loginFunction(e);
 
+    // Wait for getCurrentUser to complete before checking sessionStorage
+    await getCurrentUser(sessionStorage.getItem("guide_token"));
 
+    if (sessionStorage.length > 0) {
+        setGuide(true);
+        setWelcome(false);
+        goTo("/guidehomepage");
+    } else {
+        setErrorMessage("Could not log in right now, we are fixing this");
     }
+}
 
     const updateEmail = e => {
         const input = e.target.value;

@@ -70,27 +70,30 @@ const TouristLoginForm = () => {
             'Authorization': `Bearer ${token}`
         }
     })
-        axiosInstance.get("tourists/current")
+        axiosInstance.get("http://localhost:5000/tourists/current")
             .then(res => {
                 sessionStorage.setItem("touristId", res.data.user_details.tourist_id)
-                sessionStorage.setItem("touristUsername", res.data.user_details.username)
+                sessionStorage.setItem("touristUsername", res.data.user_details.touristusername)
+                sessionStorage.setItem("touristEmail", res.data.user_details.email)
         }).catch(e => console.log(e))
 
     }
 
-    const handleSubmit = async (e) =>{
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setErrorMessage('');
         await loginFunction(e);
+    
+        // Wait for getCurrentUser to complete before checking sessionStorage
+        await getCurrentUser(sessionStorage.getItem("tourist_token"));
+    
         if (sessionStorage.length > 0) {
-            
             setTourist(true);
-            setWelcome(false)
-            goTo("/touristhomepage")
+            setWelcome(false);
+            goTo("/touristhomepage");
+        } else {
+            setErrorMessage("Could not log in right now, we are fixing this");
         }
-        else {setErrorMessage("Could not log in right now, we are fixing this")}
-
-
     }
 
     const updateEmail = e => {

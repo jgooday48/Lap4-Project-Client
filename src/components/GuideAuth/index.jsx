@@ -9,12 +9,12 @@ const GuideProtectedRoute = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!localStorage.getItem("guide_token")) {
+    if (!sessionStorage.getItem("guide_token")) {
       navigate("/guideloginpage");
     }
-  }, [localStorage.getItem("guide_token"), navigate]);
+  }, [sessionStorage.getItem("guide_token"), navigate]);
 
-  return localStorage.getItem("guide_token") ? children : null;
+  return sessionStorage.getItem("guide_token") ? children : null;
 };
 
 export default GuideProtectedRoute
