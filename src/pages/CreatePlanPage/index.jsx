@@ -15,7 +15,8 @@ const CreatePlanPage = () => {
     const { guideId } = useParams()
     const location = useLocation()
     const guide = location.state && location.state.guide
-    const placeId = guide.place_id
+    // const placeId = guide.place_id
+    const placeId = guide?.place_id || null
     const [notes, setNotes] = useState("")
     // const [dateFrom, setDateFrom] = useState(null);
     // const [dateTo, setDateTo] = useState(null);
@@ -61,29 +62,22 @@ const CreatePlanPage = () => {
 
 
     return (
-        // <div className="create-plan">
-        //     <div className="plan-guide-info">
-        //         <b>Create plans with {guide.name.substring(0, guide.name.indexOf(" "))}</b>
-        //         <img src={guide.images[0]} alt="guide-pic" />
-        //     </div>
+
         <div className="create-plan">
 
-            <div className="plan-guide-info">
+            {/* <div className="plan-guide-info">
 
                 <button className="btn btn-secondary" onClick={() => navigate(-1)}>&larr; Go back</button>
                 <b>Create plans with {guide.name.substring(0, guide.name.indexOf(" "))}</b>
                 <img src={guide.images[0]} alt="guide-pic" />
+            </div> */}
 
-//                 {guide ? (
-//                     <>
-//                         <b>Create plans with {guide.name.substring(0, guide.name.indexOf(" "))}</b>
-//                         <img src={guide.images[0]} alt="guide-pic" />
-//                     </>
-//                 ) : (
-//                     <b>Create plans with a guide</b>
-//                 )}
 
-            </div>
+            <div className="plan-guide-info">
+                <button className="btn btn-secondary" onClick={() => navigate(-1)}>&larr; Go back</button>
+                <b>Create plans with {guide?.name?.substring(0, guide.name.indexOf(" "))}</b>
+                    <img src={guide?.images?.[0]} alt="guide-pic" />
+                </div>
             
             <div className="create-plan-form-section">
                 <b>Plan Details</b>
