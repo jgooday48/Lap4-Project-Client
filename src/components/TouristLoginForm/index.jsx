@@ -75,7 +75,7 @@ const TouristLoginForm = () => {
         axiosInstance.get("http://localhost:5000/tourists/current")
             .then(res => {
                 sessionStorage.setItem("touristId", res.data.user_details.tourist_id)
-                sessionStorage.setItem("touristUsername", res.data.user_details.touristusername)
+                sessionStorage.setItem("touristUsername", res.data.user_details.username)
                 sessionStorage.setItem("touristEmail", res.data.user_details.email)
         }).catch(e => console.log(e))
 

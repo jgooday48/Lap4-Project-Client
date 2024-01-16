@@ -11,7 +11,7 @@ import axios from 'axios';
 
 const GuideLoginForm = () => {
 
-    const { guideeemail, setGuideEmail, guidepassword, setGuidePassword, errorMessage, setErrorMessage, Loading, setGuide, guideusername, setGuideUsername, guideaccess, setGuideAccess, guiderefresh, setGuideRefresh } = useGuide(); 
+    const { guideemail, setGuideEmail, guidepassword, setGuidePassword, errorMessage, setErrorMessage, Loading, setGuide, guideusername, setGuideUsername, guideaccess, setGuideAccess, guiderefresh, setGuideRefresh } = useGuide(); 
     const { setWelcome } = useWelcome(); 
 
     // const [email, setEmail ] = useState('')
@@ -25,11 +25,11 @@ const GuideLoginForm = () => {
 
 
         const userData = {
-            "email": guideeemail,
+            "email": guideemail,
             "password": guidepassword
     }
 
-    await axios.post(baseApi + "guides/login", userData)
+    await axios.post("http://localhost:5000/guides/login", userData)
         .then(res => {
             const data = res.data
                sessionStorage.setItem("guide_token", data.tokens.access)
@@ -54,7 +54,8 @@ const GuideLoginForm = () => {
      axiosInstance.get("guides/current")
          .then(res => {
              sessionStorage.setItem("guide_id", res.data.user_details.guide_id)
-             sessionStorage.setItem("guide_Username", res.data.user_details.username)
+             sessionStorage.setItem("guide_Username", res.data.user_details.guide_Username)
+             console.log(res.data)
      }).catch(e => console.log(e))
 
  }
