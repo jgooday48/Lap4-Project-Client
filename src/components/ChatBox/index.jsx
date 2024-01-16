@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef, Children} from 'react'
 import axios from 'axios';
 import "./ChatBox.css"
 import InputEmoji from 'react-input-emoji'
+import { baseApi } from '../../utils/baseApi';
 
 const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage, socket}) => {
 
@@ -9,6 +10,7 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
     const [id, setId] = useState([])
+
 
     let currentUser = null
     let guideId = null
@@ -26,6 +28,13 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
     const scroll = useRef()
 
     console.log(chat)
+
+    // const senderId = async () => {
+    //   try {
+    //     await axios.get(`http://localhost:5000/tourist/${chat.sender}`)
+    //   }
+    // }
+
   
     const handleChange = (newMessage)=> {
       setNewMessage(newMessage)
@@ -47,7 +56,7 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
             if(guideId){
             try
             {
-              const res = await axios.get(`http://localhost:5000/tourist/${userId}`)
+              const res = await axios.get(baseApi+`/tourist/${userId}`)
                setUserData(res.data.data)
               //  dispatch({type:"SAVE_USER", data:data})
             }
@@ -58,7 +67,7 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
         } else if (touristId){
             try
             {
-              const res = await axios.get(`http://localhost:5000/guides/${userId}`)
+              const res = await axios.get(baseApi+`/guides/${userId}`)
                setUserData(res.data.data)
               //  dispatch({type:"SAVE_USER", data:data})
             }
@@ -77,7 +86,7 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
     useEffect(() => {
       const fetchMessages = async () => {
         try {
-          const res = await axios.get(`http://localhost:5000/message/${chat.chat_id}`);
+          const res = await axios.get(baseApi+`/message/${chat.chat_id}`);
           setMessages(res.data);
         } catch (error) {
           console.log(error);
@@ -89,9 +98,9 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
   
   
     // Always scroll to last Message
-    // useEffect(()=> {
-    //   scroll.current?.scrollIntoView({ behavior: "smooth" });
-    // },[messages])
+    useEffect(()=> {
+      scroll.current?.scrollIntoView({ behavior: "smooth" });
+    },[messages])
   
   
   
@@ -112,7 +121,7 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
         text: newMessage,
 }
 }
-    // const receiverId = chat.filter(obj => obj.sender !== currentUser).map(obj => obj.receiver)
+  
     let receiverId = null
 
     if (guideId){
@@ -124,7 +133,7 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
     setSendMessage({...message, receiverId})
     // // send message to database
     try {
-      const { data } = await axios.post("http://localhost:5000/message", message);
+      const { data } = await axios.post(baseApi+"/message", message);
       console.log(data)
       setMessages([...messages, data]);
       setNewMessage("");
@@ -139,13 +148,13 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
   useEffect(()=> {
     console.log("Message Arrived: ", receivedMessage)
     if (receivedMessage !== null && receivedMessage.chatId === chat._id) {
-      // socket.on("data", (data) => {
       setMessages([...messages, receivedMessage]);
     }
   
   },[receivedMessage])
 
 
+  console.log("data", userData)
   return (
       <div className="ChatBox-container">
         {chat ? (
@@ -169,6 +178,7 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
                   <div className="name" style={{ fontSize: "0.9rem" }}>
                     <span>
                       {userData?.name}
+                      {/* {userData?.image} */}
                     </span>
                   </div>
                 </div>
@@ -204,6 +214,7 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
                     }
                   >
                     <span>{message.text}</span>
+                    <span></span>
                   </div>
                 
                 )))}

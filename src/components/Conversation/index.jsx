@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import "../../pages/Chat/Chat.css"
+import { baseApi } from '../../utils/baseApi'
 
 const Conversation = ({ data, touristUser, guideUser }) => {
 
@@ -48,7 +49,7 @@ const Conversation = ({ data, touristUser, guideUser }) => {
     } else if (touristId){
         try
         {
-          const res = await axios.get(`http://localhost:5000/guides/${userId}`)
+          const res = await axios.get(baseApi+`/guides/${userId}`)
            setUserData(res.data.data)
           //  dispatch({type:"SAVE_USER", data:data})
         }

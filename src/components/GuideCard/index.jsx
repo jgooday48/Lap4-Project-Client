@@ -66,7 +66,7 @@ const GuideCard = ({ guide, placeName }) => {
         senderId: touristId,
         receiverId: guide.guide_id
       }
-      await axios.post(`http://localhost:5000/chat`, data)
+      await axios.post(baseApi+`/chat`, data)
       navigate("/chat")
     } catch (error){
       console.error("Error creating a chat", error.message);

@@ -5,21 +5,20 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { baseApi } from '../../utils/baseApi';
 import { useNavigate } from 'react-router';
 
+
 import axios from 'axios';
 import FiltersSection from './FiltersSection';
 import { FindPlacesMatch, RenderFoundPlaces } from '../../components';
 
 const TouristHomePage = () => {
-   const [search, setSearch] = useState('')
-  const [placePicked, setPlacePicked] = useState(null)
-  const navigate = useNavigate()
+  const [search, setSearch] = useState('');
+  const [placePicked, setPlacePicked] = useState(null);
+  const navigate = useNavigate();
   const [selectedFilters, setSelectedFilters] = useState([]);
 
   const handleNavigate = () => {
-    navigate(`/places/placeId/${placePicked}`, {state: {selectedFilters, search}})
-  }
-
-
+    navigate(`/places/${placePicked}`, { state: { selectedFilters, search } });
+  };
 
   return (
     <>
@@ -36,12 +35,11 @@ const TouristHomePage = () => {
             Your ultimate companion for exploring new destinations
           </h1>
         </div>
-        
+
         <div className='form'>
-
           <FindPlacesMatch search={search} setSearch={setSearch} setPlacePicked={setPlacePicked} isHome={true}/>
-
         </div>
+
         {placePicked != null && search.length > 0 && (
           <>
             <FiltersSection selectedValues={selectedFilters} setSelectedValues={setSelectedFilters} />
@@ -51,21 +49,20 @@ const TouristHomePage = () => {
           </>
         )}
       </div>
-      
+
       <div id="Details">
         <div id="Details1">
           <div id='DetailsText'>
             <h1>DETAILS</h1>
             <h2>Plan Your Perfect Trip</h2>
-            <p>Our app allows you to create a personalized day-by-day 
-              <br />
-              itinerary, ensuring you make the most of your time.</p>
+            <p>Our app allows you to create a personalized day-by-day itinerary, ensuring you make the most of your time.</p>
           </div>
           <div id='img1'>
             <img src="https://images.unsplash.com/photo-1486927819089-e4d82c5e2444?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwNDgwMDE3NHw&ixlib=rb-4.0.3&q=80&w=400" alt="Description" />
           </div>
         </div>
       </div>
+
       <div id='Features'>
         <div id='Features1'>
           <h1>Feature</h1>
@@ -137,8 +134,7 @@ const TouristHomePage = () => {
           <p>Yes, the app provides a day planner feature to help you plan your activities.</p>
         </div>
       </div>
-    </ >
-     
+    </>
   );
 };
 
