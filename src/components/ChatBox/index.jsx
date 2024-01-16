@@ -50,14 +50,14 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
         } else if (touristId){
             userId = chat.receiver
         }
-
         const getUserData = async ()=> {
 
             if(guideId){
             try
             {
-              const res = await axios.get(baseApi+`/tourist/${userId}`)
-               setUserData(res.data.data)
+              const res = await axios.get(baseApi+`tourist/${userId}`)
+              console.log(res.data)
+               setUserData(res.data)
               //  dispatch({type:"SAVE_USER", data:data})
             }
             catch(error)
@@ -67,7 +67,8 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
         } else if (touristId){
             try
             {
-              const res = await axios.get(baseApi+`/guides/${userId}`)
+              const res = await axios.get(`http://localhost:5000/guides/${userId}`)
+              console.log(res)
                setUserData(res.data.data)
               //  dispatch({type:"SAVE_USER", data:data})
             }
