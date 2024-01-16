@@ -17,12 +17,12 @@ const Chat = () => {
     let guideLoginUsername = ''
 
     // const dispatch = useDispatch();
-    if (localStorage.getItem('touristUsername') && localStorage.getItem('touristUsername').length > 0) {
-        touristloginUsername = localStorage.getItem('touristUsername');
-        touristloginId = localStorage.getItem('touristId');
-      } else if (localStorage.getItem('guide_Username') && localStorage.getItem('guide_Username').length > 0) {
-        guideLoginUsername = localStorage.getItem('guide_Username');
-        guideLoginId = localStorage.getItem('guide_id');
+    if (sessionStorage.getItem('touristUsername') && sessionStorage.getItem('touristUsername').length > 0) {
+        touristloginUsername = sessionStorage.getItem('touristUsername');
+        touristloginId = sessionStorage.getItem('touristId');
+      } else if (sessionStorage.getItem('guide_Username') && sessionStorage.getItem('guide_Username').length > 0) {
+        guideLoginUsername = sessionStorage.getItem('guide_Username');
+        guideLoginId = sessionStorage.getItem('guide_id');
       }
     
       //Need to chnage this hard code to the tourist log in
@@ -39,9 +39,6 @@ const Chat = () => {
     //     ]
     //   }
 
-
-    const socket = useRef();
-
     // let { id } = useParams()
   
     const [chats, setChats] = useState([]);
@@ -51,33 +48,41 @@ const Chat = () => {
     const [sendMessage, setSendMessage] = useState(null);
     const [receivedMessage, setReceivedMessage] = useState(null);
 
-    useEffect(() => {
-        socket.current = io("http://localhost:5000");
+    const socket = io("http://localhost:5000",{
+        transports: ["websocket", "polling"]
+        ,
+        cors: {
+          origin: "http://localhost:5173/",
+        }, reconnection: false
+
+      });
+
+      useEffect(() => {
         if(guideLoginId){
-        socket.current.emit("new-user-add", guideLoginId);
+        socket.emit("new-user-add", guideLoginId);
         }
         else if(touristloginId){
-          socket.current.emit("new-user-add", touristloginId)
+          socket.emit("new-user-add", touristloginId)
         }
-        socket.current.on("get-users", (users) => {
+        socket.on("get-users", (users) => {
           setOnlineUsers(users);
         });
       }, []);
 
+      useEffect(() => {
+        socket.on("recieve-message", (data) => {
+          setReceivedMessage(data);
+        }
+        );
+      }, []);
         // Send Message to socket server
 useEffect(() => {
     if (sendMessage!==null) {
-      socket.current.emit("send-message", sendMessage);}
+      socket.emit("send-message", sendMessage);}
   }, [sendMessage]);
 
 
   // Get the message from socket server
-  useEffect(() => {
-    socket.current.on("recieve-message", (data) => {
-      setReceivedMessage(data);
-    }
-    );
-  }, []);
 
     useEffect(() => {
         const getChats = async () => {
@@ -102,10 +107,6 @@ useEffect(() => {
         }
         getChats();
       }, []);
-
-
-
-      console.log("what are chats", chats)
 
     //   const checkOnlineStatus = (chat) => {
     //     const chatMember = chat.members.find((member) => member !== user._id);
@@ -163,6 +164,7 @@ useEffect(() => {
           chat={currentChat}
           touristUser={touristloginId}
           guideUser = {guideLoginId}
+          socket = {socket}
           setSendMessage={setSendMessage}
           receivedMessage={receivedMessage}
         />

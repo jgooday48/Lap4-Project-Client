@@ -4,7 +4,6 @@ import "../../pages/Chat/Chat.css"
 
 const Conversation = ({ data, touristUser, guideUser }) => {
 
-  console.log("data into convo", data)
 
     const [userData, setUserData] = useState({})
     const [online, setOnline ] = useState(true)
@@ -14,12 +13,12 @@ const Conversation = ({ data, touristUser, guideUser }) => {
     let touristId = null
     let userId = null
 
-    if (localStorage.getItem('touristUsername') && localStorage.getItem('touristUsername').length > 0) {
-        currentUser = localStorage.getItem('touristId');
-        touristId = localStorage.getItem('touristId')
-      } else if (localStorage.getItem('guide_Username') && localStorage.getItem('guide_Username').length > 0) {
-        currentUser = localStorage.getItem('guide_id')
-        guideId = localStorage.getItem('guide_id')
+    if (sessionStorage.getItem('touristUsername') && sessionStorage.getItem('touristUsername').length > 0) {
+        currentUser = sessionStorage.getItem('touristId');
+        touristId = sessionStorage.getItem('touristId')
+      } else if (sessionStorage.getItem('guide_Username') && sessionStorage.getItem('guide_Username').length > 0) {
+        currentUser = sessionStorage.getItem('guide_id')
+        guideId = sessionStorage.getItem('guide_id')
       }
 
     
@@ -27,14 +26,11 @@ const Conversation = ({ data, touristUser, guideUser }) => {
 
     useEffect(()=> {
     // const userId = data.find(obj => obj.sender == currentUser)?.receiver;
-        console.log(data)
     
     if(guideId){
     userId = data.sender
-    console.log("data",userId)
     } else if (touristId){
     userId = data.receiver
-    console.log("data",userId)
     }
     
     const getUserData = async ()=> {
@@ -42,9 +38,7 @@ const Conversation = ({ data, touristUser, guideUser }) => {
       try
       {
         const { data } = await axios.get(`http://localhost:5000/tourist/${userId}`)
-         console.log("received", data)
          setUserData(data[0])
-         console.log("convo",userData)
         //  dispatch({type:"SAVE_USER", data:data})
       }
       catch(error)
@@ -56,7 +50,6 @@ const Conversation = ({ data, touristUser, guideUser }) => {
         {
           const res = await axios.get(`http://localhost:5000/guides/${userId}`)
            setUserData(res.data.data)
-           console.log("convo",userData)
           //  dispatch({type:"SAVE_USER", data:data})
         }
         catch(error)

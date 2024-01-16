@@ -27,8 +27,8 @@ const TouristLoginForm = () => {
         await axios.post("http://localhost:5000/tourists/login", userData)
             .then(res => {
                 const data = res.data
-                   localStorage.setItem("tourist_token", data.tokens.access)
-                localStorage.setItem("tourist_refresh", data.tokens.refresh)
+                   sessionStorage.setItem("tourist_token", data.tokens.access)
+                sessionStorage.setItem("tourist_refresh", data.tokens.refresh)
                 if (data.tokens.access) {
                     getCurrentUser(data.tokens.access)
                 } else {
@@ -72,8 +72,8 @@ const TouristLoginForm = () => {
     })
         axiosInstance.get("tourists/current")
             .then(res => {
-                localStorage.setItem("touristId", res.data.user_details.tourist_id)
-                localStorage.setItem("touristUsername", res.data.user_details.username)
+                sessionStorage.setItem("touristId", res.data.user_details.tourist_id)
+                sessionStorage.setItem("touristUsername", res.data.user_details.username)
         }).catch(e => console.log(e))
 
     }
@@ -82,7 +82,7 @@ const TouristLoginForm = () => {
         e.preventDefault();
         setErrorMessage('');
         await loginFunction(e);
-        if (localStorage.length > 0) {
+        if (sessionStorage.length > 0) {
             
             setTourist(true);
             setWelcome(false)
