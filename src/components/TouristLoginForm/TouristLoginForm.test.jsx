@@ -1,5 +1,5 @@
 import React from "react";
-import { describe, it, expect, beforeEach, afterEach, vitest } from "vitest";
+import { describe, it, expect, beforeEach, afterEach, vitest,vi } from "vitest";
 import { screen, render, cleanup, waitFor, fireEvent, rerender} from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 // import { AuthProvider } from "../../context/AuthContext";
@@ -11,6 +11,8 @@ import TouristLoginForm from ".";
 import { TouristProvider } from "../../contexts/touristContext";
 import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
+
+vi.mock('axios');
 
 describe("Tourist Log in functionality", () => {
     beforeEach(() => {
@@ -28,6 +30,8 @@ describe("Tourist Log in functionality", () => {
   
     afterEach(() => {
       cleanup();
+      vi.resetAllMocks();
+      localStorage.clear();
     });
 
     it("is defined", () => {
@@ -39,8 +43,8 @@ describe("Tourist Log in functionality", () => {
         expect(form).toBeInTheDocument()
     })
 
-    it("displays a username input", () =>{
-        const email = screen.getByRole("username")
+    it("displays a email input", () =>{
+        const email = screen.getByRole("email")
         expect(email).toBeInTheDocument();
     })
 
@@ -55,12 +59,12 @@ describe("Tourist Log in functionality", () => {
         expect(submit.value).toBe("LOGIN")
         
     })
-    it("updates username state on input change", () => {
-      const usernameInput = screen.getByLabelText(/username/i);
+    it("updates email state on input change", () => {
+      const emailInput = screen.getByLabelText(/email/i);
   
-      fireEvent.change(usernameInput, { target: { value: "testuser" } });
+      fireEvent.change(emailInput, { target: { value: "testuser" } });
   
-      expect(usernameInput.value).toBe("testuser");
+      expect(emailInput.value).toBe("testuser");
     });
   
     it("updates password state on input change", () => {
@@ -70,6 +74,8 @@ describe("Tourist Log in functionality", () => {
   
       expect(passwordInput.value).toBe("testpassword");
     });
+
+    
 
 
     

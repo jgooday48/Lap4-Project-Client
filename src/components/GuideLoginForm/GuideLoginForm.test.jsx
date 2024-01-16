@@ -12,7 +12,7 @@ import { TouristProvider } from "../../contexts/touristContext";
 import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
 
-describe("Tourist Log in functionality", () => {
+describe("Guide Log in functionality", () => {
     beforeEach(() => {
       render(
         <WelcomeProvider>
@@ -42,9 +42,9 @@ describe("Tourist Log in functionality", () => {
         expect(form).toBeInTheDocument()
     })
 
-    it("displays a username input", () =>{
-        const username = screen.getByRole("username")
-        expect(username).toBeInTheDocument();
+    it("displays a email input", () =>{
+        const email = screen.getByRole("email")
+        expect(email).toBeInTheDocument();
     })
 
     it("displays a password input", ()=>{
@@ -59,12 +59,12 @@ describe("Tourist Log in functionality", () => {
         
     })
 
-    it("updates username state on input change", () => {
-      const usernameInput = screen.getByLabelText(/username/i);
+    it("updates email state on input change", () => {
+      const emailInput = screen.getByLabelText(/email/i);
   
-      fireEvent.change(usernameInput, { target: { value: "testuser" } });
+      fireEvent.change(emailInput, { target: { value: "testuser" } });
   
-      expect(usernameInput.value).toBe("testuser");
+      expect(emailInput.value).toBe("testuser");
     })
   
     it("updates password state on input change", () => {

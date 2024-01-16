@@ -11,7 +11,7 @@ import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
 import TouristLoginPage from '.';
 
-describe('Function', ()=> {
+describe('Tourist Login Page functionality', ()=> {
     beforeEach(() => {
 
         render(

@@ -56,7 +56,9 @@ function App() {
                   
                 <Pages.GuideLoginPage />
                 } />
+
                 <Route path="/guideprofilepage" element={<Pages.GuideProfilePage />} />
+
                 <Route path="/places/:search" element={
                   <TouristProtectedRoute>
                 <Pages.TouristAllPlacesPage />
@@ -71,7 +73,7 @@ function App() {
                 </ProtectedRoute>}/>
                 <Route path="/createPlan/:guideId" element={<Pages.CreatePlanPage/>}/>
 
-
+                <Route path="/chat" element={<Pages.Chat/>}/>
 
               </Route>
             </Routes>

@@ -13,7 +13,7 @@ import { WelcomeProvider } from "../../contexts/welcomeContext";
 
 import GuideProfilePage from '.';
 
-describe('Function', ()=> {
+describe('Guide Profile Page functionality', ()=> {
     beforeEach(() => {
 
         render(

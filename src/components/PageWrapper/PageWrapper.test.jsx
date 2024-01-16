@@ -11,9 +11,7 @@ import PageWrapper from ".";
 import { TouristProvider } from "../../contexts/touristContext";
 import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
-import { useTourist } from "../../contexts/touristContext";
-import { useGuide } from "../../contexts/guideContext";
-import { useWelcome } from "../../contexts/welcomeContext";
+
 
 describe("Page wrapper functionality", () => {
     beforeEach(() => {
@@ -50,10 +48,6 @@ describe("Page wrapper functionality", () => {
         expect(nav).toBeInTheDocument()
     })
 
-    // it("displays the nav element", async () => {
-    //     const nav = screen.getByRole('navbar')
-    //     expect(nav.textContent).toBe('LOGIN')
-    // })
 
     it("navigates to correct endpoint when nav element is clicked", async () => {
 
@@ -71,5 +65,8 @@ describe("Page wrapper functionality", () => {
 
       
      })
+
+
 })
+
 

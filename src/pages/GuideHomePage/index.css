@@ -3,13 +3,24 @@
     height: 100vh;
   }
   
-  #headerContainer {
+  #headerContainer button {
     background-color: #5228f5;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 16px;
+    background: #43a047;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  #view-clients button {
+    background-color: #5228f5;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 16px;
+    background: #43a047;
+    color: #fff;
+    cursor: pointer;
   }
   
   #centeredContainer {
@@ -20,10 +31,50 @@
 
   }
 
-  h1{
+  #showClients {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #clients {
+    box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        width: 250px;
+        height: 250px;
+        border: 10px solid blue;
+        background: white;
+  }
+
+  #headerContainer h1{
     max-width: 800px;
     font-size: 1.6em; 
     color: antiquewhite;
+    text-align: center;
+    justify-content: center;
+  }
+
+  #view-clients h1{
+    max-width: 800px;
+    font-size: 1.6em; 
+    color: antiquewhite;
+    text-align: center;
+    justify-content: center;
+  }
+
+  #activities{
+    box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        width: 250px;
+        height: 250px;
+        border: 10px solid blue;
+        background: white;
+  }
+
+  #allActivities {
+    display: flex;
+    justify-content: space-between;
   }
 /* Features */
 #Features {

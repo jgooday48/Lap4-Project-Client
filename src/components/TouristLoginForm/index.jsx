@@ -4,6 +4,8 @@ import { useWelcome } from '../../contexts/welcomeContext';
 import { useNavigate } from 'react-router-dom';
 import { baseApi } from '../../utils/baseApi'
 import axios from 'axios';
+import { NavLink } from 'react-router-dom';
+
 const TouristLoginForm = () => {
 
     const { touristemail, setTouristEmail, touristpassword, setTouristPassword, errorMessage, setErrorMessage, Loading, setTourist, touristusername, setTouristUsername, setLoading, setTouristAccess, setTouristRefresh } = useTourist(); 
@@ -20,15 +22,15 @@ const TouristLoginForm = () => {
 
 
             const userData = {
-                "username": touristusername,
+                "email": touristemail,
                 "password": touristpassword
         }
 
-        await axios.post(baseApi + "tourists/login", userData)
+        await axios.post(baseApi + "/tourists/login", userData)
             .then(res => {
                 const data = res.data
-                   localStorage.setItem("tourist_token", data.tokens.access)
-                localStorage.setItem("tourist_refresh", data.tokens.refresh)
+                   sessionStorage.setItem("tourist_token", data.tokens.access)
+                sessionStorage.setItem("tourist_refresh", data.tokens.refresh)
                 if (data.tokens.access) {
                     getCurrentUser(data.tokens.access)
                 } else {
@@ -37,27 +39,6 @@ const TouristLoginForm = () => {
                 
             }).catch(e => console.log(e))
         
-        // try {
-        //     const userData = {
-        //         "username": touristusername,
-        //         "password": touristpassword
-        //     }
-    
-        //     const response = await axios.post(`${baseApi}tourists/login`, userData)
-        //     // URL needs updating before deployment
-            
-        //     const data = await response.data
-        //     console.log("login details: ", data)
-        //     localStorage.setItem("token", data.tokens.access)
-        //     localStorage.setItem("refresh_token", data.tokens.refresh)
-
-        //     if (data.err)
-        //     {throw Error(data.err)}
-        //     // login(data)
-        //     getCurrentUser()
-        // } catch (err) {
-        //     console.warn(err);
-        // }
     
     }
 
@@ -70,32 +51,39 @@ const TouristLoginForm = () => {
             'Authorization': `Bearer ${token}`
         }
     })
-        axiosInstance.get("tourists/current")
+        axiosInstance.get("http://localhost:5000/tourists/current")
             .then(res => {
-                localStorage.setItem("touristId", res.data.user_details.tourist_id)
-                localStorage.setItem("touristUsername", res.data.user_details.username)
+
+                sessionStorage.setItem("touristId", res.data.user_details.tourist_id)
+                sessionStorage.setItem("touristEmail", res.data.user_details.email)
+                sessionStorage.setItem("touristUsername", res.data.user_details.username)
+
         }).catch(e => console.log(e))
 
     }
 
-    const handleSubmit = async (e) =>{
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setErrorMessage('');
         await loginFunction(e);
-        if (localStorage.length > 0) {
-            
+    
+        // Wait for getCurrentUser to complete before checking sessionStorage
+        await getCurrentUser(sessionStorage.getItem("tourist_token"));
+    
+        if (sessionStorage.length > 0) {
             setTourist(true);
-            setWelcome(false)
-            goTo("/touristhomepage")
+            setWelcome(false);
+            goTo("/touristhomepage");
+        } else {
+            setErrorMessage("Could not log in right now, we are fixing this");
         }
-        else {setErrorMessage("Could not log in right now, we are fixing this")}
-
-
     }
 
-    const updateUsername = e => {
+    const updateEmail = e => {
         const input = e.target.value;
-        setTouristUsername(input )
+
+        setTouristEmail(input)
+
     }
 
     const updatePassword = e =>{
@@ -120,14 +108,20 @@ const TouristLoginForm = () => {
 
     return (
         <>
+            <div className="login-switch">
+                <NavLink to="/touristloginpage" className="switch-element">TOURIST</NavLink>
+                <NavLink to="/guideloginpage" className="switch-element">GUIDE</NavLink>
+            </div>
       
             <form aria-label='form' onSubmit={handleSubmit} id="tourist-register-form">
                 
             {errorMessage && (
                 <p className="error"> {errorMessage} </p>
             )}
-            <label htmlFor='Username'>Username</label>
-            <input className="input" aria-label="Username" name="username" type='text' onChange={updateUsername} placeholder="username" role="username" required/>
+
+            <p> TOURIST LOGIN </p>
+            <label htmlFor='Email'>Email</label>
+            <input className="input" aria-label="Email" name="email" type='text' onChange={updateEmail} placeholder="email" role="email" required/>
             <label htmlFor='Password'>Password</label>
             <input aria-label='Password' className="input" name="password" type='password' onChange={updatePassword} placeholder="password" role="password" required/>
             <input role='submit' className='signup-btn' type='submit' value='LOGIN' onClick={handleSubmit}/>

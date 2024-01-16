@@ -1,6 +1,6 @@
 import React from 'react';
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { render, cleanup, waitFor } from '@testing-library/react';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { screen, render, cleanup } from '@testing-library/react';
 
 import { MemoryRouter } from 'react-router-dom';
 
@@ -12,16 +12,18 @@ import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
 import GuideHomePage from '.';
 
-describe('Function', () => {
+describe('Guide Home Page functionality', ()=> {
     beforeEach(() => {
+
         render(
             <MemoryRouter>
                 <WelcomeProvider>
                     <TouristProvider>
-                        <GuideProvider>
-                            <GuideHomePage />
-                        </GuideProvider>
-                    </TouristProvider>
+
+                    <GuideProvider>   
+                        <GuideHomePage />
+                </GuideProvider>
+                </TouristProvider>
                 </WelcomeProvider>
             </MemoryRouter>
         )
@@ -31,16 +33,16 @@ describe('Function', () => {
         cleanup()
     })
 
-    it('is defined', async () => {
-        // Wrap your test logic in a try/catch block to handle errors
-        try {
-            // Use waitFor to wait for asynchronous operations to complete
-            await waitFor(() => {
-                expect(GuideHomePage).toBeDefined();
-            });
-        } catch (error) {
-            // Handle the error (log or throw it if necessary)
-            console.error('Error in test:', error);
-        }
+    it('is defined', () => {
+        expect(GuideHomePage).toBeDefined()
+
     })
-});
+
+    it('displays a h1 element', () => {
+        const h1 = screen.getByText('View All Of Your Clients')
+        expect(h1).toBeInTheDocument()
+    })
+
+
+
+})

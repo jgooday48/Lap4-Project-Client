@@ -9,7 +9,7 @@ expect.extend(matchers);
 
 import TouristGuidePage from '.';
 
-describe('Functiom', ()=> {
+describe('Tourist Guide Page functionality', ()=> {
     beforeEach(() => {
 
         render(
@@ -26,6 +26,11 @@ describe('Functiom', ()=> {
     it('is defined', () => {
         expect(TouristGuidePage).toBeDefined()
 
+    })
+
+    it('displays a h4 element', () => {
+        const h4 = screen.getByText('See the world like a local')
+        expect(h4).toBeInTheDocument()
     })
 
 })
