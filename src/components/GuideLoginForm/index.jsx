@@ -4,8 +4,9 @@ import { useWelcome } from '../../contexts/welcomeContext';
 import { useNavigate } from 'react-router-dom';
 import { baseApi } from '../../utils/baseApi';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 
-import axios from "axios"
+
 
 
 const GuideLoginForm = () => {
@@ -24,15 +25,15 @@ const GuideLoginForm = () => {
 
 
         const userData = {
-            "username": guideusername,
+            "email": guideeemail,
             "password": guidepassword
     }
 
     await axios.post(baseApi + "guides/login", userData)
         .then(res => {
             const data = res.data
-               localStorage.setItem("guide_token", data.tokens.access)
-            localStorage.setItem("guide_refresh", data.tokens.refresh)
+               sessionStorage.setItem("guide_token", data.tokens.access)
+            sessionStorage.setItem("guide_refresh", data.tokens.refresh)
             if (data.tokens.access) {
                 getCurrentUser(data.tokens.access)
             } else {
@@ -52,29 +53,33 @@ const GuideLoginForm = () => {
  })
      axiosInstance.get("guides/current")
          .then(res => {
-             localStorage.setItem("guide_id", res.data.user_details.guide_id)
-             localStorage.setItem("guide_Username", res.data.user_details.username)
+             sessionStorage.setItem("guide_id", res.data.user_details.guide_id)
+             sessionStorage.setItem("guide_Username", res.data.user_details.username)
+
      }).catch(e => console.log(e))
 
  }
 
-    const handleSubmit = async (e) =>{
-        e.preventDefault();
-        setErrorMessage('');
-        await loginFunction(e);
-        if(localStorage.length){
-            setGuide(true);
-            setWelcome(false)
-            goTo("/guidehomepage")
-        }
-        else {setErrorMessage("Could not log in right now, we are fixing this")}
+ const handleSubmit = async (e) => {
+    e.preventDefault();
+    setErrorMessage('');
+    await loginFunction(e);
 
+    // Wait for getCurrentUser to complete before checking sessionStorage
+    await getCurrentUser(sessionStorage.getItem("guide_token"));
 
+    if (sessionStorage.length > 0) {
+        setGuide(true);
+        setWelcome(false);
+        goTo("/guidehomepage");
+    } else {
+        setErrorMessage("Could not log in right now, we are fixing this");
     }
+}
 
-    const updateUsername = e => {
+    const updateEmail = e => {
         const input = e.target.value;
-        setGuideUsername(input )
+        setGuideEmail(input)
     }
 
     const updatePassword = e =>{
@@ -116,8 +121,8 @@ const GuideLoginForm = () => {
                 <p className="error"> {errorMessage} </p>
             )}
             <p> GUIDE LOGIN </p>
-            <label htmlFor='Username'>Username</label>
-            <input className="input" aria-label="Username" name="username" type='text' onChange={updateUsername} placeholder="username" role="username" />
+            <label htmlFor='Email'>Email</label>
+            <input className="input" aria-label="email" name="email" type='text' onChange={updateEmail} placeholder="email" role="email" />
             <label htmlFor='Password'>Password</label>
             <input aria-label='Password' className="input" name="password" type='password' onChange={updatePassword} placeholder="password" role="password" />
             <input role='submit' className='signup-btn' type='submit' value='LOGIN' onClick={handleSubmit} />

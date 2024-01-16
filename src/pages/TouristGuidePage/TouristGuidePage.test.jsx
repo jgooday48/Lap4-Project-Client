@@ -28,4 +28,9 @@ describe('Tourist Guide Page functionality', ()=> {
 
     })
 
+    it('displays a h4 element', () => {
+        const h4 = screen.getByText('See the world like a local')
+        expect(h4).toBeInTheDocument()
+    })
+
 })

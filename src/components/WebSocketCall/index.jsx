@@ -50,8 +50,8 @@ const WebSocketCall = ({ socket, username, room }) => {
                 <p>{message.message}</p>
               </div>
                 <div className='message-meta'>
-                <p id='author'>{message.author}</p>
                 <p>{message.time}</p>
+                <p id='author'>{message.author}</p>
                 </div>
             </div>
           </div>

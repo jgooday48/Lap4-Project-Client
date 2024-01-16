@@ -97,6 +97,7 @@ const PageWrapper = () => {
                 <NavLink to="/livechat">Chat</NavLink>
                 <section className='logout-button'>
                     <NavLink to="/" onClick={handleGuideLogout}>Logout</NavLink>
+
               </section>
               </section>
               

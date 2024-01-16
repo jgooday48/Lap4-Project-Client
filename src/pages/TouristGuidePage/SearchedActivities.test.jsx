@@ -33,4 +33,8 @@ describe('Searched Activities functionality', ()=> {
 
     })
 
+    it('displays a h3 element', () => {
+        const h3 = screen.getByText('Activities')
+        expect(h3).toBeInTheDocument()
+    })
 })
