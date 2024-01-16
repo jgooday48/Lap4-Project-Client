@@ -48,10 +48,6 @@ describe("Page wrapper functionality", () => {
         expect(nav).toBeInTheDocument()
     })
 
-    // it("displays the nav element", async () => {
-    //     const nav = screen.getByRole('navbar')
-    //     expect(nav.textContent).toBe('LOGIN')
-    // })
 
     it("navigates to correct endpoint when nav element is clicked", async () => {
 
@@ -72,4 +68,3 @@ describe("Page wrapper functionality", () => {
 
 
 })
-

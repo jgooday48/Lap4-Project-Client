@@ -35,6 +35,7 @@ const CreatePlanPage = () => {
                     <b>Create plans with a guide</b>
                 )}
             </div>
+            
             <div className="create-plan-form-section">
                 <form>
                     
