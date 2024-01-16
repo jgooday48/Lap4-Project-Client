@@ -4,6 +4,8 @@ import { useWelcome } from '../../contexts/welcomeContext';
 import { useNavigate } from 'react-router-dom';
 import { baseApi } from '../../utils/baseApi'
 import axios from 'axios';
+import { NavLink } from 'react-router-dom';
+
 const TouristLoginForm = () => {
 
     const { touristemail, setTouristEmail, touristpassword, setTouristPassword, errorMessage, setErrorMessage, Loading, setTourist, touristusername, setTouristUsername, setLoading, setTouristAccess, setTouristRefresh } = useTourist(); 
@@ -126,12 +128,18 @@ const TouristLoginForm = () => {
 
     return (
         <>
+            <div className="login-switch">
+                <NavLink to="/touristloginpage" className="switch-element">TOURIST</NavLink>
+                <NavLink to="/guideloginpage" className="switch-element">GUIDE</NavLink>
+            </div>
       
             <form aria-label='form' onSubmit={handleSubmit} id="tourist-register-form">
                 
             {errorMessage && (
                 <p className="error"> {errorMessage} </p>
             )}
+
+            <p> TOURIST LOGIN </p>
             <label htmlFor='Email'>Email</label>
             <input className="input" aria-label="Email" name="email" type='text' onChange={updateEmail} placeholder="email" role="email" required/>
             <label htmlFor='Password'>Password</label>

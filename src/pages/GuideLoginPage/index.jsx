@@ -1,9 +1,10 @@
 import React from 'react'
-import { GuideLoginForm } from '../../components'
+import { GuideLoginForm, BackButton } from '../../components'
 
 const GuideLoginPage = () => {
   return (
-    <div>
+    <div id="register-page">
+      <BackButton />
       <GuideLoginForm/>
     </div>
   )

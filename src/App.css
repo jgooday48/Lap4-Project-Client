@@ -226,3 +226,24 @@
     margin-top: 10px; /* Add spacing between links and logout button */
   }
 }
+
+.login-switch{
+  margin-top:20px;
+  width:400px;
+  display:flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.switch-element{
+  text-decoration: none;
+  text-align: center;
+  font-size: 20px;
+  border:#0471f6 2px solid;
+  width:202px;
+
+
+}
+.switch-element:active{
+  background-color:rgb(95, 133, 237);
+}
