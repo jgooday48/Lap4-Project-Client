@@ -3,6 +3,7 @@ import { useGuide } from '../../contexts/guideContext'
 import { useWelcome } from '../../contexts/welcomeContext';
 import { useNavigate } from 'react-router-dom';
 import { baseApi } from '../../utils/baseApi';
+import { NavLink } from 'react-router-dom';
 
 import axios from "axios"
 
@@ -106,10 +107,15 @@ const GuideLoginForm = () => {
 
     return (
         <>
+         <div className="login-switch">
+                <NavLink to="/touristloginpage" className="switch-element">TOURIST</NavLink>
+                <NavLink to="/guideloginpage" className="switch-element">GUIDE</NavLink>
+            </div>
         <form aria-label='form' onSubmit={handleSubmit} id="tourist-register-form">
             {errorMessage && (
                 <p className="error"> {errorMessage} </p>
             )}
+            <p> GUIDE LOGIN </p>
             <label htmlFor='Username'>Username</label>
             <input className="input" aria-label="Username" name="username" type='text' onChange={updateUsername} placeholder="username" role="username" />
             <label htmlFor='Password'>Password</label>

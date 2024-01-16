@@ -12,19 +12,19 @@ const PageWrapper = () => {
   const { welcome, setWelcome } = useWelcome();
 
   const handleTouristLogout = () =>{
-    localStorage.removeItem("touristId")
-    localStorage.removeItem("touristUsername")
-    localStorage.removeItem("tourist_token")
-    localStorage.removeItem("tourist_refresh")
+    sessionStorage.removeItem("touristId")
+    sessionStorage.removeItem("touristUsername")
+    sessionStorage.removeItem("tourist_token")
+    sessionStorage.removeItem("tourist_refresh")
     setTourist(false)
     setWelcome(true)
   }
 
   const handleGuideLogout = () =>{
-    localStorage.removeItem("guide_id")
-    localStorage.removeItem("guide_Username")
-    localStorage.removeItem("guide_token")
-    localStorage.removeItem("guide_refresh")
+    sessionStorage.removeItem("guide_id")
+    sessionStorage.removeItem("guide_Username")
+    sessionStorage.removeItem("guide_token")
+    sessionStorage.removeItem("guide_refresh")
     setGuide(false)
     setWelcome(true)
   
@@ -94,6 +94,7 @@ const PageWrapper = () => {
               <section className='links'>
                 <NavLink to="/guidehomepage">Home</NavLink>
                 <NavLink to="/guideprofilepage">Your profile</NavLink>
+                <NavLink to="/livechat">Chat</NavLink>
                 <section className='logout-button'>
                     <NavLink to="/" onClick={handleGuideLogout}>Logout</NavLink>
               </section>
