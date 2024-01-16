@@ -19,7 +19,7 @@ const WebSocketPage = () => {
 
   useEffect(() => {
     if (chat === true) {
-      const socket = io("http://localhost:5000"
+      const socket = io(baseApi
   , {
     transports: ["websocket", "polling"]
     ,

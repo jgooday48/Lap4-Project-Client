@@ -88,14 +88,14 @@ useEffect(() => {
         const getChats = async () => {
             if(guideLoginId){
           try {
-            const res = await axios.get(`http://localhost:5000/chat/guide/${guideLoginId}`);
+            const res = await axios.get(baseApi+`chat/guide/${guideLoginId}`);
             setChats(res.data);
           } catch (error) {
             console.log(error);
           }
         } else if (touristloginId){
             try {
-                const res = await axios.get(`http://localhost:5000/chat/tourist/${touristloginId}`);
+                const res = await axios.get(baseApi+`chat/tourist/${touristloginId}`);
                 setChats(res.data);
                 // setCurrentChat(chats)
               } catch (error) {

@@ -46,7 +46,18 @@ function App() {
                   <Pages.IndividualGuidePage />
                   </TouristProtectedRoute>} />
                 </Route>
-                
+                <Route path="/touristwatchlistpage" element={
+                  <TouristProtectedRoute>
+                    <Pages.TouristWatchListPage />
+                  </TouristProtectedRoute>
+                }
+                />
+                 <Route path="/touristplanspage" element={
+                  <TouristProtectedRoute>
+                    <Pages.TouristPlansPage />
+                  </TouristProtectedRoute>
+                }
+                />
 
                 <Route path="/guidehomepage" element={
                   <GuideProtectedRoute>
