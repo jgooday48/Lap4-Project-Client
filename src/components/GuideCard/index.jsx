@@ -16,7 +16,9 @@ const GuideCard = ({ guide, placeName }) => {
 
   const [toggleSaveOrDelete, setToggleSaveOrDelete] = useState(true)
   const navigate = useNavigate()
-   const touristId = localStorage.getItem("touristId")
+  const touristId = sessionStorage.getItem("touristId")
+
+
   const saveOrDeleteGuide = () => {
 
     if (toggleSaveOrDelete) {
@@ -58,9 +60,19 @@ const GuideCard = ({ guide, placeName }) => {
     }
   }
 
-  const startChat = () => {
-
+  const startChat = async () => {
+    try {
+      const data = {
+        senderId: touristId,
+        receiverId: guide.guide_id
+      }
+      await axios.post(`http://localhost:5000/chat`, data)
+      navigate("/chat")
+    } catch (error){
+      console.error("Error creating a chat", error.message);
+    }
   }
+
   const navToPlan = () => {
     navigate(`/createPlan/${guide.guide_id}`, {state: {guide}})
   }

@@ -11,6 +11,27 @@ const PageWrapper = () => {
   const { guide, setGuide } = useGuide();
   const { welcome, setWelcome } = useWelcome();
 
+  const handleTouristLogout = () =>{
+    sessionStorage.removeItem("touristId")
+    sessionStorage.removeItem("touristUsername")
+    sessionStorage.removeItem("touristEmail")
+    sessionStorage.removeItem("tourist_token")
+    sessionStorage.removeItem("tourist_refresh")
+    setTourist(false)
+    setWelcome(true)
+  }
+
+  const handleGuideLogout = () =>{
+    sessionStorage.removeItem("guide_id")
+    sessionStorage.removeItem("guide_Username")
+    sessionStorage.removeItem("guide_Email")
+    sessionStorage.removeItem("guide_token")
+    sessionStorage.removeItem("guide_refresh")
+    setGuide(false)
+    setWelcome(true)
+  
+  }
+
   // const handleTouristLogin = () => {
   //   setTourist(true);
   //   setWelcome(false);
@@ -53,7 +74,7 @@ const PageWrapper = () => {
                     <NavLink to="/livechat">Chat</NavLink>
                     <NavLink to="/profile">Profile</NavLink>
                     <section className='logout-button'>
-                    <NavLink to="/logout">Logout</NavLink>
+                    <NavLink to="/" onClick={handleTouristLogout}>Logout</NavLink>
                     </section>
                   </section>
                 </nav>
@@ -66,19 +87,30 @@ const PageWrapper = () => {
 
 
       {guide && (
+        <>
         <div className='touristWrapper'>
-          <header>
-            <nav>
-              <section className='nav-link'>
+          <header className="tourist-header">
+          <span className='brand'>TravelGuide</span>
+          <div className="tourist-nav">
+            <nav id="link-navbar">
+              <section className='links'>
                 <NavLink to="/guidehomepage">Home</NavLink>
                 <NavLink to="/guideprofilepage">Your profile</NavLink>
-              
+                <NavLink to="/livechat">Chat</NavLink>
+                <section className='logout-button'>
+                    <NavLink to="/" onClick={handleGuideLogout}>Logout</NavLink>
+
               </section>
+              </section>
+              
             </nav>
+            </div>
           </header>
 
-          <Outlet />
+          
         </div>
+        <Outlet />
+        </>
       )}
 
       <footer id="footer">

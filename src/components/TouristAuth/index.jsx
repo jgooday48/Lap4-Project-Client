@@ -9,12 +9,12 @@ const TouristProtectedRoute = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!localStorage.getItem("tourist_token")) {
+    if (!sessionStorage.getItem("tourist_token")) {
       navigate("/touristloginpage");
     }
-  }, [localStorage.getItem("tourist_token"), navigate]);
+  }, [sessionStorage.getItem("tourist_token"), navigate]);
 
-  return localStorage.getItem("tourist_token") ? children : null;
+  return sessionStorage.getItem("tourist_token") ? children : null;
 };
 
 export default TouristProtectedRoute;

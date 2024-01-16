@@ -56,15 +56,8 @@ function App() {
                   
                 <Pages.GuideLoginPage />
                 } />
-                {/* <Route path="/guideprofilepage" element={<Pages.GuideProfilePage />} /> */}
 
-{/* //                 <Route path="/places/:search" element={<Pages.TouristAllPlacesPage />} />
-//                 <Route path="/places/placeId/:id" element={<Pages.TouristGuidePage />} />
-//                 <Route path="/livechat" element={<Pages.WebSocketPage />} />
-//                 <Route path="/createPlan/:guideId" element={<Pages.CreatePlanPage />} />
-//                 <Route path="/plans" element={<Pages.TouristPlansPage />} />
-//                 <Route path="/plans/:id" element={<Pages.TouristEachPlanPage />} />
-//                 <Route path="/watchList" element={<Pages.TouristWatchListPage/>}/> */}
+                <Route path="/guideprofilepage" element={<Pages.GuideProfilePage />} />
 
                 <Route path="/places/:search" element={
                   <TouristProtectedRoute>
@@ -79,8 +72,7 @@ function App() {
                 <Pages.WebSocketPage/>
                 </ProtectedRoute>}/>
                 <Route path="/createPlan/:guideId" element={<Pages.CreatePlanPage/>}/>
-
-
+                <Route path="/chat" element={<Pages.Chat/>}/>
 
               </Route>
             </Routes>
