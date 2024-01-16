@@ -14,6 +14,7 @@ const PageWrapper = () => {
   const handleTouristLogout = () =>{
     sessionStorage.removeItem("touristId")
     sessionStorage.removeItem("touristUsername")
+    sessionStorage.removeItem("touristEmail")
     sessionStorage.removeItem("tourist_token")
     sessionStorage.removeItem("tourist_refresh")
     setTourist(false)
@@ -23,6 +24,7 @@ const PageWrapper = () => {
   const handleGuideLogout = () =>{
     sessionStorage.removeItem("guide_id")
     sessionStorage.removeItem("guide_Username")
+    sessionStorage.removeItem("guide_Email")
     sessionStorage.removeItem("guide_token")
     sessionStorage.removeItem("guide_refresh")
     setGuide(false)

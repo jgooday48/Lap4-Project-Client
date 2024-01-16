@@ -55,6 +55,7 @@ const GuideLoginForm = () => {
          .then(res => {
              sessionStorage.setItem("guide_id", res.data.user_details.guide_id)
              sessionStorage.setItem("guide_Username", res.data.user_details.username)
+             sessionStorage.setItem("guide_Email", res.data.user_details.email)
 
      }).catch(e => console.log(e))
 
