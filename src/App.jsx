@@ -47,7 +47,7 @@ function App() {
                   </TouristProtectedRoute>} />
                 </Route>
                 
-
+                <Route path="/guideprofilepage" element={<Pages.GuideProfilePage/>}/>
                 <Route path="/guidehomepage" element={
                   <GuideProtectedRoute>
                 <Pages.GuideHomePage />

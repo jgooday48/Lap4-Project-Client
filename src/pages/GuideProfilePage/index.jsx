@@ -1,34 +1,93 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import { baseApi } from '../../utils/baseApi'
+import { ImageCarousel } from '../../components'
+import './index.css'
+import GuideForm from './GuideForm'
+import SearchedActivities from '../TouristGuidePage/SearchedActivities'
+import { toast } from 'react-toastify'
+import { filters } from '../../utils/filters'
 
 const GuideProfilePage = () => {
+  const guideId = localStorage.getItem("guide_id")
+  const [guide, setGuide] = useState([])
+  const [place, setPlace] = useState([])
+  const [selectedValues, setSelectedValues] = useState([])
+  const [activities, setActivities] = useState([])
 
-    //This hard ccode neeeds to be replaced with guide log in 
 
-    const guide = {
-        "guide_id": 1,
-        "place_id": 1,
-                "name": "Guy Dunn",
-                "user_type": "GUIDE",
-                "username": "guydunn42",
-                "email": "guy.dunn@gmail.com",
-                "password": "scrypt:32768:8:1$bmV0HHtc0LTvbmgL$6b283bc39df63a9d94341f7ff019e7d45cd9cdc52c2fab113b8f3b1587dae42c7ad9e03966981c9a986c939e3b5a44b652309a24351eb28ca49da0f31f99cab5",
-                "filters": [
-                    "Historical",
-                    "Outdoor activities"
-                ],
-                "availible_from": "Sat, 13 Jan 2024 14:24:15 GMT",
-                "availible_to": "Sat, 13 Jan 2024 14:24:15 GMT",
-                "images": null 
-      
-      }
 
-      const displayProifle = () => {
-        
-      }
+  const fetchGuide = async () => {
+    await axios.get(baseApi + "guides/" + guideId)
+      .then(res => {
+        setGuide(res.data?.data)
+
+        setSelectedValues(res.data?.data?.filters)
+        console.log("selected Values: ", selectedValues)
+        const g = res.data?.data
+        if (g) {
+          fetchPlace(g.place_id)
+          fetchActivitesByGuide(g.guide_id)
+        }
+
+      })
+      .catch(e => console.log(e))
+  }
+
+  const fetchPlace = async (id) => {
+    await axios.get(baseApi + "places/" + id)
+      .then(res => setPlace(res.data?.data))
+      .catch(e => console.log(e))
+  }
+
+  const fetchActivitesByGuide = async (id) => {
+    await axios.get(baseApi + "guides/guideId:" + id + "/activities")
+      .then(res => setActivities(res.data))
+      .then(e => console.log(e))
+  }
+
+  const updateGuide = async (e) => {
+    e.preventDefault()
+ 
+    const matchedValues = selectedValues.map(key => filters[key]);
+    console.log("matched values: ", matchedValues)
+    const body = {
+      "filters": matchedValues
+  
+    }
+
+    await axios.patch(baseApi + "guides/" + guideId, body)
+      .then(() => fetchGuide())
+      .then(() => toast.success('The profile has been updated', { autoClose: 3000 }))
+      .catch(e => {
+        console.log(e)
+        toast.error('The profile cannot be updated', { autoClose: 3000 })
+      })
+  }
+
+  useEffect(() => {
+    fetchGuide()
+  }, [guideId])
 
   return (
-    <div>GuideProfilePage</div>
+    <div>
+      <div>
+        <h1>Profile</h1>
+      </div>
+      <div className="guide-profile">
+        <section style={{ width: '30%' }}>
+          <ImageCarousel guide={guide} />
+        </section>
+        <section className="guide-info">
+          <GuideForm guide={guide} place={place} selectedValues={selectedValues} setSelectedValues={setSelectedValues} updateGuide={updateGuide} />
+        </section>
+        <section className="guide-activities">
+          <SearchedActivities activities={activities} />
+        </section>
+      </div>
+    </div>
   )
 }
 
 export default GuideProfilePage
+
