@@ -82,8 +82,14 @@ function App() {
                   <ProtectedRoute>
                 <Pages.WebSocketPage/>
                 </ProtectedRoute>}/>
-                <Route path="/createPlan/:guideId" element={<Pages.CreatePlanPage/>}/>
-                <Route path="/chat" element={<Pages.Chat/>}/>
+                
+                <Route path="/createPlan/:guideId" element={
+                  <ProtectedRoute>
+                <Pages.CreatePlanPage/>
+                </ProtectedRoute>}/>
+
+                <Route path="/chat" element={
+                <Pages.Chat/>}/>
 
               </Route>
             </Routes>

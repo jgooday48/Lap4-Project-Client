@@ -4,6 +4,7 @@ import axios from 'axios';
 import "./Chat.css"
 import { Conversation, ChatBox } from '../../components';
 import { io } from 'socket.io-client';
+import { baseApi } from '../../utils/baseApi';
 
 
 const Chat = () => {

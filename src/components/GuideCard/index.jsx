@@ -65,6 +65,7 @@ const GuideCard = ({ guide, placeName }) => {
         senderId: touristId,
         receiverId: guide.guide_id
       }
+      console.log(guide.guide_id)
       await axios.post(baseApi+`/chat`, data)
       navigate("/chat")
     } catch (error){

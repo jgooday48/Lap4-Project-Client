@@ -60,7 +60,7 @@ const PageWrapper = () => {
         </div>
       )}
 
-      {tourist && (
+      {sessionStorage.getItem("tourist_token") && (
         <>
           <div className='touristWrapper'>
             <header className='tourist-header'>
@@ -85,7 +85,7 @@ const PageWrapper = () => {
       )}
 
 
-      {guide && (
+      {localStorage.getItem("guide_token") && (
         <>
         <div className='touristWrapper'>
           <header className="tourist-header">
