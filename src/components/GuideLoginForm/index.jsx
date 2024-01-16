@@ -54,8 +54,9 @@ const GuideLoginForm = () => {
      axiosInstance.get("guides/current")
          .then(res => {
              sessionStorage.setItem("guide_id", res.data.user_details.guide_id)
-             sessionStorage.setItem("guide_Username", res.data.user_details.guide_Username)
-             console.log(res.data)
+             sessionStorage.setItem("guide_Username", res.data.user_details.username)
+             sessionStorage.setItem("guide_Email", res.data.user_details.email)
+
      }).catch(e => console.log(e))
 
  }
@@ -132,4 +133,3 @@ const GuideLoginForm = () => {
 }
 
 export default GuideLoginForm
-

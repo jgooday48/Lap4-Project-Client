@@ -63,17 +63,22 @@ const CreatePlanPage = () => {
 
     return (
 
-
-            
-
         <div className="create-plan">
 
-            <div className="plan-guide-info">
+            {/* <div className="plan-guide-info">
+
                 <button className="btn btn-secondary" onClick={() => navigate(-1)}>&larr; Go back</button>
                 <b>Create plans with {guide.name.substring(0, guide.name.indexOf(" "))}</b>
                 <img src={guide.images[0]} alt="guide-pic" />
-            </div>
+            </div> */}
 
+
+            <div className="plan-guide-info">
+                <button className="btn btn-secondary" onClick={() => navigate(-1)}>&larr; Go back</button>
+                <b>Create plans with {guide?.name?.substring(0, guide.name.indexOf(" "))}</b>
+                    <img src={guide?.images?.[0]} alt="guide-pic" />
+                </div>
+            
             <div className="create-plan-form-section">
                 <b>Plan Details</b>
                 <form onSubmit={createPlan} className="create-form">

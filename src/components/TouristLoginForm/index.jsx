@@ -26,7 +26,7 @@ const TouristLoginForm = () => {
                 "password": touristpassword
         }
 
-        await axios.post("http://localhost:5000/tourists/login", userData)
+        await axios.post(baseApi + "/tourists/login", userData)
             .then(res => {
                 const data = res.data
                    sessionStorage.setItem("tourist_token", data.tokens.access)
@@ -39,27 +39,6 @@ const TouristLoginForm = () => {
                 
             }).catch(e => console.log(e))
         
-        // try {
-        //     const userData = {
-        //         "username": touristusername,
-        //         "password": touristpassword
-        //     }
-    
-        //     const response = await axios.post(`${baseApi}tourists/login`, userData)
-        //     // URL needs updating before deployment
-            
-        //     const data = await response.data
-        //     console.log("login details: ", data)
-        //     localStorage.setItem("token", data.tokens.access)
-        //     localStorage.setItem("refresh_token", data.tokens.refresh)
-
-        //     if (data.err)
-        //     {throw Error(data.err)}
-        //     // login(data)
-        //     getCurrentUser()
-        // } catch (err) {
-        //     console.warn(err);
-        // }
     
     }
 
