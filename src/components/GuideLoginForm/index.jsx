@@ -11,7 +11,7 @@ import axios from 'axios';
 
 const GuideLoginForm = () => {
 
-    const { guideeemail, setGuideEmail, guidepassword, setGuidePassword, errorMessage, setErrorMessage, Loading, setGuide, guideusername, setGuideUsername, guideaccess, setGuideAccess, guiderefresh, setGuideRefresh } = useGuide(); 
+    const { guideemail, setGuideEmail, guidepassword, setGuidePassword, errorMessage, setErrorMessage, Loading, setGuide, guideusername, setGuideUsername, guideaccess, setGuideAccess, guiderefresh, setGuideRefresh } = useGuide(); 
     const { setWelcome } = useWelcome(); 
 
     // const [email, setEmail ] = useState('')
@@ -25,7 +25,7 @@ const GuideLoginForm = () => {
 
 
         const userData = {
-            "email": guideeemail,
+            "email": guideemail,
             "password": guidepassword
     }
 
@@ -132,4 +132,3 @@ const GuideLoginForm = () => {
 }
 
 export default GuideLoginForm
-
