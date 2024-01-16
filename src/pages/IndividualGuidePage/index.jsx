@@ -10,24 +10,32 @@ import GuideReviews from './GuideReviews';
 
 const IndividualGuidePage = () => {
   const [guide, setGuide] = useState([]);
+  const placeId = guide?.place_id
   const { id } = useParams();
-   const location = useLocation()
-  // const placeName = location && location.state.searchRes
-  const placeName = location.state ? location.state.searchRes : null
+const [placeName, setPlaceName] = useState('')
 
       const displayGuide = async () => {
       try {
         const { data } = await axios.get(`${baseApi}guides`);
         const guideData = data['all guides'].find(g => g.guide_id === Number(id));
-        setGuide(guideData || {});
+        setGuide(guideData || []);
+        if (guide) {
+          fetchPlaceDeets(guideData.place_id)
+        }
       } catch (error) {
         console.error('Error fetching guide:', error);
       }
   };
 
+  const fetchPlaceDeets = async (placeId) => {
+    await axios.get(`${baseApi}places/${placeId}`)
+      .then(res => setPlaceName(res.data.data.name+ ", " + res.data.data.location))
+      .catch(e => console.log(e))
+  }
+
   useEffect(() => {
     displayGuide();
-
+  
  
   }, []);
 

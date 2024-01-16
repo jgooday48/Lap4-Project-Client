@@ -15,14 +15,15 @@ const GuideCard = ({ guide, placeName }) => {
 
   const [toggleSaveOrDelete, setToggleSaveOrDelete] = useState(true)
   const navigate = useNavigate()
-
+   const touristId = localStorage.getItem("touristId")
   const saveOrDeleteGuide = () => {
 
     if (toggleSaveOrDelete) {
-      toast.success('The guide has been saved to your "Watchlist".', {autoClose: 2000});
+      createTouristGuidePair(guide.guide_id,touristId)
+      // toast.success('The guide has been saved to your "Watchlist".', {autoClose: 2000});
     } else {
-            toast.warning('The guide has been removed from your "Watchlist".', {autoClose:2000});
-
+            // toast.warning('The guide has been removed from your "Watchlist".', {autoClose:2000});
+      removeTouristGuidePair(guide.guide_id, touristId)
 
     }
     setToggleSaveOrDelete(prev => !prev)
