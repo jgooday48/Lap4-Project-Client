@@ -40,7 +40,7 @@ describe("Page wrapper functionality", () => {
     it("displays the footer div", () => {
         const footer = screen.getByRole('contentinfo')
         expect(footer).toBeInTheDocument()
-        expect(footer.childNodes[0].textContent).toBe(' Copyright 2024 ')
+        expect(footer.childNodes[0].textContent).toBe('Copyright 2024')
     })
 
     it("displays the nav bar", () => {
