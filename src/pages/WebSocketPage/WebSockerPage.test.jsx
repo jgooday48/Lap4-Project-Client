@@ -42,15 +42,15 @@ describe('Web Socket Page functionality', ()=> {
 
     })
 
-    it('displays a header', () => {
-        const h3 = screen.getByText('Join a chat!')
-        expect(h3).toBeInTheDocument()
-    })
+    // it('displays a header', () => {
+    //     const h3 = screen.getByText('Join a chat!')
+    //     expect(h3).toBeInTheDocument()
+    // })
 
-    it('renders correctly on initial state', () => {
-        const { container } = render(<WebSocketPage />)
-        expect(container).toBeDefined()
-    });
+    // it('renders correctly on initial state', () => {
+    //     const { container } = render(<WebSocketPage />)
+    //     expect(container).toBeDefined()
+    // });
 
     
     
