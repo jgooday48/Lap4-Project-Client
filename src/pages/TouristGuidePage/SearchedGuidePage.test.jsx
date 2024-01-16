@@ -19,7 +19,7 @@ describe('Searched Guides functionality', ()=> {
             filters: ['MUSIC']
         }]
 
-        const mockSearch = "John Doe"
+        const mockSearch = "Tokyo"
 
         render(
             <MemoryRouter>
@@ -35,6 +35,12 @@ describe('Searched Guides functionality', ()=> {
     it('is defined', () => {
         expect(SearchedGuides).toBeDefined()
 
+    })
+
+
+    it('displays a h3 element', () => {
+        const h3 = screen.getByText('Guides in Tokyo')
+        expect(h3).toBeInTheDocument()
     })
 
 })

@@ -38,4 +38,11 @@ describe('Guide Home Page functionality', ()=> {
 
     })
 
+    it('displays a h1 element', () => {
+        const h1 = screen.getByText('View All Of Your Clients')
+        expect(h1).toBeInTheDocument()
+    })
+
+
+
 })

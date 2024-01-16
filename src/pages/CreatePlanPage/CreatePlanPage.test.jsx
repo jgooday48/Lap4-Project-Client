@@ -18,6 +18,7 @@ describe('Create Plan Page functionality', () => {
         const mockGuide = {
             state: {
                 guide: {
+                    place_id: 1,
                     guide_id: 1,
                     name: 'John Doe',
                     images: ['image1.jpg', 'image2.jpg'],
