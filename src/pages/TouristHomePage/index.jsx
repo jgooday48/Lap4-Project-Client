@@ -5,6 +5,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { baseApi } from '../../utils/baseApi';
 import { useNavigate } from 'react-router';
 
+
 import axios from 'axios';
 import FiltersSection from './FiltersSection';
 import { FindPlacesMatch, RenderFoundPlaces } from '../../components';
