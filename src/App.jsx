@@ -72,7 +72,6 @@ function App() {
                 <Pages.WebSocketPage/>
                 </ProtectedRoute>}/>
                 <Route path="/createPlan/:guideId" element={<Pages.CreatePlanPage/>}/>
-
                 <Route path="/chat" element={<Pages.Chat/>}/>
 
               </Route>
