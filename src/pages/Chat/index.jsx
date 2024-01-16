@@ -2,6 +2,7 @@ import React, { useState, useEffect, useDispatch, useRef} from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import "./Chat.css"
+import { baseApi } from '../../utils/baseApi';
 import { Conversation, ChatBox } from '../../components';
 import { io } from 'socket.io-client';
 import { baseApi } from '../../utils/baseApi';

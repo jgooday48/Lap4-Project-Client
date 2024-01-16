@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import "../../pages/Chat/Chat.css"
+import { baseApi } from '../../utils/baseApi'
 
 const Conversation = ({ data, touristUser, guideUser }) => {
 

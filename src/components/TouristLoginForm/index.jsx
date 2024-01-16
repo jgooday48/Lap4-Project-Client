@@ -51,7 +51,7 @@ const TouristLoginForm = () => {
             'Authorization': `Bearer ${token}`
         }
     })
-        axiosInstance.get(baseApi+"/tourists/current")
+        axiosInstance.get(baseApi+"tourists/current")
             .then(res => {
                 sessionStorage.setItem("touristId", res.data.user_details.tourist_id)
                 sessionStorage.setItem("touristUsername", res.data.user_details.username)
