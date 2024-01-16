@@ -58,13 +58,13 @@ function App() {
                 } />
                 {/* <Route path="/guideprofilepage" element={<Pages.GuideProfilePage />} /> */}
 
-//                 <Route path="/places/:search" element={<Pages.TouristAllPlacesPage />} />
+{/* //                 <Route path="/places/:search" element={<Pages.TouristAllPlacesPage />} />
 //                 <Route path="/places/placeId/:id" element={<Pages.TouristGuidePage />} />
 //                 <Route path="/livechat" element={<Pages.WebSocketPage />} />
 //                 <Route path="/createPlan/:guideId" element={<Pages.CreatePlanPage />} />
 //                 <Route path="/plans" element={<Pages.TouristPlansPage />} />
 //                 <Route path="/plans/:id" element={<Pages.TouristEachPlanPage />} />
-//                 <Route path="/watchList" element={<Pages.TouristWatchListPage/>}/>
+//                 <Route path="/watchList" element={<Pages.TouristWatchListPage/>}/> */}
 
                 <Route path="/places/:search" element={
                   <TouristProtectedRoute>
