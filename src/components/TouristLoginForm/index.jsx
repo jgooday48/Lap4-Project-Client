@@ -95,7 +95,8 @@ const TouristLoginForm = () => {
 
     const updateEmail = e => {
         const input = e.target.value;
-        setTouristUsername(input)
+
+        setTouristEmail(input)
     }
 
     const updatePassword = e =>{
