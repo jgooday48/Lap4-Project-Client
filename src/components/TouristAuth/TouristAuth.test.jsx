@@ -9,9 +9,12 @@ expect.extend(matchers);
 import { TouristProvider } from "../../contexts/touristContext";
 import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
-import TouristLoginPage from '.';
 
-describe('Tourist Login Page functionality', ()=> {
+
+
+import TouristProtectedRoute from '.';
+
+describe('Tourist auth functionlity', ()=> {
     beforeEach(() => {
 
         render(
@@ -22,7 +25,7 @@ describe('Tourist Login Page functionality', ()=> {
 
                     <GuideProvider>
 
-                    <TouristLoginPage />
+                    <TouristProtectedRoute />
                     </GuideProvider>
                     </TouristProvider>
                     </WelcomeProvider>
@@ -35,7 +38,7 @@ describe('Tourist Login Page functionality', ()=> {
     })
 
     it('is defined', () => {
-        expect(TouristLoginPage).toBeDefined()
+        expect(TouristProtectedRoute).toBeDefined()
 
     })
 

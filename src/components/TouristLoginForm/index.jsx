@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useEffect, useState } from 'react'
 import { useTourist } from '../../contexts/touristContext'
 import { useWelcome } from '../../contexts/welcomeContext';
 import { useNavigate } from 'react-router-dom';
@@ -6,7 +6,7 @@ import { baseApi } from '../../utils/baseApi'
 import axios from 'axios';
 const TouristLoginForm = () => {
 
-    const { email, setEmail, password, setPassword, errorMessage, setErrorMessage, Loading, setTourist, username, setUsername } = useTourist(); 
+    const { touristemail, setTouristEmail, touristpassword, setTouristPassword, errorMessage, setErrorMessage, Loading, setTourist, touristusername, setTouristUsername, setLoading, setTouristAccess, setTouristRefresh } = useTourist(); 
     const { setWelcome } = useWelcome(); 
 
     // const [email, setEmail ] = useState('')
@@ -17,29 +17,73 @@ const TouristLoginForm = () => {
     const goTo = useNavigate();
 
     const loginFunction = async () => {
-        try {
+
+
             const userData = {
-                "username": username,
-                "password": password
-            }
-    
-            const response = await axios.post(`${baseApi}tourists/login`, userData)
-            // URL needs updating before deployment
-            const data = await response.data
-            if (data.err)
-            {throw Error(data.err)}
-            login(data)
-        } catch (err) {
-            console.warn(err);
+                "username": touristusername,
+                "password": touristpassword
         }
+
+        await axios.post(baseApi + "tourists/login", userData)
+            .then(res => {
+                const data = res.data
+                   localStorage.setItem("tourist_token", data.tokens.access)
+                localStorage.setItem("tourist_refresh", data.tokens.refresh)
+                if (data.tokens.access) {
+                    getCurrentUser(data.tokens.access)
+                } else {
+                    console.log("current user not got ")
+                }
+                
+            }).catch(e => console.log(e))
+        
+        // try {
+        //     const userData = {
+        //         "username": touristusername,
+        //         "password": touristpassword
+        //     }
     
+        //     const response = await axios.post(`${baseApi}tourists/login`, userData)
+        //     // URL needs updating before deployment
+            
+        //     const data = await response.data
+        //     console.log("login details: ", data)
+        //     localStorage.setItem("token", data.tokens.access)
+        //     localStorage.setItem("refresh_token", data.tokens.refresh)
+
+        //     if (data.err)
+        //     {throw Error(data.err)}
+        //     // login(data)
+        //     getCurrentUser()
+        // } catch (err) {
+        //     console.warn(err);
+        // }
+    
+    }
+
+ 
+
+    const getCurrentUser = async (token) => {
+           const axiosInstance = axios.create({
+        baseURL: baseApi,
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+        axiosInstance.get("tourists/current")
+            .then(res => {
+                localStorage.setItem("touristId", res.data.user_details.tourist_id)
+                localStorage.setItem("touristUsername", res.data.user_details.username)
+        }).catch(e => console.log(e))
+
     }
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
         setErrorMessage('');
         await loginFunction(e);
-        if(localStorage.length){
+        if (localStorage.length > 0) {
+            
             setTourist(true);
             setWelcome(false)
             goTo("/touristhomepage")
@@ -51,33 +95,34 @@ const TouristLoginForm = () => {
 
     const updateUsername = e => {
         const input = e.target.value;
-        setUsername(input )
+        setTouristUsername(input )
     }
 
     const updatePassword = e =>{
         const input = e.target.value
-        setPassword(input)
+        setTouristPassword(input)
 
     }
 
-    function login(data) {
-        localStorage.setItem("access token", data.access_token)
-        localStorage.setItem("refresh token", data.refresh_token)
-    }
+    // function login(data) {
+    //     localStorage.setItem("tourist_access_token", data.tokens.access_token)
+    //     localStorage.setItem("tourist_refresh_token", data.tokens.refresh_token)
+    //     if (
+    //         localStorage.getItem("tourist_access_token") === data.tokens.access_token &&
+    //         localStorage.getItem("tourist_refresh_token") === data.tokens.refresh_token
+    //     ) {
+    //         setTouristAccess(data.tokens.access_token);
+    //         setTouristRefresh(data.tokens.refresh_token);
+    //     }
+    // }
 
-
-
-    
-
-
-
-
-  
 
 
     return (
         <>
-        <form aria-label='form' onSubmit={handleSubmit} id="tourist-register-form">
+      
+            <form aria-label='form' onSubmit={handleSubmit} id="tourist-register-form">
+                
             {errorMessage && (
                 <p className="error"> {errorMessage} </p>
             )}

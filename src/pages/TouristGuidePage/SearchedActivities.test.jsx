@@ -7,14 +7,19 @@ import { MemoryRouter } from 'react-router-dom';
 import * as matchers from '@testing-library/jest-dom/matchers';
 expect.extend(matchers);
 
-import TouristGuidePage from '.';
 
-describe('Tourist Guide Page functionality', ()=> {
+import SearchedActivities from './SearchedActivities';
+
+describe('Searched Activities functionality', ()=> {
     beforeEach(() => {
+        const mockActivities = [{
+            name: 'Abseiling',
+            images: 'mock.jpg'
+        }]
 
         render(
             <MemoryRouter>
-                <TouristGuidePage />
+                <SearchedActivities activities={mockActivities}/>
             </MemoryRouter>
         )
     })
@@ -24,7 +29,7 @@ describe('Tourist Guide Page functionality', ()=> {
     })
 
     it('is defined', () => {
-        expect(TouristGuidePage).toBeDefined()
+        expect(SearchedActivities).toBeDefined()
 
     })
 

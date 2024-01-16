@@ -9,23 +9,32 @@ expect.extend(matchers);
 import { TouristProvider } from "../../contexts/touristContext";
 import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
-import TouristLoginPage from '.';
 
-describe('Tourist Login Page functionality', ()=> {
+import GuideImage from '.';
+
+describe('Guide Image functionality', ()=> {
     beforeEach(() => {
+
+        const fakeGuide = {
+            guide_id: 1,
+            name: 'John Doe',
+            info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            tagline: 'Your friendly local guide!',
+            filters: ['Foodie', 'History Enthusiast'],
+            images: ['image1.jpg', 'image2.jpg'],
+          };
 
         render(
             <MemoryRouter>
                 <WelcomeProvider>
 
-                    <TouristProvider>
+                <TouristProvider>
 
-                    <GuideProvider>
-
-                    <TouristLoginPage />
+                <GuideProvider>
+                    <GuideImage guide={fakeGuide}/>
                     </GuideProvider>
-                    </TouristProvider>
-                    </WelcomeProvider>
+                </TouristProvider>
+                </WelcomeProvider>                   
             </MemoryRouter>
         )
     })
@@ -34,8 +43,9 @@ describe('Tourist Login Page functionality', ()=> {
         cleanup()
     })
 
+
     it('is defined', () => {
-        expect(TouristLoginPage).toBeDefined()
+        expect(GuideImage).toBeDefined()
 
     })
 

@@ -9,23 +9,32 @@ expect.extend(matchers);
 import { TouristProvider } from "../../contexts/touristContext";
 import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
-import TouristLoginPage from '.';
 
-describe('Tourist Login Page functionality', ()=> {
+
+
+import SearchResult from './SearchResult';
+
+describe('Search Result functionality', ()=> {
     beforeEach(() => {
+
+        const fakePlace = {
+            place_id: 1,
+            name: 'Ibiza',
+            images: 'fake.jpg',
+            description: 'awesome'
+        }
 
         render(
             <MemoryRouter>
                 <WelcomeProvider>
 
-                    <TouristProvider>
+                <TouristProvider>
 
-                    <GuideProvider>
-
-                    <TouristLoginPage />
+                <GuideProvider>
+                    <SearchResult place={fakePlace}/>
                     </GuideProvider>
-                    </TouristProvider>
-                    </WelcomeProvider>
+                </TouristProvider>
+                </WelcomeProvider>                   
             </MemoryRouter>
         )
     })
@@ -34,9 +43,12 @@ describe('Tourist Login Page functionality', ()=> {
         cleanup()
     })
 
+
     it('is defined', () => {
-        expect(TouristLoginPage).toBeDefined()
+        expect(SearchResult).toBeDefined()
 
     })
+
+    
 
 })

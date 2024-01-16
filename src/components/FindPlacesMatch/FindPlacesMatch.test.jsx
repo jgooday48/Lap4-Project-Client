@@ -9,23 +9,25 @@ expect.extend(matchers);
 import { TouristProvider } from "../../contexts/touristContext";
 import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
-import TouristLoginPage from '.';
 
-describe('Tourist Login Page functionality', ()=> {
+
+
+import FindPlacesMatch from '.';
+
+describe('Find Places Match functionality', ()=> {
     beforeEach(() => {
 
         render(
             <MemoryRouter>
                 <WelcomeProvider>
 
-                    <TouristProvider>
+                <TouristProvider>
 
-                    <GuideProvider>
-
-                    <TouristLoginPage />
+                <GuideProvider>
+                    <FindPlacesMatch />
                     </GuideProvider>
-                    </TouristProvider>
-                    </WelcomeProvider>
+                </TouristProvider>
+                </WelcomeProvider>                   
             </MemoryRouter>
         )
     })
@@ -34,8 +36,9 @@ describe('Tourist Login Page functionality', ()=> {
         cleanup()
     })
 
+
     it('is defined', () => {
-        expect(TouristLoginPage).toBeDefined()
+        expect(FindPlacesMatch).toBeDefined()
 
     })
 
