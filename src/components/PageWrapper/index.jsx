@@ -53,7 +53,7 @@ const PageWrapper = () => {
             <NavLink to='/touristplanspage'>Plans</NavLink>
             <NavLink to='/touristwatchlistpage'>WatchList</NavLink>
             <NavLink to='/chat'>Chat</NavLink>
-            <NavLink to='/profile'>Profile</NavLink>
+            {/* <NavLink to='/profile'>Profile</NavLink> */}
             <section className='logout-button'>
               <NavLink to='/' onClick={handleTouristLogout}>
                 Logout

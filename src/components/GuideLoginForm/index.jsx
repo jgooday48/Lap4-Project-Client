@@ -69,7 +69,7 @@ const GuideLoginForm = () => {
     // Wait for getCurrentUser to complete before checking sessionStorage
     await getCurrentUser(sessionStorage.getItem("guide_token"));
 
-    if (sessionStorage.length > 0) {
+    if (sessionStorage.getItem("guide_token")) {
         setGuide(true);
         setWelcome(false);
         goTo("/guidehomepage");
