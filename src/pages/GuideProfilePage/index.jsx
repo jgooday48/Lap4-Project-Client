@@ -16,26 +16,37 @@ const GuideProfilePage = () => {
   const [place, setPlace] = useState([])
   const [selectedValues, setSelectedValues] = useState([])
   const [activities, setActivities] = useState([])
- const [images, setImages] = useState([])
+  const [images, setImages] = useState([])
+  console.log("guideId: ", guideId)
 
   const fetchGuide = async () => {
 
     await axios.get(baseApi + "guides/" + guideId)
       .then(res => {
-          setGuide(res.data?.data)
-          console.log(guide)
-
-        setSelectedValues(res.data?.data?.filters)
-        const g = res.data?.data
-        if (g) {
-          fetchPlace(g.place_id)
-          fetchActivitesByGuide(g.guide_id)
-          setImages(g.images)
+ 
+        if (res.data[0]) {
+          setGuide(res.data[0])
+          setSelectedValues(res.data[0].filters)
+            fetchPlace(res.data[0].place_id)
+          fetchActivitesByGuide(res.data[0].guide_id)
+          setImages(res.data[0].images)
+        
         }
+    
+
+        // setSelectedValues(res.data?.data?.filters)
+        // const g = res.data?.data
+        // if (g) {
+        //   fetchPlace(g.place_id)
+        //   fetchActivitesByGuide(g.guide_id)
+        //   setImages(g.images)
+        // }
 
       })
       .catch(e => console.log(e))
   }
+
+  console.log("guide: ", guide)
 
   const fetchPlace = async (id) => {
     await axios.get(baseApi + "places/" + id)
@@ -84,10 +95,10 @@ const GuideProfilePage = () => {
         </section>
         <section className="guide-info">
           <GuideForm guide={guide} place={place} selectedValues={selectedValues} setSelectedValues={setSelectedValues} updateGuide={updateGuide} />
-        </section>
-        <section className="guide-activities">
+  </section>
+        <section className="guide-activities-in-guide">
           <SearchedActivities activities={activities} />
-        </section>
+        </section> 
      
       </div>
            <section className="guide-reviews">
