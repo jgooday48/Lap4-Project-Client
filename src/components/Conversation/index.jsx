@@ -70,13 +70,16 @@ const Conversation = ({ data, touristUser, guideUser }) => {
     <>
     <div className="follower conversation">
         <div>
-          {online && <div className="online-dot"></div>}
           <div className="name" style={{fontSize: '0.8rem'}}>
             {userData && userData.length > 0 && (
+              <div>
               <span>{userData[0].name}</span>
+
+              {userData[0].images ? <span><img src={userData[0].images[0]} alt='User image'/></span> : null}
+              </div>
             )}
             <br/>
-            <span style={{color: online?"#51e200":""}}>{online? "Online" : "Offline"}</span>
+            <span style={{color: online?"#51e200":""}}> {online && <div className="online-dot"></div>}{online? "Online" : "Offline"}</span>
           </div>
         </div>
       </div>
