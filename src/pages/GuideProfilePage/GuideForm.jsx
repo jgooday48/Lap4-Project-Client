@@ -9,7 +9,7 @@ import axios from 'axios'
 const GuideForm = ({ guide, place, selectedValues, setSelectedValues, updateGuide}) => {
   
 const location = place?.name + ", " + place?.location
-  
+
     return (
         <form onSubmit={updateGuide}>
             <h4><b>Profile details</b> </h4>

@@ -17,12 +17,12 @@ const GuideProfilePage = () => {
   const [activities, setActivities] = useState([])
  const [images, setImages] = useState([])
 
-
   const fetchGuide = async () => {
-    
+
     await axios.get(baseApi + "guides/" + guideId)
       .then(res => {
           setGuide(res.data?.data)
+          console.log(guide)
 
         setSelectedValues(res.data?.data?.filters)
         const g = res.data?.data
