@@ -1,6 +1,6 @@
 #topContainer {
     background-color: #5228f5;
-    height: 41vh;
+    height: 100vh;
   }
   
   #headerContainer button {
@@ -78,10 +78,10 @@
   }
 /* Features */
 #Features {
-  /* flex: 1; */
+  flex: 1;
   display: flex;
   background-color: #f2dedaff;
-  height: 42vh;
+  height: 82vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -136,11 +136,11 @@
 
 /* Gallery */
 #Gallery {
-  /* flex: 1; */
+  flex: 1;
   display: flex;
   flex-direction: column;
   background-color: white;
-  height: 73vh;
+  height: 98vh;
 }
 
 #Gallery1 {
@@ -174,21 +174,21 @@
 
   /* FAQ */
 #FAQ {
-  /* flex: 1; */
+  flex: 1;
   display: flex;
-  background-color: #5228f5;
-  height: 64vh;
+  background-color: white;
+  height: 46vh;
 }
 
 #FAQ1 {
-  background-color: #5228f5;
+  background-color: white;
   color: black;
   padding: 20px;
   width: 30%; /* Adjust as needed */
 }
 
 #FAQ2 {
-  background-color: #5228f5;
+  background-color: white;
   color: black;
   padding: 20px;
   width: 70%; /* Adjust as needed */
@@ -199,4 +199,3 @@
 
 
 }
-
