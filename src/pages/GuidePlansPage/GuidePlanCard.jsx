@@ -29,11 +29,10 @@ const GuidePlanCard = ({ plan }) => {
     if (status == 'Booked') {
         emoji = '📅';
     } else if (status == 'Ongoing') {
-       
         emoji =  '⌛'; //
     } else if (status == 'Completed') {
         emoji = '✅';
-    } else if (status == 'Updated') {
+    } else if (status == 'Updated'|| status=='Updating') {
         emoji = '🔄'
     } else if (status == 'Cancelled' ) {
         emoji = '❌';
@@ -71,6 +70,8 @@ const GuidePlanCard = ({ plan }) => {
         navigate(`/guidePlans/${plan.plan_id}` , {state: {plan, placeImage, touristName}} ) 
     }
 
+
+    
 
   return (
       <div className="tourist-plan-card" onClick={handleClick}>

@@ -7,6 +7,7 @@ import GuideForm from './GuideForm'
 import SearchedActivities from '../TouristGuidePage/SearchedActivities'
 import { toast } from 'react-toastify'
 import { filters } from '../../utils/filters'
+import GuideReviews from '../IndividualGuidePage/GuideReviews'
 
 
 const GuideProfilePage = () => {
@@ -87,7 +88,12 @@ const GuideProfilePage = () => {
         <section className="guide-activities">
           <SearchedActivities activities={activities} />
         </section>
+     
       </div>
+           <section className="guide-reviews">
+        <b>Client reviews</b>
+        <GuideReviews id={guideId}/>
+      </section>
     </div>
   )
 }
