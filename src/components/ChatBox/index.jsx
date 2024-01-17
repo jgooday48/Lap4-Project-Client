@@ -27,12 +27,33 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
     // const loginId = localStorage.getItem('touristId')
     const scroll = useRef()
 
-    // const senderId = async () => {
-    //   try {
-    //     await axios.get(`http://localhost:5000/tourist/${chat.sender}`)
-    //   }
-    // }
+    useEffect(() => {
 
+      const senderId = async () => {
+        if (touristId){
+          try {
+            const data = await axios.get(`http://localhost:5000/tourist/${touristId}`)
+            setId(data.data)
+            console.log(id)
+          } catch(error)
+          {
+            console.log(error)
+          }
+        }
+
+        if (guideId){
+          try{
+            const data = await axios.get(`http://localhost:5000/guides/${guideId}`)
+            setId(data.data)
+            console.log(id)
+          } catch(error){
+            console.log(error)
+          }
+        }
+      }
+      senderId()
+
+  },[chat])
   
     const handleChange = (newMessage)=> {
       setNewMessage(newMessage)
@@ -114,15 +135,26 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
         chatId: chat.chat_id,
         senderId : guideId,
         text: newMessage,
-    }
+        time: new Date().toLocaleTimeString('en-GB', {
+          hour: 'numeric',
+          minute: '2-digit',
+          hour12: false,
+          timeZone: 'Europe/London',
+        })}
 } else if (touristId){
     message = {
         chatId: chat.chat_id,
         senderId : touristId,
         text: newMessage,
+        time: new Date().toLocaleTimeString('en-GB', {
+          hour: 'numeric',
+          minute: '2-digit',
+          hour12: false,
+          timeZone: 'Europe/London',
+        })}
 }
-}
-  
+console.log(message)
+
     let receiverId = null
 
     if (guideId){
@@ -154,7 +186,9 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
   
   },[receivedMessage])
 
-
+  console.log(messages)
+  console.log(id)
+  console.log(userData)
   return (
       <div className="ChatBox-container">
         {chat ? (
@@ -176,9 +210,20 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
                     style={{ width: "50px", height: "50px" }}
                   /> */}
                   <div className="name" style={{ fontSize: "0.9rem" }}>
-                      {userData && userData.length > 0 && (
+                      {touristId && userData && userData.length > 0 && (
                       <div>
                         <span>{userData[0].name}</span>
+                        <span>
+                        <img src={userData[0].images[0]} alt="User Image" />
+                        </span>
+                      </div>
+                      )}
+                      {guideId && userData && userData.length > 0 && (
+                      <div>
+                        <span>{userData[0].name}</span>
+                        {/* <span>
+                        <img src={userData[0].images[0]} alt="User Image" />
+                        </span> */}
                       </div>
                       )}
                   </div>
@@ -187,7 +232,7 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
               <hr
                 style={{
                   width: "95%",
-                  border: "0.1px solid #ececec",
+                  border: "2px solid #bcbcbc",
                   marginTop: "20px",
                 }}
               />
@@ -195,29 +240,43 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
             {/* chat-body */}
             <div className="chat-body" >
               {guideId && (messages.map((message) => (
+                <>
                   <div ref={scroll} key={message.message_id}
                     className={
                       message.sender_id == guideId
-                        ? "message own"
-                        : "message"
+                      ? "message own"
+                      : "message"
                     }
-                  >
+                    >
                     <span>{message.text}</span>
                   </div>
-                
+                  <div className={message.sender_id == guideId
+                      ? "extra"
+                      : "extra2"}>
+                    {message.sender_id == id[0].guide_id ? <span>{id[0].name}</span> : <span>{userData[0].name}</span>}
+                    <span className='time'>{message.time}</span>
+                  </div>
+                  </>
+              
                 )))}
                 {touristId && (messages.map((message) => (
+                  <>
                   <div ref={scroll} key={message.message_id}
                     className={
                       message.sender_id == touristId
-                        ? "message own"
-                        : "message"
+                      ? "message own"
+                      : "message"
                     }
-                  >
+                    >
                     <span>{message.text}</span>
-                    <span></span>
                   </div>
-                
+                    <div className={ message.sender_id == touristId
+                      ? "extra"
+                      : "extra2"}>
+                    {message.sender_id == id[0].tourist_id ? <span>{id[0].name}</span> : <span>{userData[0].name}</span>}
+                    <span className='time'>{message.time}</span>
+                    </div>
+                  </>
                 )))}
             </div>
             {/* chat-sender */}
