@@ -10,7 +10,7 @@ import { filters } from '../../utils/filters'
 import Notification from '../../components/Notification'
 
 const GuideProfilePage = () => {
-  const guideId = localStorage.getItem("guide_id")
+  const guideId = sessionStorage.getItem("guide_id")
   const [guide, setGuide] = useState([])
   const [place, setPlace] = useState([])
   const [selectedValues, setSelectedValues] = useState([])
@@ -19,9 +19,10 @@ const GuideProfilePage = () => {
 
 
   const fetchGuide = async () => {
+    
     await axios.get(baseApi + "guides/" + guideId)
       .then(res => {
-        setGuide(res.data?.data)
+          setGuide(res.data?.data)
 
         setSelectedValues(res.data?.data?.filters)
         const g = res.data?.data
@@ -66,6 +67,7 @@ const GuideProfilePage = () => {
 
   useEffect(() => {
     fetchGuide()
+    console.log("guideId: " + guideId)
   }, [guideId])
 
   return (
@@ -76,7 +78,7 @@ const GuideProfilePage = () => {
       </div>
       <div className="guide-profile">
         <section style={{ width: '30%' }}>
-          <ImageCarousel guide={guide} />
+          <ImageCarousel images={guide.images} />
         </section>
         <section className="guide-info">
           <GuideForm guide={guide} place={place} selectedValues={selectedValues} setSelectedValues={setSelectedValues} updateGuide={updateGuide} />
