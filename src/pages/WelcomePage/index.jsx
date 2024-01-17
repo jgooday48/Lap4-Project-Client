@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom"
+import "./WelcomePage.css"
 
 const WelcomePage = () => {
 
@@ -11,7 +12,7 @@ const WelcomePage = () => {
 
   return (
     <div className="homepage-container">
-        <img className="image-container" src="/src/assets/backpacker.jpeg"></img>
+        <img id="image-container" src="/src/assets/backpacker.jpeg"></img>
         <div className="overlay">
         <div className='title'>
             <h1 role="title" aria-level="1">TravelGuide</h1>
@@ -19,7 +20,7 @@ const WelcomePage = () => {
         <div className='description'>
             <h2 role="description" aria-level="2">Making travelling solo relaxing and enjoyable</h2>
         </div>
-        <button onClick={handleClick} className="btn">Click here to join now!</button>
+        <button onClick={handleClick} id="btn">Click here to join now!</button>
         </div>
     </div>
   )
