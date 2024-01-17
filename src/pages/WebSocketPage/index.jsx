@@ -1,6 +1,6 @@
 import {React, useState, useEffect } from 'react'
 import ScrollToBottom from "react-scroll-to-bottom"
-import "./WebSocketCall.css"
+
 
 const WebSocketCall = ({ socket, username, room }) => {
   const [message, setMessage] = useState("");
@@ -43,7 +43,7 @@ const WebSocketCall = ({ socket, username, room }) => {
     </div>
     <div className="chat-body">
       <ScrollToBottom className="message-container">
-        {messages.map((message) => {return (
+        {/* {messages.map((message) => {return (
           <div className='message' id={username === message.author ? "you" : "other"}>
             <div>
               <div className='message-content'>
@@ -56,7 +56,7 @@ const WebSocketCall = ({ socket, username, room }) => {
             </div>
           </div>
         )
-        })}
+        })} */}
         </ScrollToBottom>
       <div className='chat-footer'>
         <input type="text" placeholder='Enter...' value={message} onChange={handleText} onKeyDown={handleKeyPress} />
