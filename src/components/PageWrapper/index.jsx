@@ -33,14 +33,14 @@ const PageWrapper = () => {
 
   const renderWelcomeSection = () => (
     <div className='welcomeWrapper'>
-      <header className='tourist-header'>
-        <nav role='navbar' id='tourist-navbar'>
-          <section className='nav-link'>
+      <header className='welcome-header'>
+        <nav role='navbar' id='welcome-navbar'>
+          <section className='logout-button'>
             <NavLink to='/touristloginpage'>Login</NavLink>
           </section>
         </nav>
       </header>
-    </div>
+     </div>
   );
 
   const renderTouristSection = () => (

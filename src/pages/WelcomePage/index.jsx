@@ -12,7 +12,7 @@ const WelcomePage = () => {
 
   return (
     <div className="homepage-container">
-        <img id="image-container" src="/src/assets/backpacker.jpeg"></img>
+        <img id="image-container" src="/src/assets/pexels-nandhu-kumar-450441.jpg"></img>
         <div className="overlay">
         <div className='title'>
             <h1 role="title" aria-level="1">TravelGuide</h1>

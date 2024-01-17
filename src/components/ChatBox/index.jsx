@@ -186,9 +186,6 @@ console.log(message)
   
   },[receivedMessage])
 
-  console.log(messages)
-  console.log(id)
-  console.log(userData)
   return (
       <div className="ChatBox-container">
         {chat ? (

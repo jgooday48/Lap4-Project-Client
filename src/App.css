@@ -139,9 +139,38 @@
 
 .touristWrapper {
   background-color: #5228f5;
-  padding: 20px;
+  padding: 50px;
   height: 50px;
   
+}
+.welcomeWrapper{
+  background-color:white;
+  position:absolute;
+  width:100%;
+  display:flex;
+  justify-content: center;
+}
+.welcome-navbar{
+  background-color:white;
+  position:absolute;
+  
+}
+
+.welcome-header{
+  background:transparent;
+  width:100%;
+  height: 8.5vh;
+  border-radius: 50px;
+  display: flex;
+  align-items: right;
+  margin-top:40px;
+
+  margin-left: 180%;
+  /* margin-right: 10%; */
+  z-index: index 1;;
+  position:absolute;
+  
+
 }
 .tourist-header {
   background-color: white;
@@ -199,6 +228,7 @@
 .logout-button {
   margin-left: 20%;
   max-height: 10%;
+  
 }
 
 .logout-button a {

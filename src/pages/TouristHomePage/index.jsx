@@ -34,7 +34,6 @@ const TouristHomePage = () => {
           <h1 className="sub-heading">
             Your ultimate companion for exploring new destinations
           </h1>
-        </div>
 
         <div className='form'>
           <FindPlacesMatch search={search} setSearch={setSearch} setPlacePicked={setPlacePicked} isHome={true}/>
@@ -48,6 +47,7 @@ const TouristHomePage = () => {
             </div>
           </>
         )}
+      </div>
       </div>
 
       <div id="Details">
