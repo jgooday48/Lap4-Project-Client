@@ -17,6 +17,7 @@ const GuideCard = ({ guide, placeName }) => {
   const navigate = useNavigate()
   const touristId = sessionStorage.getItem("touristId")
   const touristUsername = sessionStorage.getItem('touristUsername')
+  const images = guide?.images || []
 
 
   useEffect(() => {
@@ -117,8 +118,8 @@ const GuideCard = ({ guide, placeName }) => {
     <div className='guide-page-card'>
       
       {/* <div className="carousel" style={{ width: "35%" }}> */}
-      <div style={{width: '35%'}}>
-        <ImageCarousel guide={guide} />
+      <div style={{width: '500px'}}>
+        <ImageCarousel images={images} />
       </div>
      
       <section className="guide-info-section">
