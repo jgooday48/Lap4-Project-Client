@@ -214,7 +214,7 @@ console.log(message)
                       <div>
                         <span>{userData[0].name}</span>
                         <span>
-                        <img src={userData[0].images[0]} alt="User Image" />
+                        <img className='chat-img'src={userData[0].images[0]} alt="User Image" />
                         </span>
                       </div>
                       )}

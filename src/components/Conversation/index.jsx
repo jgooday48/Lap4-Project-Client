@@ -75,7 +75,7 @@ const Conversation = ({ data, touristUser, guideUser }) => {
               <div>
               <span>{userData[0].name}</span>
 
-              {userData[0].images ? <span><img src={userData[0].images[0]} alt='User image'/></span> : null}
+              {userData[0].images ? <span><img className='convo-img' src={userData[0].images[0]} alt='User image'/></span> : null}
               </div>
             )}
             <br/>
