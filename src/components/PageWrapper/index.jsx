@@ -50,9 +50,9 @@ const PageWrapper = () => {
         <nav id='link-navbar'>
           <section className='links'>
             <NavLink to='/touristhomepage'>Home</NavLink>
-            <NavLink to='/plans'>Plans</NavLink>
-            <NavLink to='/watchList'>WatchList</NavLink>
-            <NavLink to='/livechat'>Chat</NavLink>
+            <NavLink to='/touristplanspage'>Plans</NavLink>
+            <NavLink to='/touristwatchlistpage'>WatchList</NavLink>
+            <NavLink to='/chat'>Chat</NavLink>
             <NavLink to='/profile'>Profile</NavLink>
             <section className='logout-button'>
               <NavLink to='/' onClick={handleTouristLogout}>
@@ -73,7 +73,7 @@ const PageWrapper = () => {
           <section className='links'>
             <NavLink to='/guidehomepage'>Home</NavLink>
             <NavLink to='/guideprofilepage'>Profile</NavLink>
-            <NavLink to='/livechat'>Chat</NavLink>
+            <NavLink to='/chat'>Chat</NavLink>
             <NavLink to="/guidePlans">Plans</NavLink>
             <div><Notification/></div>
             <section className='logout-button'>
