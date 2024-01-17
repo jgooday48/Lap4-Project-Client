@@ -1,6 +1,6 @@
 import {React, useState, useEffect } from 'react'
 import ScrollToBottom from "react-scroll-to-bottom"
-import "./WebSocketCall.css"
+import "../../components/WebSocketCall/WebSocketCall.css"
 
 const WebSocketCall = ({ socket, username, room }) => {
   const [message, setMessage] = useState("");
