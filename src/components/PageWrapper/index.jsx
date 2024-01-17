@@ -72,6 +72,7 @@ const PageWrapper = () => {
             <NavLink to='/guidehomepage'>Home</NavLink>
             <NavLink to='/guideprofilepage'>Profile</NavLink>
             <NavLink to='/livechat'>Chat</NavLink>
+            <NavLink to="/guidePlans">Plans</NavLink>
             <section className='logout-button'>
               <NavLink to='/' onClick={handleGuideLogout}>
                 Logout
