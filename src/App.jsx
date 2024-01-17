@@ -87,9 +87,11 @@ function App() {
                 </ProtectedRoute>}/>
                 
                 <Route path="/createPlan/:guideId" element={
-                  <ProtectedRoute>
+                  //<ProtectedRoute>
                 <Pages.CreatePlanPage/>
-                </ProtectedRoute>}/>
+                //</ProtectedRoute>
+              }
+                />
 
                 <Route path="/chat" element={
                 <Pages.Chat/>}/>

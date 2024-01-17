@@ -49,7 +49,7 @@ const Chat = () => {
     const [sendMessage, setSendMessage] = useState(null);
     const [receivedMessage, setReceivedMessage] = useState(null);
 
-    const socket = io("http://localhost:5000",{
+    const socket = io(baseApi ,{
         transports: ["websocket", "polling"]
         ,
         cors: {

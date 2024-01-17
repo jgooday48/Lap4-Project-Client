@@ -5,7 +5,7 @@ import { baseApi } from '../../utils/baseApi'
 import TouristWatchListCard from './TouristWatchListCard'
 
 const TouristWatchListPage = () => {
-  const touristId = localStorage.getItem('touristId')
+  const touristId = sessionStorage.getItem('touristId')
   const [guides, setGuides] = useState([])
 
 

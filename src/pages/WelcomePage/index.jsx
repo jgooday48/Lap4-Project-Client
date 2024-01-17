@@ -14,12 +14,12 @@ const WelcomePage = () => {
         <img className="image-container" src="/src/assets/backpacker.jpeg"></img>
         <div className="overlay">
         <div className='title'>
-            <h1 role="title" aria-level="1">Find a travel guide</h1>
+            <h1 role="title" aria-level="1">TravelGuide</h1>
         </div>
         <div className='description'>
             <h2 role="description" aria-level="2">Making travelling solo relaxing and enjoyable</h2>
         </div>
-        <button onClick={handleClick} className="btn">Join now!</button>
+        <button onClick={handleClick} className="btn">Click here to join now!</button>
         </div>
     </div>
   )
