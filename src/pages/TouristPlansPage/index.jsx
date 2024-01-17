@@ -6,7 +6,7 @@ import TouristPlanCard from './TouristPlanCard'
 
 const TouristPlansPage = () => {
 
-    const touristId = localStorage.getItem("touristId")
+    const touristId = sessionStorage.getItem("touristId")
     const [plans, setPlans] = useState([])
 
 

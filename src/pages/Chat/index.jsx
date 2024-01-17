@@ -5,7 +5,10 @@ import "./Chat.css"
 import { baseApi } from '../../utils/baseApi';
 import { Conversation, ChatBox } from '../../components';
 import { io } from 'socket.io-client';
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/staging
 
 
 const Chat = () => {
@@ -50,7 +53,7 @@ const Chat = () => {
     const [sendMessage, setSendMessage] = useState(null);
     const [receivedMessage, setReceivedMessage] = useState(null);
 
-    const socket = io("http://localhost:5000",{
+    const socket = io(baseApi ,{
         transports: ["websocket", "polling"]
         ,
         cors: {

@@ -22,6 +22,7 @@ const Conversation = ({ data, touristUser, guideUser }) => {
         guideId = sessionStorage.getItem('guide_id')
       }
 
+      console.log(touristId)
     
 
 
@@ -38,8 +39,8 @@ const Conversation = ({ data, touristUser, guideUser }) => {
         if(guideId){
       try
       {
-        const { data } = await axios.get(`http://localhost:5000/tourist/${userId}`)
-         setUserData(data[0])
+        const { data } = await axios.get(baseApi+`tourist/${userId}`)
+         setUserData(data)
         //  dispatch({type:"SAVE_USER", data:data})
       }
       catch(error)
@@ -50,7 +51,7 @@ const Conversation = ({ data, touristUser, guideUser }) => {
         try
         {
           const res = await axios.get(baseApi+`/guides/${userId}`)
-           setUserData(res.data.data)
+           setUserData(res.data)
           //  dispatch({type:"SAVE_USER", data:data})
         }
         catch(error)
@@ -60,22 +61,29 @@ const Conversation = ({ data, touristUser, guideUser }) => {
     }
 }
 
+
     getUserData();
   }, [data, userId])
 
+  console.log("daata", userData)
   return (
     <>
     <div className="follower conversation">
         <div>
-          {online && <div className="online-dot"></div>}
           <div className="name" style={{fontSize: '0.8rem'}}>
-            <span>{userData.name}</span>
-            <span>{userData.image}</span>
-            <span style={{color: online?"#51e200":""}}>{online? "Online" : "Offline"}</span>
+            {userData && userData.length > 0 && (
+              <div>
+              <span>{userData[0].name}</span>
+
+              {userData[0].images ? <span><img src={userData[0].images[0]} alt='User image'/></span> : null}
+              </div>
+            )}
+            <br/>
+            <span style={{color: online?"#51e200":""}}> {online && <div className="online-dot"></div>}{online? "Online" : "Offline"}</span>
           </div>
         </div>
       </div>
-      <hr style={{ width: "85%", border: "0.1px solid #ececec" }} />
+      <hr style={{ width: "85%", border: "2px solid #bcbcbc" }} />
     </>
   )
 }

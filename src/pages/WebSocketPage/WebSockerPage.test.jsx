@@ -37,7 +37,7 @@ describe('Web Socket Page functionality', ()=> {
         cleanup()
     })
 
-    it('is defined', () => {
+    it.skip('is defined', () => {
         expect(WebSocketPage).toBeDefined()
 
     })

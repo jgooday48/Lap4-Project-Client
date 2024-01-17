@@ -70,10 +70,11 @@
   background-color: #3d94ff;
   color: #eeeff2;
   padding: 1rem;
-  width: 8rem;
+  width: 12rem;
   border-width: 0;
   border-radius: 1rem;
   font-size: 1.2rem;
+
 }
 
 .btn:hover {
@@ -81,7 +82,7 @@
 }
 
 .homepage-container {
-  position: relative;
+
   width: 100%;
 }
 
@@ -131,6 +132,7 @@
   background-color: #5228f5;
   padding: 20px;
   height: 50px;
+  
 }
 .tourist-header {
   background-color: white;

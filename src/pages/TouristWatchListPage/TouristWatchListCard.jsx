@@ -5,7 +5,9 @@ import Swal from 'sweetalert2'
 
 const TouristWatchListCard = ({ guide }) => {
     const navigate = useNavigate()
-    const touristId = localStorage.getItem('touristId')
+    const touristId = sessionStorage.getItem('touristId')
+
+    console.log(guide)
     
     const handleClick = () => {
         navigate("/touristguidepage/" + guide.guide_id)

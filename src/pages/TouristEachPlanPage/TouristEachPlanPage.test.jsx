@@ -1,11 +1,7 @@
 import React from 'react';
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { render, cleanup } from '@testing-library/react';
-import { MemoryRouter, Route } from 'react-router-dom';
-
-import * as matchers from '@testing-library/jest-dom/matchers';
-expect.extend(matchers);
-
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { render, cleanup, fireEvent } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import { TouristProvider } from "../../contexts/touristContext";
 import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
@@ -13,17 +9,27 @@ import TouristEachPlanPage from '.';
 
 describe('Tourist Each Plan Page functionality', () => {
     beforeEach(() => {
+        // Mocking the state that would be passed through the location prop
+        const locationState = {
+            guideName: 'Guide Name',
+            image: 'Guide Image URL',
+            plan: {
+                notes: 'Sample Notes',
+                activities: [],
+                date_from: new Date(),
+                date_to: new Date(),
+                guide_id: '123',
+                plan_id: '456'
+            }
+        };
+
         render(
-            <MemoryRouter initialEntries={['/tourist/each-plan']} initialIndex={0}>
+            <MemoryRouter>
                 <WelcomeProvider>
                     <TouristProvider>
                         <GuideProvider>
-                            <Route
-                                path="/tourist/each-plan"
-                                render={(props) => (
-                                    <TouristEachPlanPage {...props} location={{ state: { plan: { notes: 'Sample notes', activities: [], date_from: new Date(), date_to: new Date() } } }} />
-                                )}
-                            />
+                            {/* Provide the location state to simulate the component's behavior */}
+                            <TouristEachPlanPage location={{ state: locationState }} />
                         </GuideProvider>
                     </TouristProvider>
                 </WelcomeProvider>
@@ -35,7 +41,7 @@ describe('Tourist Each Plan Page functionality', () => {
         cleanup();
     });
 
-    it.skip('is defined', () => {
+    it('is defined', () => {
         expect(TouristEachPlanPage).toBeDefined();
     });
 });
