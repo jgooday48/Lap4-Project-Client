@@ -22,14 +22,18 @@ const TouristPlanCard = ({ plan }) => {
 
     let emoji;
 
-    if (status == 'Planned') {
+    if (status == 'Booked') {
         emoji = '📅';
     } else if (status == 'Ongoing') {
-        emoji = '🔄'; //
+        emoji =  '⌛'; //
     } else if (status == 'Completed') {
         emoji = '✅';
+    } else if (status == 'Updated'|| status=='Updating') {
+        emoji = '🔄'
+    } else if (status == 'Cancelled' ) {
+        emoji = '❌';
     } else {
-        emoji = '❓';
+        emoji = '❓'
     }
 
 
