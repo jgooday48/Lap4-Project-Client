@@ -1,0 +1,265 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+#page-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+* {
+  margin:0;
+  padding:0;
+  font-family: Raleway;
+}
+
+#root {
+  /* max-width: 1280px; */
+  margin: 0 auto;
+
+  /*padding: 2rem; */
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif */
+}
+
+#nav {
+  padding-top: 20px;
+  height: 75px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  width: 100%;
+  margin-bottom: 20px;
+  position: absolute;
+  z-index: 1;
+}
+
+#footer {
+  text-align: center;
+  padding: 1rem;
+  height: 50px;
+  background-color: #000;
+  margin-top: auto; 
+  
+}
+
+#footer p{
+  color: #fff;
+}
+
+
+.nav-link {
+  text-decoration: none;
+  color: #181818;
+  margin-right: 15px;
+  margin-left: 15px;
+  font-weight: bold;
+  width: fit-content;
+  border-radius: 0 0 8px 8px;
+  padding: 25px 15px;
+  font-size: 25px;
+  border: 1px white solid;
+  border-radius: 15px;
+}
+
+.nav-link:hover {
+  background-color: #3d94ff;
+}
+
+/* .btn {
+  background-color: #3d94ff;
+  color: #eeeff2;
+  padding: 1rem;
+  width: 12rem;
+  border-width: 0;
+  border-radius: 1rem;
+  font-size: 1.2rem;
+
+}
+
+.btn:hover {
+  background-color: #0471f6;
+} */
+
+/* .homepage-container {
+
+  width: 100%;
+}
+
+.image-container {
+  height: 100%;
+  width: 100%;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  text-align: left;
+  width: 40%;
+  color: #fff;
+}
+
+.description {
+  width: 300px;
+  padding: 10px;
+} */
+
+#register-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+#tourist-register-form {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid grey;
+  margin-bottom: 70px;
+  padding: 50px;
+  margin-top: 35px;
+}
+
+.touristWrapper {
+  background-color: #5228f5;
+  padding: 20px;
+  height: 50px;
+  
+}
+.tourist-header {
+  background-color: white;
+  height: 7.5vh;
+  padding: 15px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  margin-left: 10%;
+  margin-right: 10%;
+  z-index: index 1;;
+  position:relative;
+}
+
+.brand {
+  font-size: 2.7em;
+  margin-right: 20px;
+}
+
+.tourist-nav{
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+#link-navbar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  background-color: white;
+  max-width: 70%;
+  padding: 0;
+  box-sizing: border-box;
+  max-height: 75%;
+}
+
+.links {
+  display: flex;
+  gap: 120px;
+  font-size: 1.5em;
+  
+}
+
+.links a {
+  text-decoration: none;
+  color: #000;
+}
+
+
+
+.logout-button {
+  margin-left: 20%;
+  max-height: 10%;
+}
+
+.logout-button a {
+  text-decoration: none;
+  color: #000;
+  padding: 8px; 
+  border-radius: 20px;
+  border: 1px solid #5228f5;
+  
+}
+
+.logout-button a:hover{
+  background-color: #0471f6;
+}
+
+
+@keyframes shake {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25%, 75% {
+        transform: rotate(-10deg);
+    }
+    50% {
+        transform: rotate(10deg);
+    }
+}
+
+@media (max-width: 600px) {
+  .tourist-header {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .brand {
+    margin-bottom: 10px; /* Add spacing between brand and links */
+  }
+
+  .tourist-nav {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .links {
+    gap: 10px;
+  }
+
+  .logout-button {
+    margin-top: 10px; /* Add spacing between links and logout button */
+  }
+}
+
+.login-switch{
+  margin-top:20px;
+  width:400px;
+  display:flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.switch-element{
+  text-decoration: none;
+  text-align: center;
+  font-size: 20px;
+  border:#0471f6 2px solid;
+  width:202px;
+
+
+}
+.switch-element:active{
+  background-color:rgb(95, 133, 237);
+}

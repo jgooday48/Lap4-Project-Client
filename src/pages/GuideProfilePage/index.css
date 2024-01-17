@@ -1,0 +1,24 @@
+
+.guide-profile{
+    padding: 2em;
+    display: flex;
+    flex-direction: row;
+    width: 100%; 
+    border: 1px solid navy;
+}
+
+.guide-info{
+    width: 55%; 
+    border: 2px solid red;
+    padding: 2em;
+}
+
+.form-input{
+    margin-bottom: 2em;
+}
+
+
+.guide-activities{
+    width: 20%;
+}
+
