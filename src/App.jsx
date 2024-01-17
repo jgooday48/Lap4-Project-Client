@@ -46,8 +46,22 @@ function App() {
                   <Pages.IndividualGuidePage />
                   </TouristProtectedRoute>} />
                 </Route>
+
+                <Route path="/touristwatchlistpage" element={
+                  <TouristProtectedRoute>
+                    <Pages.TouristWatchListPage />
+                  </TouristProtectedRoute>
+                }
+                />
+                 <Route path="/touristplanspage" element={
+                  <TouristProtectedRoute>
+                    <Pages.TouristPlansPage />
+                  </TouristProtectedRoute>
+                }
+                />
                 
                 <Route path="/guideprofilepage" element={<Pages.GuideProfilePage/>}/>
+
                 <Route path="/guidehomepage" element={
                   <GuideProtectedRoute>
                 <Pages.GuideHomePage />
@@ -71,8 +85,14 @@ function App() {
                   <ProtectedRoute>
                 <Pages.WebSocketPage/>
                 </ProtectedRoute>}/>
-                <Route path="/createPlan/:guideId" element={<Pages.CreatePlanPage/>}/>
-                <Route path="/chat" element={<Pages.Chat/>}/>
+                
+                <Route path="/createPlan/:guideId" element={
+                  <ProtectedRoute>
+                <Pages.CreatePlanPage/>
+                </ProtectedRoute>}/>
+
+                <Route path="/chat" element={
+                <Pages.Chat/>}/>
 
               </Route>
             </Routes>

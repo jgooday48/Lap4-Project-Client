@@ -1,95 +1,71 @@
-import React, { useState, useEffect } from 'react'
-import { Manager, io } from "socket.io-client";
-import { WebSocketCall } from '../../components'
-import "../../components/WebSocketCall/WebSocketCall.css"
-import { GuideProvider, useGuide } from '../../contexts/guideContext';
+import {React, useState, useEffect } from 'react'
+import ScrollToBottom from "react-scroll-to-bottom"
+import "./WebSocketCall.css"
 
-let socket;
+const WebSocketCall = ({ socket, username, room }) => {
+  const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState([]);
 
-const WebSocketPage = () => {
+  const handleText = (e) => {
+    const inputMessage = e.target.value;
+    setMessage(inputMessage);
+  };
 
-  const [socketInstance, setSocketInstance] = useState('')
-  const [loading, setLoading] = useState(true)
-  const [username, setUsername] = useState('')
-  const [room, setRoom] = useState('')
-  const [chat, setChat] = useState(false)
-  const { email } = useGuide()
-
-  console.log(email)
-
-  useEffect(() => {
-    if (chat === true) {
-      const socket = io("http://localhost:5000"
-        , {
-          transports: ["websocket", "polling"]
-          ,
-          cors: {
-            origin: "http://localhost:5173/",
-          },
-          reconnection: false
-        }
-      );
-
-      setSocketInstance(socket);
-
-      socket.on("connect", () => {
-        console.log(socket.id)
-        setLoading(false);
-        console.log("connected", socket.connected);
-      });
-
-      setLoading(false)
-
-      if (username !== "" && room !== "") {
-        socket.emit("join_room", { username: username, room: room })
+  const handleSubmit = async () => {
+    if (message) {
+      const messageData = {
+        roomID: room,
+        author: username,
+        message: message,
+        time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes()
       }
-
-      console.log(socket)
-
-
-      socket.on("disconnect", (data) => {
-        console.log((data));
-      });
-
-      return function cleanup() {
-        if (socket) {
-          socket.disconnect();
-          setLoading(true);
-          setRoom('')
-          setUsername('')
-        }
-      }
+      await socket.emit("data", messageData);
+      setMessage("");
     }
-  }, [chat]);
+  };
 
-  const handleClick = () => {
-    if (chat === false) {
-      setChat(true)
-    } else {
-      setChat(false)
+  const handleKeyPress = (e) => {
+    if(e.key === 'Enter'){
+      handleSubmit()
     }
   }
 
-  return (
-    <div>
-      <div className="joinChatContainer">
-        <h3>Join a chat!</h3>
-        <input type='text' placeholder='Type...' onChange={(e) => {
-          setUsername(e.target.value)
-        }} />
-        <input type='text' placeholder='Room ID...' onChange={(e) => {
-          setRoom(e.target.value)
-        }} />
-        {!chat ? (
-          <button onClick={handleClick}>Enter chat room</button>) : <><button onClick={handleClick}>Leave chat room</button></>
-        }
+  useEffect(() => {
+    socket.on("data", (data) => {
+      setMessages([...messages, data.data]);
+    });
+  }, [socket, messages]);
 
-      </div>
-      <div className='line'>
-        {!loading && <WebSocketCall socket={socketInstance} username={username} room={room} />}
+  return (
+  <div className="chat-window">
+    <div className="chat-header">
+        <p>Live Chat</p>
+    </div>
+    <div className="chat-body">
+      <ScrollToBottom className="message-container">
+        {messages.map((message) => {return (
+          <div className='message' id={username === message.author ? "you" : "other"}>
+            <div>
+              <div className='message-content'>
+                <p>{message.message}</p>
+              </div>
+                <div className='message-meta'>
+                <p>{message.time}</p>
+                <p id='author'>{message.author}</p>
+                </div>
+            </div>
+          </div>
+        )
+        })}
+        </ScrollToBottom>
+      <div className='chat-footer'>
+        <input type="text" placeholder='Enter...' value={message} onChange={handleText} onKeyDown={handleKeyPress} />
+        <button onClick={handleSubmit}>submit</button>
       </div>
     </div>
-  )
+  </div>
+  );
 }
 
-export default WebSocketPage
+export default WebSocketCall
+

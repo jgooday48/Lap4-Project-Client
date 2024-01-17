@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef, Children} from 'react'
 import axios from 'axios';
 import "./ChatBox.css"
 import InputEmoji from 'react-input-emoji'
+import { baseApi } from '../../utils/baseApi';
 
 const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage, socket}) => {
 
@@ -9,6 +10,7 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
     const [id, setId] = useState([])
+
 
     let currentUser = null
     let guideId = null
@@ -25,21 +27,27 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
     // const loginId = localStorage.getItem('touristId')
     const scroll = useRef()
 
-    console.log(chat)
+    // const senderId = async () => {
+    //   try {
+    //     await axios.get(`http://localhost:5000/tourist/${chat.sender}`)
+    //   }
+    // }
+
   
     const handleChange = (newMessage)=> {
       setNewMessage(newMessage)
     }
 
+    let userId = null
+
     // fetching data for header
     useEffect(() => {
 
-        let userId = null
 
         if(guideId){
          userId = chat.sender
         } else if (touristId){
-            userId = chat.receiver
+          userId = chat.receiver
         }
 
         const getUserData = async ()=> {
@@ -47,8 +55,9 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
             if(guideId){
             try
             {
-              const res = await axios.get(`http://localhost:5000/tourist/${userId}`)
-               setUserData(res.data.data)
+              const res = await axios.get(baseApi+`tourist/${userId}`)
+              console.log(res.data)
+               setUserData(res.data)
               //  dispatch({type:"SAVE_USER", data:data})
             }
             catch(error)
@@ -59,7 +68,8 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
             try
             {
               const res = await axios.get(`http://localhost:5000/guides/${userId}`)
-               setUserData(res.data.data)
+              console.log(res)
+               setUserData(res.data)
               //  dispatch({type:"SAVE_USER", data:data})
             }
             catch(error)
@@ -77,7 +87,7 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
     useEffect(() => {
       const fetchMessages = async () => {
         try {
-          const res = await axios.get(`http://localhost:5000/message/${chat.chat_id}`);
+          const res = await axios.get(baseApi+`/message/${chat.chat_id}`);
           setMessages(res.data);
         } catch (error) {
           console.log(error);
@@ -89,9 +99,9 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
   
   
     // Always scroll to last Message
-    // useEffect(()=> {
-    //   scroll.current?.scrollIntoView({ behavior: "smooth" });
-    // },[messages])
+    useEffect(()=> {
+      scroll.current?.scrollIntoView({ behavior: "smooth" });
+    },[messages])
   
   
   
@@ -112,7 +122,7 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
         text: newMessage,
 }
 }
-    // const receiverId = chat.filter(obj => obj.sender !== currentUser).map(obj => obj.receiver)
+  
     let receiverId = null
 
     if (guideId){
@@ -124,7 +134,7 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
     setSendMessage({...message, receiverId})
     // // send message to database
     try {
-      const { data } = await axios.post("http://localhost:5000/message", message);
+      const { data } = await axios.post(baseApi+"/message", message);
       console.log(data)
       setMessages([...messages, data]);
       setNewMessage("");
@@ -139,7 +149,6 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
   useEffect(()=> {
     console.log("Message Arrived: ", receivedMessage)
     if (receivedMessage !== null && receivedMessage.chatId === chat._id) {
-      // socket.on("data", (data) => {
       setMessages([...messages, receivedMessage]);
     }
   
@@ -167,9 +176,11 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
                     style={{ width: "50px", height: "50px" }}
                   /> */}
                   <div className="name" style={{ fontSize: "0.9rem" }}>
-                    <span>
-                      {userData?.name}
-                    </span>
+                      {userData && userData.length > 0 && (
+                      <div>
+                        <span>{userData[0].name}</span>
+                      </div>
+                      )}
                   </div>
                 </div>
               </div>
@@ -204,6 +215,7 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
                     }
                   >
                     <span>{message.text}</span>
+                    <span></span>
                   </div>
                 
                 )))}

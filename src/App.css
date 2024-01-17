@@ -128,17 +128,19 @@
 }
 .tourist-header {
   background-color: white;
-  height: 35%;
+  height: 7.5vh;
   padding: 15px;
   border-radius: 50px;
   display: flex;
   align-items: center;
   margin-left: 10%;
   margin-right: 10%;
+  z-index: index 1;;
+  position:relative;
 }
 
 .brand {
-  font-size: 1.7em;
+  font-size: 2.7em;
   margin-right: 20px;
 }
 
@@ -165,8 +167,9 @@
 
 .links {
   display: flex;
-  gap: 60px;
-  max-width: calc(100% - 30px);
+  gap: 120px;
+  font-size: 1.5em;
+  
 }
 
 .links a {
