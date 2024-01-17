@@ -104,11 +104,14 @@ const PageWrapper = () => {
         </section>
         </nav>
         </header>
-        
-        <Outlet />
         </div>
+        <Outlet />
+        <footer id='footer'>
+        <p>Copyright 2024</p>
+        </footer>
         </>
       )}
+    
       
       {sessionStorage.getItem("tourist_token") && (
         <>
@@ -137,7 +140,7 @@ const PageWrapper = () => {
         </>
       )}
       
-      {localStorage.getItem("guide_token") && (
+      {sessionStorage.getItem("guide_token") && (
         <>
       <div className='touristWrapper'>
         <header className='tourist-header'>
