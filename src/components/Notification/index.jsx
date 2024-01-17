@@ -10,7 +10,7 @@ const Notification = () => {
     const [receivedNotes, setReceivedNotes] = useState([]);
     const [seenCount, setSeenCount] = useState(0);
    
-    const guideId = localStorage.getItem('guide_id');
+    const guideId = sessionStorage.getItem('guide_id');
     const [clicked, setClicked] = useState(false);
 
     useEffect(() => {
@@ -21,6 +21,7 @@ const Notification = () => {
     const fetchGuideNotifications = async () => {
         try {
             const res = await axios.get(baseApi + 'notes/guide/' + guideId);
+            console.log("notication: ", res.data)
             setReceivedNotes(res.data);
             setSeenCount(res.data.length)
 
