@@ -104,14 +104,10 @@ const GuideEachPlanPage = () => {
         await axios.patch(baseApi + "plans/" + plan.plan_id, body)
             .then(() => {
                 toast.info("The plan has been cancelled")
-                fetchPlan() 
+                fetchPlan()
             })
             .catch(e => console.log(e))
             
-                    
-        // await axios.delete(baseApi + "plans/" + plan.plan_id)
-        //     .then(res => navigate(-1))
-        //     .catch(e => console.log(e))
     }
 
     return (
@@ -140,7 +136,7 @@ const GuideEachPlanPage = () => {
                 <GuidePlanForm plan={plan} notes={notes} guideId={guideId} status={status} okPlan={confirmPlan} />
 
 
-                
+
             <div>
                 {
                     status == 'Updating' &&
@@ -160,14 +156,6 @@ const GuideEachPlanPage = () => {
                     <button className="btn btn-danger" onClick={handleCancel}>&#10006; Cancel the plan</button>
                 }
            </div>
-                {
-                    status == 'Completed' &&
-                    <div>
-                        <h5>Review</h5>
-                    </div>
-                }
-
-
             </div>
 
 
