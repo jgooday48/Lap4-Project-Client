@@ -7,27 +7,29 @@ import GuideForm from './GuideForm'
 import SearchedActivities from '../TouristGuidePage/SearchedActivities'
 import { toast } from 'react-toastify'
 import { filters } from '../../utils/filters'
-import Notification from '../../components/Notification'
+
 
 const GuideProfilePage = () => {
-  const guideId = localStorage.getItem("guide_id")
+  const guideId = sessionStorage.getItem("guide_id")
   const [guide, setGuide] = useState([])
   const [place, setPlace] = useState([])
   const [selectedValues, setSelectedValues] = useState([])
   const [activities, setActivities] = useState([])
-
+ const [images, setImages] = useState([])
 
 
   const fetchGuide = async () => {
+    
     await axios.get(baseApi + "guides/" + guideId)
       .then(res => {
-        setGuide(res.data?.data)
+          setGuide(res.data?.data)
 
         setSelectedValues(res.data?.data?.filters)
         const g = res.data?.data
         if (g) {
           fetchPlace(g.place_id)
           fetchActivitesByGuide(g.guide_id)
+          setImages(g.images)
         }
 
       })
@@ -66,17 +68,18 @@ const GuideProfilePage = () => {
 
   useEffect(() => {
     fetchGuide()
+    console.log("guideId: " + guideId)
   }, [guideId])
 
   return (
     <div>
-        <Notification/>
+
       <div>
         <h1>Profile</h1>
       </div>
       <div className="guide-profile">
         <section style={{ width: '30%' }}>
-          <ImageCarousel guide={guide} />
+          <ImageCarousel images={images} />
         </section>
         <section className="guide-info">
           <GuideForm guide={guide} place={place} selectedValues={selectedValues} setSelectedValues={setSelectedValues} updateGuide={updateGuide} />
