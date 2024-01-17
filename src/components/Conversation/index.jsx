@@ -3,11 +3,11 @@ import axios from 'axios'
 import "../../pages/Chat/Chat.css"
 import { baseApi } from '../../utils/baseApi'
 
-const Conversation = ({ data, touristUser, guideUser }) => {
+const Conversation = ({ data, touristUser, guideUser, online }) => {
 
 
     const [userData, setUserData] = useState({})
-    const [online, setOnline ] = useState(true)
+    // const [online, setOnline ] = useState(true)
 
     let currentUser = null
     let guideId = null

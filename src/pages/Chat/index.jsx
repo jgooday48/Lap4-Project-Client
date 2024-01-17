@@ -44,7 +44,6 @@ const Chat = () => {
   
     const [chats, setChats] = useState([]);
     const [onlineUsers, setOnlineUsers] = useState([]);
-    const [receiver, setReceiver] = useState([])
     const [currentChat, setCurrentChat] = useState([]);
     const [sendMessage, setSendMessage] = useState(null);
     const [receivedMessage, setReceivedMessage] = useState(null);
@@ -109,11 +108,27 @@ useEffect(() => {
         getChats();
       }, []);
 
-    //   const checkOnlineStatus = (chat) => {
-    //     const chatMember = chat.members.find((member) => member !== user._id);
-    //     const online = onlineUsers.find((user) => user.userId === chatMember);
-    //     return online ? true : false;
-    //   };
+      const checkOnlineStatus = () => {
+        let chatMember;
+        let online;
+      
+        if (guideLoginId) {
+          chatMember = chats.filter((member) => member !== guideLoginId);
+          online = Object.values(onlineUsers).some((user) => user.userId == chatMember);
+          return online;
+        }
+      
+        if (touristloginId) {
+          chatMember = chats.filter((member) => member !== touristloginId);
+          online = Object.values(onlineUsers).some((user) => user.userId == chatMember);
+          return online;
+        }
+      
+        return false;
+      }
+
+      console.log(onlineUsers)
+      console.log(chats)
 
   return (
     <div className="Chat">
@@ -134,7 +149,8 @@ useEffect(() => {
               data={chat}
               touristUser ={touristloginId}
               guideUser = {guideLoginId}
-              // online={checkOnlineStatus(chat)}
+              online={checkOnlineStatus}
+
             />
           </div>
         )   
