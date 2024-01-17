@@ -17,7 +17,6 @@ const GuideCard = ({ guide, placeName }) => {
   const navigate = useNavigate()
   const touristId = sessionStorage.getItem("touristId")
   const touristUsername = sessionStorage.getItem('touristUsername')
-  const images = guide?.images || []
 
 
   useEffect(() => {
@@ -118,8 +117,8 @@ const GuideCard = ({ guide, placeName }) => {
     <div className='guide-page-card'>
       
       {/* <div className="carousel" style={{ width: "35%" }}> */}
-      <div style={{width: '30%'}}>
-        <ImageCarousel images={images} />
+      <div style={{width: '35%'}}>
+        <ImageCarousel guide={guide} />
       </div>
      
       <section className="guide-info-section">
@@ -134,18 +133,18 @@ const GuideCard = ({ guide, placeName }) => {
           )}
         </p>
 
-        {/* <li>make and confirm plan</li>
+        <li>make and confirm plan</li>
         <li>plans page</li>
         <li>save guides</li>
         <li>saved guides page</li>
         <li>dates</li>
         <li>connect messaging system</li>
-        <li>reviews long paginate or new page</li> */}
+        <li>reviews long paginate or new page</li>
         <li></li>
       </section>
       <section className="guide-contact">
         <div className="guide-chat-title">
-          <b>Contact</b>
+          <b>Say Hello</b>
         </div>
         <div className="chat-icon" onClick={startChat}>
           <FontAwesomeIcon icon={faComment} />
