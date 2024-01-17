@@ -1,35 +1,29 @@
 import React, { useEffect, useState } from 'react'
-import './index.css'
 import axios from 'axios'
 import { baseApi } from '../../utils/baseApi'
-import TouristPlanCard from './TouristPlanCard'
+import TouristPlanCard from '../TouristPlansPage/TouristPlanCard'
+import GuidePlanCard from './GuidePlanCard'
 
-const TouristPlansPage = () => {
+const GuidePlansPage = () => {
+  const guideId = sessionStorage.getItem('guide_id')
+  const [plans, setPlans] = useState([])
 
-    const touristId = localStorage.getItem("touristId")
-    const [plans, setPlans] = useState([])
-
-
+  
     const fetchPlansByTourist = async () => {
-        await axios.get(baseApi + "plans/tourist:" + touristId)
+        await axios.get(baseApi + "plans/guide:" + guideId)
             .then(res => {
-
                 setPlans(res.data)
-
             }
             )
             .catch(e => console.log(e))
-    }
+  }
+  
+  useEffect(() => {
+fetchPlansByTourist()
+  },[] )
 
-    useEffect(() => {
-        fetchPlansByTourist()
-
-    }, [])
-
-
-
-
-    return (
+  console.log("plans: ", plans)
+  return (
         <div className="tourist-plans">
             <h4><b>My plans</b></h4>
             <u></u>
@@ -53,7 +47,8 @@ const TouristPlansPage = () => {
                     {
                         plans?.map(plan => (
                             <div key={plan.plan_id}>
-                                <TouristPlanCard plan={plan} />
+                            {/* <TouristPlanCard plan={plan} /> */}
+                            <GuidePlanCard plan={plan}/>
                             </div>
                         ))
 
@@ -61,7 +56,7 @@ const TouristPlansPage = () => {
                 </div>
             </div>
         </div>
-    )
+  )
 }
 
-export default TouristPlansPage
+export default GuidePlansPage

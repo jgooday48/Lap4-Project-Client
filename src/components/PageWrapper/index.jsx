@@ -4,6 +4,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { useTourist } from '../../contexts/touristContext';
 import { useGuide } from '../../contexts/guideContext';
 import { useWelcome } from '../../contexts/welcomeContext';
+import Notification from '../Notification';
 
 const PageWrapper = () => {
   const { tourist, setTourist } = useTourist();
@@ -147,7 +148,9 @@ const PageWrapper = () => {
               <section className='links'>
                 <NavLink to="/guidehomepage">Home</NavLink>
                 <NavLink to="/guideprofilepage">Your profile</NavLink>
-                <NavLink to="/chat">Chat</NavLink>
+                    <NavLink to="/chat">Chat</NavLink>
+                    <NavLink to="/guidePlans">Plans</NavLink>
+                    <div><Notification/></div>
                 <section className='logout-button'>
                     <NavLink to="/" onClick={handleGuideLogout}>Logout</NavLink>
 

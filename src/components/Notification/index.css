@@ -42,10 +42,12 @@
     border: 1px solid black;
     width: 400px;
     position: absolute;
+    /* left: -50%; */
     z-index: 100;
     max-height: 600px;
     background-color: whitesmoke;
      overflow-y: auto; /* or overflow-y: scroll; */
+    
 }
 
 .note-container::-webkit-scrollbar {
@@ -86,6 +88,7 @@
 #note-text{
     padding-top: 15px;
     font-weight: bold;
+    font-size: 15px;
 
   
 }

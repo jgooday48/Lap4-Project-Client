@@ -60,8 +60,8 @@ function App() {
                 }
                 />
                 
-                <Route path="/guideprofilepage" element={<Pages.GuideProfilePage/>}/>
-
+                <Route path="/guideprofilepage" element={<Pages.GuideProfilePage />} />
+                <Route path="/guidePlans" element={<Pages.GuidePlansPage />}/>
                 <Route path="/guidehomepage" element={
                   <GuideProtectedRoute>
                 <Pages.GuideHomePage />

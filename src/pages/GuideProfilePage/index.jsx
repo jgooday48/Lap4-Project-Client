@@ -70,7 +70,7 @@ const GuideProfilePage = () => {
 
   return (
     <div>
-        <Notification/>
+
       <div>
         <h1>Profile</h1>
       </div>

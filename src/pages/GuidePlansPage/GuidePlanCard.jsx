@@ -1,25 +1,29 @@
 import React, { useEffect } from 'react'
-import axios from 'axios'
-import { baseApi } from '../../utils/baseApi'
 import { useState } from 'react'
-import './TouristPlanCard.css'
 import { useNavigate } from 'react-router'
+import { baseApi } from '../../utils/baseApi'
+import axios from 'axios'
 
-const TouristPlanCard = ({ plan }) => {
-    const [image, setImage] = useState("")
+
+
+const GuidePlanCard = ({ plan }) => {
+        const [image, setImage] = useState("")
     const [destination, setDestination] = useState("")
     const [placeImage, setPlaceImage] = useState()
-    const [guideName, setGuideName] = useState("")
-    const guideId = plan.guide_id
+    const [touristName, setTouristName] = useState("")
+    const touristId = plan.tourist_id
     const placeId = plan.place_id
     const dateFrom = plan.date_from
     const dateTime = new Date(dateFrom);
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const formattedDate = dateTime.toLocaleString('en-US', options);
+    const timeOptions = { hour: 'numeric', minute: 'numeric', hour12: false };
+    const formattedTime = dateTime.toLocaleString('en-US', timeOptions);
+
     const status = plan.status
     const navigate = useNavigate()
 
-
+    
     let emoji;
 
     if (status == 'Booked') {
@@ -37,18 +41,17 @@ const TouristPlanCard = ({ plan }) => {
         emoji = '❓'
     }
 
-
-    const fetchGuideByGuideId = async () => {
-
-        await axios.get(baseApi + "guides/" + guideId)
+      const fetchTouristByTouristId = async () => {
+        //   await axios.get("http://127.0.0.1:5000/tourist/2")
+        await axios.get(baseApi + "tourist/" + plan?.tourist_id)
             .then(res => {
-                setGuideName(res.data.data.name)
-                setImage(res.data.data.images[0])
+                // setTouristName(res.data.data.name)
+                setTouristName(res.data[0].name)
             })
             .catch(e => console.log(e))
     }
 
-    const fetchPlaceByPlaceId = async () => {
+       const fetchPlaceByPlaceId = async () => {
         await axios.get(baseApi + "places/" + placeId)
             .then(res => {
                 setDestination(res.data.data.name + ", " + res.data.data.location)
@@ -60,32 +63,26 @@ const TouristPlanCard = ({ plan }) => {
 
 
     useEffect(() => {
-        fetchGuideByGuideId()
+        fetchTouristByTouristId()
         fetchPlaceByPlaceId()
-
-    }, [guideId])
-
-
+    }, [])
 
     const handleClick = () => {
-        navigate(`/plans/${plan.plan_id}`, {state: {plan, image, guideName}})
+
     }
 
 
-
-
-
-    return (
-        <div className="tourist-plan-card" onClick={handleClick}>
-            <img src={image} alt="guide-image" />
+  return (
+      <div className="tourist-plan-card" onClick={handleClick}>
+            <img src={placeImage} alt="guide-image" />
             <div className="plan-info">
-                <b>Plan for {destination} on {formattedDate} </b>
-                <p>With {guideName}</p>
+                <b>{formattedDate} at {formattedTime} </b>
+                <p>With {touristName}</p>
                 <p>Status: {status} {emoji}</p>
             </div>
 
         </div>
-    )
+  )
 }
 
-export default TouristPlanCard
+export default GuidePlanCard
