@@ -6,10 +6,15 @@
 }
 
 img{
+    object-fit:cover;
     width: 50px;
     height: 50px;
     border-radius: 50%;
     margin-left: 20px;
+}
+
+.text{
+    color: white;
 }
 
 .time {
@@ -49,7 +54,7 @@ img{
 
 .message {
 
-  background:#90EE90;
+  background:#53d769;
   padding: 0.7rem;
   border-radius: 1rem 1rem 1rem 0;
   max-width: 28rem;

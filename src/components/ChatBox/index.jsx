@@ -248,7 +248,7 @@ console.log(message)
                       : "message"
                     }
                     >
-                    <span>{message.text}</span>
+                    <span className='text'>{message.text}</span>
                   </div>
                   <div className={message.sender_id == guideId
                       ? "extra"
@@ -268,7 +268,7 @@ console.log(message)
                       : "message"
                     }
                     >
-                    <span>{message.text}</span>
+                    <span className='text'>{message.text}</span>
                   </div>
                     <div className={ message.sender_id == touristId
                       ? "extra"
