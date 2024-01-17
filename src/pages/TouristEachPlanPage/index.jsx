@@ -20,11 +20,6 @@ const TouristEachPlanPage = () => {
     const guideName = location.state && location.state.guideName
     const guideImage = location.state && location.state.image
     const plan = location.state && location.state.plan
-    // const [notes, setNotes] = useState(plan.notes)
-    // const [activityIds, setActivityIds] = useState(plan.activities.map(activity => activity.activity_id))
-    // const [dateTimeFrom, setDateTimeFrom] = useState(new Date(plan.date_from))
-    // const [dateTimeTo, setDateTimeTo] = useState(new Date(plan.date_to))
-    
     const [notes, setNotes] = useState(plan ? plan.notes : '')
     const [activityIds, setActivityIds] = useState(plan ? plan.activities.map(activity => activity.activity_id) : []);
     
@@ -82,13 +77,6 @@ const isConfirmed = await Swal.fire({
             .catch(e => console.log(e))
     }
 
-
-
-
-
-    // useEffect(() => {
-    //     console.log("actvityIds: ", plan.date_from)
-    // }, [])
 
     return (
 
