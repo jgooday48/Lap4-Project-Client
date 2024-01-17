@@ -79,7 +79,9 @@ const Conversation = ({ data, touristUser, guideUser, online }) => {
               </div>
             )}
             <br/>
-            <span style={{color: online?"#51e200":""}}> {online && <div className="online-dot"></div>}{online? "Online" : "Offline"}</span>
+            <span style={{color: online?"#51e200":""}}> 
+            {online && <div className="online-dot"></div>}
+            {online? "Online" : "Offline"}</span>
           </div>
         </div>
       </div>
