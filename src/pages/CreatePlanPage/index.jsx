@@ -22,7 +22,7 @@ const CreatePlanPage = () => {
     // const [dateTo, setDateTo] = useState(null);
     const [activityIds, setActivityIds] = useState([])
 
-    const touristId = localStorage.getItem('touristId')
+    const touristId = sessionStorage.getItem('touristId')
     const navigate = useNavigate()
     const [dateTimeFrom, setDateTimeFrom] = useState(null);
     const [dateTimeTo, setDateTimeTo] = useState(null);
@@ -45,6 +45,7 @@ const CreatePlanPage = () => {
             "activity_ids": activityIds,
 
         };
+        console.log("body: ", body)
 
         await axios.post(baseApi + "plans", body)
             .then(res => toast.success('New plan added to your "Plans"'))
@@ -126,7 +127,7 @@ const CreatePlanPage = () => {
                         />
                     </div>
 
-                    <button className="btn btn-primary">Craft a plan</button>
+                    <button className="btn btn-primary">Start a plan</button>
                 </form>
             </div>
 

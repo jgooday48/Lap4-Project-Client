@@ -71,6 +71,8 @@ function App() {
                 <Pages.GuideLoginPage />
                 } />
 
+                <Route path="/plans/:id" element={<Pages.TouristEachPlanPage/>}/>
+
                 <Route path="/guideprofilepage" element={<Pages.GuideProfilePage />} />
                 <Route path="/guidePlans" element={<Pages.GuidePlansPage />} />
                 <Route path="/guidePlans/:id" element={<Pages.GuideEachPlanPage/>}/>
