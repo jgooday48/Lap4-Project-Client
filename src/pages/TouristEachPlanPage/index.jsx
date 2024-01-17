@@ -20,13 +20,19 @@ const TouristEachPlanPage = () => {
     const guideName = location.state && location.state.guideName
     const guideImage = location.state && location.state.image
     const plan = location.state && location.state.plan
-    const [notes, setNotes] = useState(plan.notes)
-    const [activityIds, setActivityIds] = useState(plan.activities.map(activity => activity.activity_id))
-    const [dateTimeFrom, setDateTimeFrom] = useState(new Date(plan.date_from))
-    const [dateTimeTo, setDateTimeTo] = useState(new Date(plan.date_to))
+    // const [notes, setNotes] = useState(plan.notes)
+    // const [activityIds, setActivityIds] = useState(plan.activities.map(activity => activity.activity_id))
+    // const [dateTimeFrom, setDateTimeFrom] = useState(new Date(plan.date_from))
+    // const [dateTimeTo, setDateTimeTo] = useState(new Date(plan.date_to))
+    
+    const [notes, setNotes] = useState(plan ? plan.notes : '')
+    const [activityIds, setActivityIds] = useState(plan ? plan.activities.map(activity => activity.activity_id) : []);
+    
+    const [dateTimeFrom, setDateTimeFrom] = useState(plan ? new Date(plan.date_from) : new Date());
+    const [dateTimeTo, setDateTimeTo] = useState(plan ? new Date(plan.date_to) : new Date());
     const navigate = useNavigate()
-    const guideId = plan.guide_id
-
+    // const guideId = plan.guide_id
+    const guideId = plan && plan.guide_id;
 
     const updatePlan = async (e) => {
         e.preventDefault()
@@ -80,9 +86,9 @@ const isConfirmed = await Swal.fire({
 
 
 
-    useEffect(() => {
-        console.log("actvityIds: ", plan.date_from)
-    }, [])
+    // useEffect(() => {
+    //     console.log("actvityIds: ", plan.date_from)
+    // }, [])
 
     return (
 
@@ -90,7 +96,8 @@ const isConfirmed = await Swal.fire({
 
             <div className="plan-guide-info">
                 <button className="btn btn-secondary" onClick={() => navigate(-1)}>&larr; Go back</button>
-                <b>Your plans with {guideName.substring(0, guideName.indexOf(" "))}</b>
+                 {/* <b>Your plans with {guideName.substring(0, guideName.indexOf(" "))}</b> */}
+                 <b>Your plans with {guideName && guideName.substring(0, guideName.indexOf(" "))}</b>
                 <img src={guideImage} alt="guide-pic" />
             </div>
             <div className="create-plan-form-section">

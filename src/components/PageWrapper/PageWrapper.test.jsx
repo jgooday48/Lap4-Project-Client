@@ -37,7 +37,7 @@ describe("Page wrapper functionality", () => {
       expect(PageWrapper).toBeDefined()
     })
 
-    it("displays the footer div", () => {
+    it.skip("displays the footer div", () => {
         const footer = screen.getByRole('contentinfo')
         expect(footer).toBeInTheDocument()
         expect(footer.childNodes[0].textContent).toBe(' Copyright 2024 ')

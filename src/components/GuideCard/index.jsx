@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
-import { useLocation, useNavigate } from 'react-router'
-import Carousel from 'react-bootstrap/Carousel';
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router'
 import './index.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment, faEye, faSuitcase, faPersonWalkingLuggage } from '@fortawesome/free-solid-svg-icons';
@@ -8,7 +7,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import { baseApi } from '../../utils/baseApi';
 import ImageCarousel from '../ImageCarousel';
-
+import { io } from "socket.io-client";
 
 
 
@@ -17,20 +16,55 @@ const GuideCard = ({ guide, placeName }) => {
   const [toggleSaveOrDelete, setToggleSaveOrDelete] = useState(true)
   const navigate = useNavigate()
   const touristId = sessionStorage.getItem("touristId")
+  const touristUsername = sessionStorage.getItem('touristUsername')
+
+
+  useEffect(() => {
+        const socket = io('http://localhost:5000'); // Change the URL to your Flask server
+
+        return () => {
+            socket.disconnect();
+        };
+    }, []);
 
 
   const saveOrDeleteGuide = () => {
 
     if (toggleSaveOrDelete) {
-      createTouristGuidePair(guide.guide_id,touristId)
-      // toast.success('The guide has been saved to your "Watchlist".', {autoClose: 2000});
+      createTouristGuidePair(guide.guide_id, touristId)
+    
+      notifyAddedToGuide();
     } else {
-            // toast.warning('The guide has been removed from your "Watchlist".', {autoClose:2000});
+           
       removeTouristGuidePair(guide.guide_id, touristId)
+      notifyRemovedToGuide();
 
     }
     setToggleSaveOrDelete(prev => !prev)
   }
+
+
+     const notifyAddedToGuide = () => {
+        // Send a notification to the guide via WebSocket
+        const socket = io('http://localhost:5000'); // Change the URL to your Flask server
+        socket.emit('notification', {
+          guideId: guide.guide_id,
+          message: `${touristUsername} has added you to their watchlist`,
+          senderId: touristId
+        });
+  };
+  
+  const notifyRemovedToGuide = () => {
+
+        const socket = io('http://localhost:5000'); // Change the URL to your Flask server
+        socket.emit('notification', {
+          guideId: guide.guide_id,
+          message: `${touristUsername} has removed you from their watchlist`,
+          senderId: touristId
+        });
+  }
+
+
 
   const createTouristGuidePair = async (guideId, touristId) => {
     const data = {
@@ -86,16 +120,7 @@ const GuideCard = ({ guide, placeName }) => {
       <div style={{width: '35%'}}>
         <ImageCarousel guide={guide} />
       </div>
-        {/* <Carousel interval={null}>
-          {
-            guide.images?.map((image, idx) =>
-              <Carousel.Item key={idx} className="carousel-item" style={{ width: "500px", height: "600px" }}>
-                <img src={image} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} alt="guide-pic" />
-              </Carousel.Item>
-            )
-          }
-        </Carousel> */}
-      {/* </div> */}
+     
       <section className="guide-info-section">
         <b>Meet {guide.name}</b>
         <p>A local from <u>{placeName}</u></p>

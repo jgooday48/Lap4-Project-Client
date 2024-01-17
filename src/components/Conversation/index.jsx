@@ -75,11 +75,12 @@ const Conversation = ({ data, touristUser, guideUser }) => {
             {userData && userData.length > 0 && (
               <span>{userData[0].name}</span>
             )}
+            <br/>
             <span style={{color: online?"#51e200":""}}>{online? "Online" : "Offline"}</span>
           </div>
         </div>
       </div>
-      <hr style={{ width: "85%", border: "0.1px solid #ececec" }} />
+      <hr style={{ width: "85%", border: "2px solid #bcbcbc" }} />
     </>
   )
 }

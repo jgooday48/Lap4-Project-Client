@@ -6,23 +6,34 @@ import { MemoryRouter } from 'react-router-dom';
 
 import * as matchers from '@testing-library/jest-dom/matchers';
 expect.extend(matchers);
-import axios from 'axios';
 import { TouristProvider } from "../../contexts/touristContext";
 import { GuideProvider } from "../../contexts/guideContext";
 import { WelcomeProvider } from "../../contexts/welcomeContext";
-import GuideHomePage from '.';
 
-vi.mock('axios');
-describe('Guide Home Page functionality', ()=> {
+import ImageCarousel from '.';
+
+describe('Image Carousel functionality', ()=> {
     beforeEach(() => {
-        axios.get.mockResolvedValue({ data: { all_activities: [] } });
+        const fakeGuide = [{
+            guide_id: 1,
+            name: 'John Doe',
+            info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            tagline: 'Your friendly local guide!',
+            filters: ['Foodie', 'History Enthusiast'],
+            images: ['image1.jpg', 'image2.jpg'],
+          }
+        ];
+
+
         render(
             <MemoryRouter>
                 <WelcomeProvider>
-                    <TouristProvider>
 
-                    <GuideProvider>   
-                        <GuideHomePage />
+                <TouristProvider>
+
+                <GuideProvider>
+
+                <ImageCarousel guide={fakeGuide}/>
                 </GuideProvider>
                 </TouristProvider>
                 </WelcomeProvider>
@@ -32,19 +43,12 @@ describe('Guide Home Page functionality', ()=> {
 
     afterEach(() => {
         cleanup()
-        vi.resetAllMocks();
     })
+
+
 
     it('is defined', () => {
-        expect(GuideHomePage).toBeDefined()
-
+        expect(ImageCarousel).toBeDefined()
     })
-
-    it('displays a h1 element', () => {
-        const h1 = screen.getByText('View All Of Your Clients')
-        expect(h1).toBeInTheDocument()
-    })
-
-
 
 })

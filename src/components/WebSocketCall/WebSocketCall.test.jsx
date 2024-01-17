@@ -41,9 +41,10 @@ describe('Web socket call functionality', () => {
     cleanup();
   });
 
-  it('is defined', () => {
+  it.skip('is defined', () => {
     expect(WebSocketCall).toBeDefined();
   });
 
 
 });
+

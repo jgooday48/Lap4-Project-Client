@@ -29,7 +29,7 @@ const GuideLoginForm = () => {
             "password": guidepassword
     }
 
-    await axios.post(baseApi+"/guides/login", userData)
+    await axios.post(baseApi+"guides/login", userData)
         .then(res => {
             const data = res.data
                sessionStorage.setItem("guide_token", data.tokens.access)
