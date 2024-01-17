@@ -7,6 +7,7 @@ import GuideForm from './GuideForm'
 import SearchedActivities from '../TouristGuidePage/SearchedActivities'
 import { toast } from 'react-toastify'
 import { filters } from '../../utils/filters'
+import Notification from '../../components/Notification'
 
 const GuideProfilePage = () => {
   const guideId = localStorage.getItem("guide_id")
@@ -23,7 +24,6 @@ const GuideProfilePage = () => {
         setGuide(res.data?.data)
 
         setSelectedValues(res.data?.data?.filters)
-        console.log("selected Values: ", selectedValues)
         const g = res.data?.data
         if (g) {
           fetchPlace(g.place_id)
@@ -50,7 +50,6 @@ const GuideProfilePage = () => {
     e.preventDefault()
  
     const matchedValues = selectedValues.map(key => filters[key]);
-    console.log("matched values: ", matchedValues)
     const body = {
       "filters": matchedValues
   
@@ -71,6 +70,7 @@ const GuideProfilePage = () => {
 
   return (
     <div>
+        <Notification/>
       <div>
         <h1>Profile</h1>
       </div>
