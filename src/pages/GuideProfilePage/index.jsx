@@ -78,7 +78,7 @@ const GuideProfilePage = () => {
       </div>
       <div className="guide-profile">
         <section style={{ width: '30%' }}>
-          <ImageCarousel images={guide.images} />
+          <ImageCarousel images={guide?.images} />
         </section>
         <section className="guide-info">
           <GuideForm guide={guide} place={place} selectedValues={selectedValues} setSelectedValues={setSelectedValues} updateGuide={updateGuide} />
