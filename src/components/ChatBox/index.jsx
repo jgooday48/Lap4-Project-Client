@@ -27,8 +27,6 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
     // const loginId = localStorage.getItem('touristId')
     const scroll = useRef()
 
-    console.log(chat)
-
     // const senderId = async () => {
     //   try {
     //     await axios.get(`http://localhost:5000/tourist/${chat.sender}`)
@@ -40,15 +38,16 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
       setNewMessage(newMessage)
     }
 
+    let userId = null
+
     // fetching data for header
     useEffect(() => {
 
-        let userId = null
 
         if(guideId){
          userId = chat.sender
         } else if (touristId){
-            userId = chat.receiver
+          userId = chat.receiver
         }
 
         const getUserData = async ()=> {
@@ -56,8 +55,9 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
             if(guideId){
             try
             {
-              const res = await axios.get(baseApi+`/tourist/${userId}`)
-               setUserData(res.data.data)
+              const res = await axios.get(baseApi+`tourist/${userId}`)
+              console.log(res.data)
+               setUserData(res.data)
               //  dispatch({type:"SAVE_USER", data:data})
             }
             catch(error)
@@ -67,8 +67,9 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
         } else if (touristId){
             try
             {
-              const res = await axios.get(baseApi+`/guides/${userId}`)
-               setUserData(res.data.data)
+              const res = await axios.get(`http://localhost:5000/guides/${userId}`)
+              console.log(res)
+               setUserData(res.data)
               //  dispatch({type:"SAVE_USER", data:data})
             }
             catch(error)
@@ -80,7 +81,7 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
       if (chat !== null) {
       getUserData();
       }
-    }, );
+    }, [chat]);
   
     // fetch messages
     useEffect(() => {
@@ -154,7 +155,6 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
   },[receivedMessage])
 
 
-  console.log("data", userData)
   return (
       <div className="ChatBox-container">
         {chat ? (
@@ -176,10 +176,11 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
                     style={{ width: "50px", height: "50px" }}
                   /> */}
                   <div className="name" style={{ fontSize: "0.9rem" }}>
-                    <span>
-                      {userData?.name}
-                      {/* {userData?.image} */}
-                    </span>
+                      {userData && userData.length > 0 && (
+                      <div>
+                        <span>{userData[0].name}</span>
+                      </div>
+                      )}
                   </div>
                 </div>
               </div>

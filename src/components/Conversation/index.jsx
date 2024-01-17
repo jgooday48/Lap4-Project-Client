@@ -22,6 +22,7 @@ const Conversation = ({ data, touristUser, guideUser }) => {
         guideId = sessionStorage.getItem('guide_id')
       }
 
+      console.log(touristId)
     
 
 
@@ -39,7 +40,7 @@ const Conversation = ({ data, touristUser, guideUser }) => {
       try
       {
         const { data } = await axios.get(`http://localhost:5000/tourist/${userId}`)
-         setUserData(data[0])
+         setUserData(data)
         //  dispatch({type:"SAVE_USER", data:data})
       }
       catch(error)
@@ -50,7 +51,7 @@ const Conversation = ({ data, touristUser, guideUser }) => {
         try
         {
           const res = await axios.get(baseApi+`/guides/${userId}`)
-           setUserData(res.data.data)
+           setUserData(res.data)
           //  dispatch({type:"SAVE_USER", data:data})
         }
         catch(error)
@@ -60,17 +61,20 @@ const Conversation = ({ data, touristUser, guideUser }) => {
     }
 }
 
+
     getUserData();
   }, [data, userId])
 
+  console.log("daata", userData)
   return (
     <>
     <div className="follower conversation">
         <div>
           {online && <div className="online-dot"></div>}
           <div className="name" style={{fontSize: '0.8rem'}}>
-            <span>{userData.name}</span>
-            <span>{userData.image}</span>
+            {userData && userData.length > 0 && (
+              <span>{userData[0].name}</span>
+            )}
             <span style={{color: online?"#51e200":""}}>{online? "Online" : "Offline"}</span>
           </div>
         </div>
