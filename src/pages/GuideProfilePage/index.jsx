@@ -7,7 +7,7 @@ import GuideForm from './GuideForm'
 import SearchedActivities from '../TouristGuidePage/SearchedActivities'
 import { toast } from 'react-toastify'
 import { filters } from '../../utils/filters'
-import Notification from '../../components/Notification'
+
 
 const GuideProfilePage = () => {
   const guideId = sessionStorage.getItem("guide_id")
@@ -73,7 +73,7 @@ const GuideProfilePage = () => {
 
   return (
     <div>
-        <Notification/>
+
       <div>
         <h1>Profile</h1>
       </div>
