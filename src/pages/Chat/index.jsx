@@ -5,7 +5,7 @@ import "./Chat.css"
 import { baseApi } from '../../utils/baseApi';
 import { Conversation, ChatBox } from '../../components';
 import { io } from 'socket.io-client';
-import { baseApi } from '../../utils/baseApi';
+
 
 
 const Chat = () => {

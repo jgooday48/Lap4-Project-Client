@@ -1,6 +1,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 
+#page-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
 
 * {
   margin:0;
@@ -32,15 +37,16 @@
 #footer {
   text-align: center;
   padding: 1rem;
-  bottom: 0;
-  
   height: 50px;
   background-color: #000;
+  margin-top: auto; 
+  
 }
 
 #footer p{
   color: #fff;
 }
+
 
 .nav-link {
   text-decoration: none;

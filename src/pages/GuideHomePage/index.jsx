@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom"
 import axios from 'axios'
 import { baseApi } from '../../utils/baseApi'
+import ImageCarousel from '../../components/ImageCarousel';
 import "./index.css"
 
 // want to be visible: Clients 
@@ -81,6 +82,7 @@ const GuideHomePage = () => {
   const toChat = () => {
     goTo("/livechat")
   }
+
  
   const displayClients = () => {
     if (view){
@@ -93,6 +95,8 @@ const GuideHomePage = () => {
       ))
     }
   }
+
+  const allActivityImages = activites.flatMap(activity => activity.images || []);
   
   return (
     <>
@@ -101,9 +105,9 @@ const GuideHomePage = () => {
           <h1>Welcome back, {/*guidename*/}Share your rich knowledge of your local area</h1>
           <button className="btn" onClick={handleClick}>View Your Profile</button>
         </div>
-        <div id='allActivities'>
+        {/* <div id='allActivities'>
           {displayActivites()}
-        </div>
+        </div> */}
         <div id="view-clients">
           <h1>View All Of Your Clients</h1>
           {view ? (
@@ -112,9 +116,9 @@ const GuideHomePage = () => {
             <button className="btn" onClick={handleView}>Show clients</button>
           )}
         </div>
-        <div id='showClients'>
+        {/* <div id='showClients'>
           {displayClients()}
-        </div>
+        </div> */}
       </div>
       <div id="Features">
         <div id="Features1">
@@ -140,20 +144,14 @@ const GuideHomePage = () => {
             <p>Network and collaborate with other guides in the community</p>
           </div>
         </div>
-        <div id="Gallery">
-          <div id="Gallery1">
-            <h1>Explore the World</h1>
-            <p>Discover amazing activities and destinations</p>
-            <div className="gallery-grid">
-              <div className="gallery-item"><img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwNDgwMDE3M3w&ixlib=rb-4.0.3&q=80&w=400" alt="1" /></div>
-              <div className="gallery-item"><img src="https://images.unsplash.com/photo-1568323993144-20d546ba585d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwNDgwMDE3M3w&ixlib=rb-4.0.3&q=80&w=400" alt="2" /></div>
-              <div className="gallery-item"><img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwNDgwMDE3M3w&ixlib=rb-4.0.3&q=80&w=400" alt="3" /></div>
-              <div className="gallery-item"><img src="https://images.unsplash.com/photo-1497262693247-aa258f96c4f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwNDgwMDE3M3w&ixlib=rb-4.0.3&q=80&w=400" alt="4" /></div>
-              <div className="gallery-item"><img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwNDgwMDE3M3w&ixlib=rb-4.0.3&q=80&w=400" alt="5" /></div>
-              
-            </div>
-          </div>
+      </div>
+      <div id="Gallery">
+        <div id="Gallery1">
+          <h1>Explore the World</h1>
+          <p>Discover amazing activities and destinations</p>
+          <ImageCarousel images={allActivityImages} />
         </div>
+      </div>
       <div id='FAQ'>
         <div id='FAQ1'>
           <h1>FAQ</h1>
@@ -172,10 +170,8 @@ const GuideHomePage = () => {
           <h3>How can I connect with fellow guides on TravelGuide?</h3>
           <p>Connecting with fellow guides on TravelGuide is a great way to network, share insights, and collaborate. In the 'Home' section of your Guide's Portal, you will find a community forum where you can interact with other guides. Share tips, ask questions, and learn from the experiences of your peers.</p>
         </div>
-        </div>
       </div>
     </>
   );
 }
-
-export default GuideHomePage
+  export default GuideHomePage;
