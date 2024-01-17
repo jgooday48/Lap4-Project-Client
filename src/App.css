@@ -60,7 +60,7 @@
   background-color: #3d94ff;
 }
 
-.btn {
+/* .btn {
   background-color: #3d94ff;
   color: #eeeff2;
   padding: 1rem;
@@ -73,14 +73,15 @@
 
 .btn:hover {
   background-color: #0471f6;
-}
+} */
 
-.homepage-container {
+/* .homepage-container {
 
   width: 100%;
 }
 
 .image-container {
+  height: 100%;
   width: 100%;
 }
 
@@ -97,7 +98,7 @@
 .description {
   width: 300px;
   padding: 10px;
-}
+} */
 
 #register-page {
   display: flex;
@@ -193,6 +194,10 @@
   border-radius: 20px;
   border: 1px solid #5228f5;
   
+}
+
+.logout-button a:hover{
+  background-color: #0471f6;
 }
 
 
