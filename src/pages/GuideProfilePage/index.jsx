@@ -15,7 +15,7 @@ const GuideProfilePage = () => {
   const [place, setPlace] = useState([])
   const [selectedValues, setSelectedValues] = useState([])
   const [activities, setActivities] = useState([])
-
+ const [images, setImages] = useState([])
 
 
   const fetchGuide = async () => {
@@ -29,6 +29,7 @@ const GuideProfilePage = () => {
         if (g) {
           fetchPlace(g.place_id)
           fetchActivitesByGuide(g.guide_id)
+          setImages(g.images)
         }
 
       })
@@ -78,7 +79,7 @@ const GuideProfilePage = () => {
       </div>
       <div className="guide-profile">
         <section style={{ width: '30%' }}>
-          <ImageCarousel images={guide?.images} />
+          <ImageCarousel images={images} />
         </section>
         <section className="guide-info">
           <GuideForm guide={guide} place={place} selectedValues={selectedValues} setSelectedValues={setSelectedValues} updateGuide={updateGuide} />
