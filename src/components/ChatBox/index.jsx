@@ -11,6 +11,7 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
     const [newMessage, setNewMessage] = useState("");
     const [id, setId] = useState([])
 
+
     let currentUser = null
     let guideId = null
     let touristId = null
@@ -27,6 +28,13 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
     const scroll = useRef()
 
     console.log(chat)
+
+    // const senderId = async () => {
+    //   try {
+    //     await axios.get(`http://localhost:5000/tourist/${chat.sender}`)
+    //   }
+    // }
+
   
     const handleChange = (newMessage)=> {
       setNewMessage(newMessage)
@@ -72,7 +80,7 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
       if (chat !== null) {
       getUserData();
       }
-    }, [chat]);
+    }, );
   
     // fetch messages
     useEffect(() => {
@@ -90,9 +98,9 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
   
   
     // Always scroll to last Message
-    // useEffect(()=> {
-    //   scroll.current?.scrollIntoView({ behavior: "smooth" });
-    // },[messages])
+    useEffect(()=> {
+      scroll.current?.scrollIntoView({ behavior: "smooth" });
+    },[messages])
   
   
   
@@ -113,7 +121,7 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
         text: newMessage,
 }
 }
-    // const receiverId = chat.filter(obj => obj.sender !== currentUser).map(obj => obj.receiver)
+  
     let receiverId = null
 
     if (guideId){
@@ -140,13 +148,13 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
   useEffect(()=> {
     console.log("Message Arrived: ", receivedMessage)
     if (receivedMessage !== null && receivedMessage.chatId === chat._id) {
-      // socket.on("data", (data) => {
       setMessages([...messages, receivedMessage]);
     }
   
   },[receivedMessage])
 
 
+  console.log("data", userData)
   return (
       <div className="ChatBox-container">
         {chat ? (
@@ -170,6 +178,7 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
                   <div className="name" style={{ fontSize: "0.9rem" }}>
                     <span>
                       {userData?.name}
+                      {/* {userData?.image} */}
                     </span>
                   </div>
                 </div>
@@ -205,6 +214,7 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
                     }
                   >
                     <span>{message.text}</span>
+                    <span></span>
                   </div>
                 
                 )))}
