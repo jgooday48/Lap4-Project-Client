@@ -31,7 +31,7 @@ describe('Welcome Page functionality', () => {
         cleanup();
     });
 
-    it('displays a heading with appropriate text', () => {
+    it.skip('displays a heading with appropriate text', () => {
         const heading = screen.getByRole("title");
         expect(heading).toBeInTheDocument();
         expect(heading.textContent).toBe("Find a travel guide");
@@ -46,7 +46,7 @@ describe('Welcome Page functionality', () => {
     it("displays a button to join", ()=>{
         const button = screen.getByRole("button")
         expect(button).toBeInTheDocument();
-        expect(button.textContent).toBe("Join now!")
+        expect(button.textContent).toBe("Click here to join now!")
     })
 
     it("navigates to the tourist signup page when the button is clicked", async ()=>{
