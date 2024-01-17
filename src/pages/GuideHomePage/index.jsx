@@ -83,20 +83,22 @@ const GuideHomePage = () => {
     goTo("/livechat")
   }
 
+  
  
-  const displayClients = () => {
-    if (view){
-      return client.filter(c => c.guide_username && c.guide_username.includes(guide.username)).map(s => (
-        <div id='clients'>
-          {s.username}
-          {s.reviews}
-          <button className='btn' onClick={toChat}>Chat with them</button>
-        </div>
-      ))
-    }
-  }
+  // const displayClients = () => {
+  //   if (view){
+  //     return client.filter(c => c.guide_username && c.guide_username.includes(guide.username)).map(s => (
+  //       <div id='clients'>
+  //         {s.username}
+  //         {s.reviews}
+  //         <button className='btn' onClick={toChat}>Chat with them</button>
+  //       </div>
+  //     ))
+  //   }
+  // }
 
   const allActivityImages = activites.flatMap(activity => activity.images || []);
+console.log("all image: " , allActivityImages)
   
   return (
     <>
@@ -149,7 +151,9 @@ const GuideHomePage = () => {
         <div id="Gallery1">
           <h1>Explore the World</h1>
           <p>Discover amazing activities and destinations</p>
-          <ImageCarousel images={allActivityImages} />
+          <div style={{width: '500px'}}>
+            <ImageCarousel images={allActivityImages} />
+            </div>
         </div>
       </div>
       <div id='FAQ'>

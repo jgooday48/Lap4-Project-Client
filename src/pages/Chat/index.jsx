@@ -44,7 +44,6 @@ const Chat = () => {
   
     const [chats, setChats] = useState([]);
     const [onlineUsers, setOnlineUsers] = useState([]);
-    const [receiver, setReceiver] = useState([])
     const [currentChat, setCurrentChat] = useState([]);
     const [sendMessage, setSendMessage] = useState(null);
     const [receivedMessage, setReceivedMessage] = useState(null);
@@ -69,6 +68,7 @@ const Chat = () => {
           setOnlineUsers(users);
         });
       }, []);
+
 
       useEffect(() => {
         socket.on("recieve-message", (data) => {
@@ -109,11 +109,27 @@ useEffect(() => {
         getChats();
       }, []);
 
-    //   const checkOnlineStatus = (chat) => {
-    //     const chatMember = chat.members.find((member) => member !== user._id);
-    //     const online = onlineUsers.find((user) => user.userId === chatMember);
-    //     return online ? true : false;
-    //   };
+      let online = null
+
+      const checkOnlineStatus = () => {
+        let chatMember;
+      
+        if (guideLoginId && chats.length > 0) {
+          chatMember = chats[0].sender
+          online = Object.values(onlineUsers).some((user) => user.userId == chatMember);
+          return online;
+        }
+      
+        if (touristloginId && chats.length > 0) {
+          chatMember = chats[0].receiver
+          online = Object.values(onlineUsers).some((user) => user.userId == chatMember);
+          return online;
+        }
+        return online === false;
+      }
+
+      checkOnlineStatus()
+
 
   return (
     <div className="Chat">
@@ -134,7 +150,8 @@ useEffect(() => {
               data={chat}
               touristUser ={touristloginId}
               guideUser = {guideLoginId}
-              // online={checkOnlineStatus(chat)}
+              online={online}
+
             />
           </div>
         )   

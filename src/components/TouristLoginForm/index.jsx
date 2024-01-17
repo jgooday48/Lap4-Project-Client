@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom';
 const TouristLoginForm = () => {
 
     const { touristemail, setTouristEmail, touristpassword, setTouristPassword, errorMessage, setErrorMessage, Loading, setTourist, touristusername, setTouristUsername, setLoading, setTouristAccess, setTouristRefresh } = useTourist(); 
-    const { setWelcome } = useWelcome(); 
+    const { welcome, setWelcome } = useWelcome(); 
 
     // const [email, setEmail ] = useState('')
     // const [password, setPassword ] = useState('')
@@ -68,13 +68,14 @@ const TouristLoginForm = () => {
         // Wait for getCurrentUser to complete before checking sessionStorage
         await getCurrentUser(sessionStorage.getItem("tourist_token"));
     
-        if (sessionStorage.length > 0) {
+        if (sessionStorage.getItem("tourist_token")) {
             setTourist(true);
             setWelcome(false);
             goTo("/touristhomepage");
         } else {
             setErrorMessage("Could not log in right now, we are fixing this");
         }
+        console.log(welcome)
     }
 
     const updateEmail = e => {

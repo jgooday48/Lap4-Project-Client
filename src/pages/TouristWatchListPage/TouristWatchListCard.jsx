@@ -33,7 +33,7 @@ const TouristWatchListCard = ({ guide }) => {
 
     }
 
-    
+    console.log(guide)
 
 
   return (

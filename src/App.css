@@ -11,6 +11,11 @@
   margin:0;
   padding:0;
   font-family: Raleway;
+  /* overflow-x: hidden; */
+}
+
+body{
+    overflow-x: hidden;
 }
 
 #root {
@@ -114,6 +119,12 @@
   position: relative;
   width: 100%;
   height: 100vh;
+
+  background-image: url('./assets/backImage.jpg');
+  color: white;
+  
+  
+ 
 }
 
 #tourist-register-form {
@@ -127,13 +138,44 @@
   margin-bottom: 70px;
   padding: 50px;
   margin-top: 35px;
+  background-color: #5228f5;
+  box-shadow: 14px 14px 20px rgba(54, 54, 54, 0.376);
 }
 
 .touristWrapper {
   background-color: #5228f5;
-  padding: 20px;
+  padding: 50px;
   height: 50px;
   
+}
+.welcomeWrapper{
+  background-color:white;
+  position:absolute;
+  width:100%;
+  display:flex;
+  justify-content: center;
+}
+.welcome-navbar{
+  background-color:white;
+  position:absolute;
+  
+}
+
+.welcome-header{
+  background:transparent;
+  width:100%;
+  height: 8.5vh;
+  border-radius: 50px;
+  display: flex;
+  align-items: right;
+  margin-top:40px;
+
+  margin-left: 180%;
+  /* margin-right: 10%; */
+  z-index: index 1;;
+  position:absolute;
+  
+
 }
 .tourist-header {
   background-color: white;
@@ -191,6 +233,7 @@
 .logout-button {
   margin-left: 20%;
   max-height: 10%;
+  
 }
 
 .logout-button a {
@@ -199,6 +242,7 @@
   padding: 8px; 
   border-radius: 20px;
   border: 1px solid #5228f5;
+  background-color: white;
   
 }
 
@@ -257,6 +301,8 @@
   font-size: 20px;
   border:#0471f6 2px solid;
   width:202px;
+  background-color: #5228f5;
+  color: white;
 
 
 }
