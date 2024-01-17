@@ -7,7 +7,7 @@ import axios from 'axios'
 
 
 const GuidePlanCard = ({ plan }) => {
-        const [image, setImage] = useState("")
+    const [image, setImage] = useState("")
     const [destination, setDestination] = useState("")
     const [placeImage, setPlaceImage] = useState()
     const [touristName, setTouristName] = useState("")
@@ -68,7 +68,7 @@ const GuidePlanCard = ({ plan }) => {
     }, [])
 
     const handleClick = () => {
-
+        navigate(`/guidePlans/${plan.plan_id}` , {state: {plan, placeImage, touristName}} ) 
     }
 
 
