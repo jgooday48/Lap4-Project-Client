@@ -15,7 +15,8 @@ const WelcomePage = () => {
         <img id="image-container" src="/src/assets/pexels-nandhu-kumar-450441.jpg"></img>
         <div className="overlay">
         <div className='title'>
-            <h1 role="title" aria-level="1">TravelGuide</h1>
+                  <h1 role="title" aria-level="1">TravelGuide</h1>
+                  <h2>See the world like a local</h2>
         </div>
         <div className='description'>
             <h2 role="description" aria-level="2">Making travelling solo relaxing and enjoyable</h2>

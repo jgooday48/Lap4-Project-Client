@@ -11,6 +11,11 @@
   margin:0;
   padding:0;
   font-family: Raleway;
+  /* overflow-x: hidden; */
+}
+
+body{
+    overflow-x: hidden;
 }
 
 #root {
