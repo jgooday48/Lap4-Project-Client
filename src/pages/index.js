@@ -19,4 +19,5 @@ export { default as IndividualGuidePage } from "./IndividualGuidePage"
 export { default as CreatePlanPage} from './CreatePlanPage'
 export { default as TouristPlansPage} from './TouristPlansPage'
 export { default as TouristEachPlanPage } from './TouristEachPlanPage'
-export { default as TouristWatchListPage} from './TouristWatchListPage'
+export { default as TouristWatchListPage } from './TouristWatchListPage'
+export {default as GuidePlansPage} from './GuidePlansPage'

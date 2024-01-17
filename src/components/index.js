@@ -13,8 +13,9 @@ export { default as ProtectedRoute } from "./TGAuth"
 export { default as FindPlacesMatch} from './FindPlacesMatch'
 export { default as RenderFoundPlaces } from './RenderFoundPlaces'
 
-export { default as ImageCarousel } from './ImageCarousel'
 
+export { default as ImageCarousel } from './ImageCarousel'
+export { default as Notification} from './Notification'
 
 export { default as Conversation } from "./Conversation"
 export { default as ChatBox } from "./ChatBox"
