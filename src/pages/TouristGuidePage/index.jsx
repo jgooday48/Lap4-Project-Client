@@ -61,8 +61,8 @@ const TouristGuidePage = () => {
 
   return (
     <div className="your-guides">
-      <div>
-        <h4>See the world like a local</h4>
+      <div style={{marginLeft:'2em'}}>
+        <h4><b>See the world like a local</b></h4>
       </div>
       <SearchForm guides={guides} fetchGuides={fetchGuides} fetchActivities={fetchActivities} />
       <div className="results">

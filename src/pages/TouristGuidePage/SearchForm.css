@@ -11,11 +11,12 @@
 }
 
 .search-container{
-    border: 1px solid blueviolet;
+    /* border: 1px solid blueviolet; */
     position: relative;
     /* width: 500px; */
     display: flex; 
     flex-direction: row;
+    padding-bottom: 2em;
   
 }
 

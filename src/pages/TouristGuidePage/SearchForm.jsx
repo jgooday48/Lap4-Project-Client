@@ -1,6 +1,6 @@
-import { faInfo, faLocationDot, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import { faInfo } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import './SearchForm.css'
 import { useLocation, useNavigate, useParams } from 'react-router'
 import FiltersSection from '../TouristHomePage/FiltersSection'

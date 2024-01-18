@@ -11,8 +11,8 @@ const FiltersSection = ({selectedValues, setSelectedValues}) => {
 
     return (
         <div className="filters-section">
-            <h3>Tailor Your Experience with Guide Filters!</h3>
-            <h4>Choose up to 5 preferences.</h4>
+            <h5><b>Tailor Your Experience with Guide Filters!</b></h5>
+            <h5>Choose up to 5 preferences.</h5>
 
             <div className="filter-container">
                 <Filters selectedValues={selectedValues} setSelectedValues={setSelectedValues} isGuide={false} />

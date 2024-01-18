@@ -1,7 +1,15 @@
 .filters-section {
     width: 80vw;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     text-align: left;
+    background-color: #f2f2f2;
+    padding: 2em;
+    border-radius: 10px; 
+    transition: 0.3s ease;
+}
+
+.filters-section:hover{
+    filter: brightness(0.9)
 }
 
 .filter-container {
@@ -15,21 +23,22 @@
 
 .filter {
     padding: 1em;
-    border: 1px solid black;
     margin: 10px;
     border-radius: 50px;
     transition: 0.1s ease-in-out;
-
+    background: cornflowerblue;
+    color: white;
+    
 }
 
 .filter:hover {
     cursor: pointer;
-    background-color: black;
+    background-color: blue;
     color: white;
     box-shadow: 0 0 10px white;
 }
 
 .filter.selected {
-    background-color: black;
+    background-color: blue;
     color: white;
 }
