@@ -135,8 +135,8 @@ useEffect(() => {
     <div className="Chat">
     {/* Left Side */}
     <div className="Left-side-chat">
-      <div className="Chat-container">
-        <h2>Chats</h2>
+        <div className="Chat-container">
+        <h2><b>Chats</b></h2>
         <div className="Chat-list">
         {chats.map(chat => (
             <div
@@ -174,8 +174,8 @@ useEffect(() => {
 
   {/* Right Side */}
 
-  <div className="Right-side-chat">
-        <div style={{ width: "20rem", alignSelf: "flex-end" }}>
+      <div className="Right-side-chat" style={{ overflow:'hidden'}}>
+        <div style={{ width: "20rem", alignSelf: "flex-end"}}>
           {/* <NavIcons /> */}
         </div>
         <ChatBox

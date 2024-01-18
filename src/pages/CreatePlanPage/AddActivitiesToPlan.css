@@ -4,7 +4,8 @@
     display: flex;
     width: 100%;
     flex-wrap: wrap; 
-    border: 2px solid gold;
+    /* border: 2px solid gold; */
+    justify-content: center;
 }
 
 .add-activity-card img{
@@ -41,7 +42,9 @@
     opacity: 0.6;
 }
 
-
+.add-activity-card img{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
 .tick{
     color: green; 
     position: absolute;
@@ -59,4 +62,15 @@
 .ticked-name{
     color: white; 
     font-size: 15px;
+}
+
+.button-form{
+    padding: 2em;
+    display: flex;
+    justify-content: center;
+}
+
+.button-form button{
+    border-radius: 555px;
+    padding: 1em;
 }

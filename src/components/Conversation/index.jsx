@@ -80,7 +80,8 @@ const Conversation = ({ data, touristUser, guideUser, online }) => {
             )}
             <br/>
             <span style={{color: online?"#51e200":""}}> 
-            {online && <div className="online-dot"></div>}
+              {online && <div className="online-dot"></div>}
+              {}
             {online? "Online" : "Offline"}</span>
           </div>
         </div>
