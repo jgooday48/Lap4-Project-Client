@@ -31,6 +31,22 @@ article{
   /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif */
 }
 
+.signup-btn {
+  text-decoration: none;
+  color: #000;
+  padding: 8px; 
+  margin: 5px;
+  border-radius: 15px;
+  background-color: white;
+  border: 1px solid #5228f5;
+}
+
+.signup-btn:hover {
+  transition-duration: 0.3s;
+  background-color: darkgreen;
+
+}
+
 #nav {
   padding-top: 20px;
   height: 75px;
