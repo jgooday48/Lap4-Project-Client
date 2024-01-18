@@ -15,17 +15,17 @@ const CreatePlanPage = () => {
     const { guideId } = useParams()
     const location = useLocation()
     const guide = location.state && location.state.guide
-    // const placeId = guide.place_id
+
     const placeId = guide?.place_id || null
     const [notes, setNotes] = useState("")
-    // const [dateFrom, setDateFrom] = useState(null);
-    // const [dateTo, setDateTo] = useState(null);
+
     const [activityIds, setActivityIds] = useState([])
 
     const touristId = sessionStorage.getItem('touristId')
     const navigate = useNavigate()
     const [dateTimeFrom, setDateTimeFrom] = useState(null);
     const [dateTimeTo, setDateTimeTo] = useState(null);
+    const [touristUsername, setTouristUsername] = useState('')
 
     // ... (existing code)
 
@@ -48,15 +48,45 @@ const CreatePlanPage = () => {
         console.log("body: ", body)
 
         await axios.post(baseApi + "plans", body)
-            .then(res => toast.success('New plan added to your "Plans"'))
+            .then(res => {
+                toast.success('New plan added to your "Plans"')
+            
+                const message = touristUsername + " has created a plan"
+                makeNotes(message)
+            })
             .catch(e => {
                 console.log(e)
+               
                 toast.error("Unable to create plan")
 
             })
 
 
     };
+
+    const fetchTouristByTouristId = async () => {
+        await axios.get(baseApi + "tourist/" + touristId)
+            .then(res => setTouristUsername(res.data[0].username))
+            .catch(e => console.log(e))
+    }
+
+    useEffect(() => {
+        fetchTouristByTouristId()
+    }, [])
+
+
+    const makeNotes = async (message) => {
+
+        const body = {
+            "sender_id": touristId,
+            "text": message,
+            "guide_id": guideId
+        }
+        await axios.post(baseApi + "notes", body)
+            .then(() => ("new note made"))
+            .catch((e) => console.log(e))
+    }
+
 
 
 
@@ -77,9 +107,9 @@ const CreatePlanPage = () => {
             <div className="plan-guide-info">
                 <button className="btn btn-secondary" onClick={() => navigate(-1)}>&larr; Go back</button>
                 <b>Create plans with {guide?.name?.substring(0, guide.name.indexOf(" "))}</b>
-                    <img src={guide?.images?.[0]} alt="guide-pic" />
-                </div>
-            
+                <img src={guide?.images?.[0]} alt="guide-pic" />
+            </div>
+
             <div className="create-plan-form-section">
                 <b>Plan Details</b>
                 <form onSubmit={createPlan} className="create-form">
