@@ -23,13 +23,14 @@ const TouristHomePage = () => {
       <div id="topContainer">
     
         <div id="headerContainer">
-          <p style={{fontSize:'50px'}}>Welcome back John Smith</p>
+          <p style={{fontSize:'30px'}}>Welcome back John Smith</p>
           <label style={{ fontWeight: 'bold', color: 'white', fontSize:'40px'}}>
             Discover the World
             <br />
-            with our Travel Guide
-            <br />
-            App
+            with
+            <br/>
+            TravelGuide
+
           </label>
           <h5 className="sub-heading" >
             Your ultimate companion for exploring new destinations

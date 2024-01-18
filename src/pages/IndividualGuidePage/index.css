@@ -1,7 +1,7 @@
 
 
 .guidesPage{
-    padding: 3em;
+    padding: 3em 0;
 }
 
 .guide-activities, .guide-reviews{
@@ -10,3 +10,25 @@
     width: 100%;
 }
 
+.guide-reviews{
+    padding: 3em;
+  
+}
+.guide-activities{
+    /* border: 2px solid black; */
+    padding: 2em 0;
+    min-height: 50vh;
+    width: 100vw;
+      color: white;
+    background-color: #5228f5;
+
+}
+
+
+.guide-reviews-card{
+    border-bottom: 5px solid white;
+    background: #f2f2f2;
+    padding: 2em;
+    margin-bottom: 0;
+
+}
