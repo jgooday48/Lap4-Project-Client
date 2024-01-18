@@ -15,5 +15,9 @@ export default defineConfig({
         additionalData: `@import "bootstrap/dist/css/bootstrap.min.css";`,
       },
     },
-  }
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+  },
+  
 });
