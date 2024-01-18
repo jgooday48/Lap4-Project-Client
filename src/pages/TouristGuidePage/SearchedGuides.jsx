@@ -1,10 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './SearchedGuides.css'
 import { useNavigate } from 'react-router'
+import axios from 'axios'
+import { baseApi } from '../../utils/baseApi'
+import GuideRating from './GuideRating'
+
 
 
 const SearchedGuides = ({ searchRes, guides }) => {
   const navigate = useNavigate()
+
+
+
 
   const handleClick = (id) => {
     navigate(`/touristguidepage/${id}`, {state: {searchRes}})
@@ -26,9 +33,10 @@ const SearchedGuides = ({ searchRes, guides }) => {
                 <p className="guide-filters">
                   {g.filters.map((filter, idx) =>
                     <div key={idx} className="guide-filter">{filter}</div>
+    
                   )}
                 </p>
-                <b>RATING HERE</b>
+                <div><GuideRating id={g.guide_id}/></div>
               </section>
             </div>
           )
