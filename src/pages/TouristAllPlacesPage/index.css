@@ -1,19 +1,21 @@
 
 
 .search-card{
-    height: 300px;
-    margin: 4em;
+    height: 200px;
+    margin: 2em;
     display: flex;
     flex-direction: row;
     border-radius: 10px;
     background-color: #dddddd;
      transition: 0.1s ease-in-out;
      overflow: hidden;
+     width: 1000px; 
 }
 
 .search-card img{
-    height: 300px;
-    width: 500px;
+    width: 50vw !important;
+    height: 200px;
+    object-fit: cover;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
      transition: 0.3s ease-in-out;
@@ -22,6 +24,8 @@
 
 .search-card:hover img{
     transform: scale(1.04); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
 }
 
 .search-card:hover{
@@ -32,4 +36,32 @@
 .search-card-info{
     margin-left: 4em;
     padding: 1em;
+}
+
+
+.all-search{
+    display: flex; 
+    flex-direction: row;
+    border: 2px solid red;
+}
+
+.places-summary{
+    width: 30%;
+    padding: 2em;
+    border: 1px solid black;
+    height: 100%; 
+}
+
+.places-summary ul{
+     padding: 10px;
+    list-style: none;
+    
+   
+}
+
+
+.places-container{
+    width: 70%;
+    border: 4px solid green;
+    padding-top: 3em;
 }

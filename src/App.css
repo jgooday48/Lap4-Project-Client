@@ -16,6 +16,11 @@
 
 body{
     overflow-x: hidden;
+  
+}
+
+article{
+  font-size: 20px;
 }
 
 #root {

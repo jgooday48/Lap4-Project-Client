@@ -41,8 +41,12 @@ const TouristPlanCard = ({ plan }) => {
 
         await axios.get(baseApi + "guides/" + guideId)
             .then(res => {
-                setGuideName(res.data.data.name)
-                setImage(res.data.data.images[0])
+                console.log("guide: ", res.data[0])
+                const data = res.data[0]
+                if (data) {
+                    setGuideName(data.name)
+                    setImage(data.images[0])
+                }
             })
             .catch(e => console.log(e))
     }

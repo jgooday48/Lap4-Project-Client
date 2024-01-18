@@ -134,14 +134,14 @@ const GuideCard = ({ guide, placeName }) => {
           )}
         </p>
 
-        <li>make and confirm plan</li>
+        {/* <li>make and confirm plan</li>
         <li>plans page</li>
         <li>save guides</li>
         <li>saved guides page</li>
         <li>dates</li>
         <li>connect messaging system</li>
         <li>reviews long paginate or new page</li>
-        <li></li>
+        <li></li> */}
       </section>
       <section className="guide-contact">
         <div className="guide-chat-title">

@@ -16,7 +16,7 @@ const Notification = () => {
     useEffect(() => {
         fetchGuideNotifications();
         console.log('notes: ', receivedNotes);
-    }, []);// Add seenCount to the dependencies to re-fetch when it changes
+    });// Add seenCount to the dependencies to re-fetch when it changes
 
     const fetchGuideNotifications = async () => {
         try {

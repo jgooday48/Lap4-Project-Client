@@ -116,7 +116,7 @@ const ChatBox = ({ chat, touristUser, guideUser, setSendMessage, receivedMessage
       };
   
     fetchMessages();
-    },[chat]);
+    });
   
   
     // Always scroll to last Message

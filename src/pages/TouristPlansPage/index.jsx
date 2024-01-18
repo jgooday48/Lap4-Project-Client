@@ -13,7 +13,7 @@ const TouristPlansPage = () => {
     const fetchPlansByTourist = async () => {
         await axios.get(baseApi + "plans/tourist:" + touristId)
             .then(res => {
-
+                console.log("tourist data: ", res.data[0])
                 setPlans(res.data)
 
             }
