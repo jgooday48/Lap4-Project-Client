@@ -20,7 +20,7 @@ const SearchedGuides = ({ searchRes, guides }) => {
   return (
     <>
       <div className="result-title">
-        <h3>Guides in {searchRes}</h3>
+        <h4>Guides in {searchRes}</h4>
       </div>
       <div className="guides-container">
         {
@@ -30,7 +30,7 @@ const SearchedGuides = ({ searchRes, guides }) => {
               <section className="guide-card-details">
                 <b>{g.name}</b>
                 <span>{g.tagline}</span>
-                <p className="guide-filters">
+                <p className="guide-filters" style={{border:'none'}}>
                   {g.filters.map((filter, idx) =>
                     <div key={idx} className="guide-filter">{filter}</div>
     

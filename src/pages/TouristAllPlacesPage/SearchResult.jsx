@@ -13,9 +13,9 @@ const SearchResult = ({ place }) => {
 
     return (
         <div key={place.place_id} className="search-card" onClick={() => { handleNavigate(place) }}>
-            <div className="placeImage">
+      
                 <img src={place.images[0]} alt="place-img" />
-                </div>
+    
             <div className="search-card-info">
                 <h2>{place.name}</h2>
                  <div style={{marginTop: '1em'}}>{place.description}</div>

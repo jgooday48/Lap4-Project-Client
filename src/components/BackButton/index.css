@@ -1,0 +1,38 @@
+.back-btn{
+    position: relative;
+    border: 2px solid;
+    margin-left: 1em;
+  
+}
+
+.back-btn-icon{
+    position: absolute;
+    left: -30px;
+    top: -10px;
+    width: 65px; 
+    height: 65px;
+
+    display: flex; 
+   align-items: center;
+   justify-content: center;
+    background-color:#6c757d;
+    border-radius: 50px;
+     /* box-shadow: 5px 4px 8px rgba(0, 0, 0, 0.3) */
+
+
+
+}
+
+.back-btn-icon:hover{
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.back-btn-container{
+    transform: 0.3s filter ease;
+    
+
+}
+
+.back-btn-container:hover{
+    filter: brightness(0.8)
+}

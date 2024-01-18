@@ -8,8 +8,12 @@
 .guide-page-card {
     display: flex;
     flex-direction: row;
-    padding: 2em;
-    border: 2px solid salmon;
+    padding: 3em;
+    background-color: #f2f2f2;
+    margin-top: 2em;
+    border-radius: 10px;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+
 }
 
 .carousel {
@@ -38,12 +42,12 @@
 
 .guide-contact{
     font-size: x-large;
-    border: 2px solid brown;
+    /* border: 2px solid brown; */
     width: 20%;
 }
 
 .guide-chat-title{
-    margin-bottom: 2em;
+    /* margin-bottom: 2em; */
 }
 
 .chat-icon{
@@ -56,6 +60,8 @@
     border-radius: 15px;
     border: 2px solid gainsboro;
     transition: 0.2s ease-in-out ;
+    margin-bottom: 2em;
+    
 
 }
 
@@ -75,3 +81,4 @@
 .chat-icon.gold{
     color: gold;
 }
+

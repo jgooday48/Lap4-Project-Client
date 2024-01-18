@@ -41,11 +41,15 @@ const [placeName, setPlaceName] = useState('')
 
   return (
     <div className='guidesPage'>
-      <h1>Guide Profile</h1>
-          <BackButton />
-      <GuideCard guide={guide} placeName={placeName} />
+      <div style={{padding:'3em'}}>
+      <BackButton />
+      
+      <h4 style={{paddingTop:'3em'}}><b>Guide Profile</b></h4>
+   
+        <GuideCard guide={guide} placeName={placeName} />
+      </div>
       <section className="guide-activities">
-        <b>Activities</b>
+        <b style={{paddingLeft:'3em'}}>Activities</b>
         <GuideActivities id={id}/>
       </section>
       <section className="guide-reviews">

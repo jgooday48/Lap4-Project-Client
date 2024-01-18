@@ -45,6 +45,7 @@ const FindPlacesMatch = ({ search, setSearch, setPlacePicked, isHome}) => {
                 onKeyDown={e => {
                     if (e.key === 'Enter') handleSearch()
                 }}
+                style={{fontSize:'20px'}}
             />
             {isHome ? (
                 < FontAwesomeIcon icon={faSearch} className='fa-search' />

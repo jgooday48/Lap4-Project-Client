@@ -17,7 +17,7 @@
 .placeImage{
     width: 400px;
     height: 200px;
-    transition: 0.5s ease-in-out;
+    transition: 1s ease-in-out;
 }
 
 .placeImage img{
@@ -31,15 +31,15 @@
 
 
 
-/* .search-card img{
+ .search-card img{
    
-
+   width: 400px;
     object-fit: cover;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
      transition: 0.3s ease-in-out;
      overflow: hidden;
-} */
+} 
 
 .search-card:hover img{
     transform: scale(1.04); 

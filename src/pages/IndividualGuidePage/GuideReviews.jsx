@@ -80,7 +80,9 @@ const GuideReviews = ({ id }) => {
                         </div>
                         <div style={{fontSize:'smaller'}}>Reviewed on {new Date(r.timestamp).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</div>
                     </div>
-                    <p style={{marginTop:'1em'}}>{r.comment}</p>
+                  
+                    <p style={{ marginTop: '1em' }}>{r.comment}</p>
+                
                 </div>
             ))}
              </div>

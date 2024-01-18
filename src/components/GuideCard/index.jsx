@@ -116,8 +116,7 @@ const GuideCard = ({ guide, placeName }) => {
     
 
     <div className='guide-page-card'>
-      
-      {/* <div className="carousel" style={{ width: "35%" }}> */}
+
       <div style={{width: '500px'}}>
         <ImageCarousel images={images} />
       </div>
@@ -125,31 +124,25 @@ const GuideCard = ({ guide, placeName }) => {
       <section className="guide-info-section">
         <b>Meet {guide.name}</b>
         <p>A local from <u>{placeName}</u></p>
+      
         <p>{guide.info}</p>
         <p>{guide.tagline}</p>
 
-        <p className="guide-filters">
+        <p className="guide-filters" style={{marginTop:'4em', border:'none'}}>
           {guide.filters?.map((filter, idx) =>
             <div key={idx} className="guide-filter">{filter}</div>
           )}
         </p>
 
-        {/* <li>make and confirm plan</li>
-        <li>plans page</li>
-        <li>save guides</li>
-        <li>saved guides page</li>
-        <li>dates</li>
-        <li>connect messaging system</li>
-        <li>reviews long paginate or new page</li>
-        <li></li> */}
       </section>
       <section className="guide-contact">
         <div className="guide-chat-title">
-          <b>Say Hello</b>
+          <b>Say Hi</b>
         </div>
         <div className="chat-icon" onClick={startChat}>
           <FontAwesomeIcon icon={faComment} />
         </div>
+        <b>Add to Watchlist</b>
         <div className={`chat-icon ${toggleSaveOrDelete ? '' : 'gold'}`}
           onClick={() => saveOrDeleteGuide()}>
           <FontAwesomeIcon icon={faEye} />
