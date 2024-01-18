@@ -1,0 +1,10 @@
+
+
+
+.offline-dot{
+    width: 10px;
+    background-color: red;
+    height: 10px;
+    border-radius: 50px;
+      box-shadow: 0 0 10px 5px rgba(255, 0, 0, 0.5);
+}

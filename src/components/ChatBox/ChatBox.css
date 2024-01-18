@@ -3,6 +3,7 @@
     border-radius: 1rem;
     display: grid;
     grid-template-rows: 14vh 60vh 13vh;
+    overflow: hidden;
 }
 
 .chat-img{
@@ -31,7 +32,7 @@
     flex-direction: column;
     gap: 0.5rem;
     padding: 1.5rem;
-    overflow: scroll;
+    overflow: hidden;
 }
 
 .extra {

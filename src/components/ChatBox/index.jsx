@@ -209,9 +209,9 @@ console.log(message)
                   <div className="name" style={{ fontSize: "0.9rem" }}>
                       {touristId && userData && userData.length > 0 && (
                       <div>
-                        <span>{userData[0].name}</span>
+                        <span style={{ fontSize:'x-large'}}><b>{userData[0].name}</b></span>
                         <span>
-                        <img className='chat-img'src={userData[0].images[0]} alt="User Image" />
+                        <img className='chat-img'src={userData[0].images[0]} style={{ width: '70px', height: '70px' }} alt="User Image" />
                         </span>
                       </div>
                       )}
@@ -245,13 +245,13 @@ console.log(message)
                       : "message"
                     }
                     >
-                    <span className='text'>{message.text}</span>
+                    <span className='text' style={{ fontSize:'large'}}>{message.text}</span>
                   </div>
                   <div className={message.sender_id == guideId
                       ? "extra"
-                      : "extra2"}>
-                    {message.sender_id == id[0].guide_id ? <span>{id[0].name}</span> : <span>{userData[0].name}</span>}
-                    <span className='time'>{message.time}</span>
+                      : "extra2"} style={{ fontSize:'medium'}}>
+                    {message.sender_id == id[0].guide_id ? <span>{id[0].name}</span> : <span style={{ fontSize:'medium', padding:'1em'}}>{userData[0].name}</span>}
+                    <span className='time' style={{ fontSize:'medium'}}>{message.time}</span>
                   </div>
                   </>
               
@@ -263,15 +263,15 @@ console.log(message)
                       message.sender_id == touristId
                       ? "message own"
                       : "message"
-                    }
+                    }style={{ fontSize:'medium'}}
                     >
-                    <span className='text'>{message.text}</span>
+                    <span className='text' style={{ fontSize:'large'}}>{message.text}</span>
                   </div>
                     <div className={ message.sender_id == touristId
                       ? "extra"
-                      : "extra2"}>
-                    {message.sender_id == id[0].tourist_id ? <span>{id[0].name}</span> : <span>{userData[0].name}</span>}
-                    <span className='time'>{message.time}</span>
+                      : "extra2"} style={{ fontSize:'medium'}}>
+                    {message.sender_id == id[0].tourist_id ? <span>{id[0].name}</span> : <span style={{ fontSize:'medium'}}>{userData[0].name}</span>}
+                    <span className='time' style={{ fontSize:'medium'}}>{message.time}</span>
                     </div>
                   </>
                 )))}
@@ -283,7 +283,7 @@ console.log(message)
                 value={newMessage}
                 onChange={handleChange}
               />
-              <div className="send-button button" onClick = {handleSend}>Send</div>
+              <div className="send-button button" onClick = {handleSend}><button className="btn btn-primary" style={{width:'100px', borderRadius:'50px'}}>Send</button></div>
               <input
                 type="file"
                 name=""

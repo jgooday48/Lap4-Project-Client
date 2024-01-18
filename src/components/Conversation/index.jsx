@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import "../../pages/Chat/Chat.css"
 import { baseApi } from '../../utils/baseApi'
+import './index.css'
 
 const Conversation = ({ data, touristUser, guideUser, online }) => {
 
@@ -73,15 +74,16 @@ const Conversation = ({ data, touristUser, guideUser, online }) => {
           <div className="name" style={{fontSize: '0.8rem'}}>
             {userData && userData.length > 0 && (
               <div>
-              <span>{userData[0].name}</span>
+              <span style={{fontSize:'large'}} ><b>{userData[0].name}</b></span>
 
-              {userData[0].images ? <span><img className='convo-img' src={userData[0].images[0]} alt='User image'/></span> : null}
+                {userData[0].images ? <span><img className='convo-img'  style={{ width: '70px', height: '70px' }} src={userData[0].images[0]} alt='User image'/></span> : null}
               </div>
             )}
             <br/>
-            <span style={{color: online?"#51e200":""}}> 
-              {online && <div className="online-dot"></div>}
-              {}
+            <span style={{ color: online ? "#51e200" : "", fontSize:'large'}}> 
+              {online ? <div className="online-dot"></div> :
+                <div className="offline-dot"></div>
+              }
             {online? "Online" : "Offline"}</span>
           </div>
         </div>

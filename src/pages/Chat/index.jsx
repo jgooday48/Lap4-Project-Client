@@ -132,12 +132,12 @@ useEffect(() => {
 
       console.log(chats)
   return (
-    <div className="Chat">
+    <div className="Chat" >
     {/* Left Side */}
-    <div className="Left-side-chat">
+    <div className="Left-side-chat" style={{ fontSize:'x-large'}}>
         <div className="Chat-container">
         <h2><b>Chats</b></h2>
-        <div className="Chat-list">
+        <div className="Chat-list" style={{ fontSize:'x-large'}}>
         {chats.map(chat => (
             <div
             key={chat.chat_id}
@@ -151,7 +151,7 @@ useEffect(() => {
               touristUser ={touristloginId}
               guideUser = {guideLoginId}
               online={online}
-
+             style={{ fontSize:'x-large'}}
             />
           </div>
         )   
@@ -175,7 +175,7 @@ useEffect(() => {
   {/* Right Side */}
 
       <div className="Right-side-chat" style={{ overflow:'hidden'}}>
-        <div style={{ width: "20rem", alignSelf: "flex-end"}}>
+        <div style={{ width: "20rem", alignSelf: "flex-end"}} >
           {/* <NavIcons /> */}
         </div>
         <ChatBox
@@ -185,6 +185,7 @@ useEffect(() => {
           socket = {socket}
           setSendMessage={setSendMessage}
           receivedMessage={receivedMessage}
+          style={{ fontSize:'x-large'}}
         />
       </div>
     </div>
