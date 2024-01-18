@@ -130,7 +130,7 @@ useEffect(() => {
 
       checkOnlineStatus()
 
-
+      console.log(chats)
   return (
     <div className="Chat">
     {/* Left Side */}
