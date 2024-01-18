@@ -46,6 +46,7 @@ const GuidePlanCard = ({ plan }) => {
             .then(res => {
                 // setTouristName(res.data.data.name)
                 setTouristName(res.data[0].name)
+                setPlaceImage(res.data[0].images[0])
             })
             .catch(e => console.log(e))
     }
@@ -54,7 +55,7 @@ const GuidePlanCard = ({ plan }) => {
         await axios.get(baseApi + "places/" + placeId)
             .then(res => {
                 setDestination(res.data.data.name + ", " + res.data.data.location)
-                setPlaceImage(res.data.data.images[0])
+                // setPlaceImage(res.data.data.images[0])
             }
             )
             .catch(e => console.log(e))
